@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperDash | Tarifs & Abonnements</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="tarifs.css">
+</head>
+<body>
+
+    <nav class="public-nav">
+        <div class="d-flex align-items-center gap-2 me-lg-2" style="cursor: pointer;" onclick="window.location.href='landing_page.html'">
+            <div class="bg-primary text-white d-flex align-items-center justify-content-center fw-900 rounded-custom" style="width: 32px; height: 32px; font-size: 18px;">S</div>
+            <h3 class="m-0 fw-900 text-dark d-none d-sm-block" style="letter-spacing: -0.5px;">superdash</h3>
+        </div>
+        
+        <div class="nav-links d-none d-xl-flex align-items-center">
+            <a href="landing_page.html">Accueil</a>
+            <a href="discover.html">Découvrir</a>
+            <a href="fonctionnalites.html">Fonctionnalités</a>
+            <a href="tarifs.html" class="active">Tarifs</a>
+        </div>
+        
+        <div class="search-bar d-none d-md-flex mx-auto">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Rechercher des cours, mentors...">
+        </div>
+        
+        <div class="d-flex align-items-center gap-3 ms-auto">
+            <span class="fw-700 text-muted d-none d-lg-block" style="cursor: pointer; font-size: 14px;">Enseigner</span>
+            <button class="btn btn-light d-none d-sm-block py-2">Connexion</button>
+            <button class="btn btn-primary py-2">S'inscrire</button>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="container-xl">
+            <h1 class="hero-title mb-3" style="font-size: 42px;">Des tarifs simples, sans surprise.</h1>
+            <p class="text-muted fw-600 mx-auto mb-4" style="max-width: 600px; font-size: 16px;">Commencez gratuitement, puis évoluez avec des outils puissants lorsque votre académie grandit.</p>
+            
+            <div class="billing-toggle">
+                <button class="billing-btn active">Mensuel</button>
+                <button class="billing-btn d-flex align-items-center gap-2">Annuel <span class="badge bg-success-subtle text-success border border-success border-opacity-25 rounded-custom">-20%</span></button>
+            </div>
+
+            <div class="row justify-content-center g-4 text-start mb-5">
+                <div class="col-lg-4 col-md-6">
+                    <div class="pricing-card">
+                        <h3 class="fw-800">Starter</h3>
+                        <p class="text-muted fw-500">Parfait pour tester la plateforme et créer son premier cours.</p>
+                        <div class="plan-price">0 DT<span> /mois</span></div>
+                        <ul class="plan-list flex-grow-1">
+                            <li><i class="fa-solid fa-check text-success"></i> 1 Cours publié</li>
+                            <li><i class="fa-solid fa-check text-success"></i> 50 Apprenants max</li>
+                            <li><i class="fa-solid fa-check text-success"></i> Hébergement vidéo standard</li>
+                            <li><i class="fa-solid fa-check text-success"></i> Communauté basique</li>
+                        </ul>
+                        <button class="btn btn-light w-100 py-3 border-2">Commencer gratuitement</button>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="pricing-card pro">
+                        <div class="price-badge">Le plus populaire</div>
+                        <h3 class="fw-800 text-primary">Pro</h3>
+                        <p class="text-muted fw-500">Pour les créateurs qui veulent développer leur entreprise sérieusement.</p>
+                        <div class="plan-price text-primary">49 DT<span> /mois</span></div>
+                        <ul class="plan-list flex-grow-1">
+                            <li><i class="fa-solid fa-check"></i> <strong>Cours et apprenants illimités</strong></li>
+                            <li><i class="fa-solid fa-check"></i> Sessions Live intégrées</li>
+                            <li><i class="fa-solid fa-check"></i> Marketing Email natif</li>
+                            <li><i class="fa-solid fa-check"></i> Mentor IA assistant</li>
+                            <li><i class="fa-solid fa-check"></i> Zéro frais de transaction</li>
+                        </ul>
+                        <button class="btn btn-primary w-100 py-3">Essai gratuit de 14 jours</button>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="pricing-card">
+                        <h3 class="fw-800">Entreprise</h3>
+                        <p class="text-muted fw-500">Pour les écoles et organisations avec des équipes complètes.</p>
+                        <div class="plan-price">99 DT<span> /mois</span></div>
+                        <ul class="plan-list flex-grow-1">
+                            <li><i class="fa-solid fa-check text-success"></i> Tout du plan Pro</li>
+                            <li><i class="fa-solid fa-check text-success"></i> Jusqu'à 5 formateurs (Multi-comptes)</li>
+                            <li><i class="fa-solid fa-check text-success"></i> Marque blanche (Custom Domain)</li>
+                            <li><i class="fa-solid fa-check text-success"></i> API & Intégrations avancées</li>
+                        </ul>
+                        <button class="btn btn-light w-100 py-3 border-2">Contacter les ventes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-white border-top">
+        <div class="container-xl">
+            <h2 class="text-center mb-5 fs-2">Comparaison détaillée des fonctionnalités</h2>
+            
+            <div class="comparison-table-wrapper table-responsive">
+                <table class="table table-borderless align-middle text-center mb-0">
+                    <thead>
+                        <tr>
+                            <th class="text-start" style="width: 40%;"></th>
+                            <th style="width: 20%;">Starter</th>
+                            <th style="width: 20%;" class="text-primary">Pro</th>
+                            <th style="width: 20%;">Entreprise</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colspan="4" class="table-category text-start">Cours & Contenus</td></tr>
+                        <tr>
+                            <th class="text-start">Nombre de cours</th>
+                            <td>1</td>
+                            <td class="fw-800 text-primary">Illimité</td>
+                            <td class="fw-800">Illimité</td>
+                        </tr>
+                        <tr>
+                            <th class="text-start">Apprenants actifs</th>
+                            <td>50 max</td>
+                            <td class="fw-800 text-primary">Illimité</td>
+                            <td class="fw-800">Illimité</td>
+                        </tr>
+                        <tr>
+                            <th class="text-start">Hébergement Vidéo (Bande passante)</th>
+                            <td>Standard (720p)</td>
+                            <td class="fw-800 text-primary">Illimité (4K)</td>
+                            <td class="fw-800">Illimité (4K)</td>
+                        </tr>
+                        <tr>
+                            <th class="text-start">Quiz & Exercices</th>
+                            <td><i class="fa-solid fa-check check-icon"></i></td>
+                            <td><i class="fa-solid fa-check check-icon"></i></td>
+                            <td><i class="fa-solid fa-check check-icon"></i></td>
+                        </tr>
+                        <tr>
+                            <th class="text-start">Certifications automatiques</th>
+                            <td><i class="fa-solid fa-minus minus-icon"></i></td>
+                            <td><i class="fa-solid fa-check check-icon"></i></td>
+                            <td><i class="fa-solid fa-check check-icon"></i></td>
+                        </tr>
+
+                        <tr><td colspan="4" class="table-category text-start">Engagement & Outils</td></tr>
+                        <tr>
+                            <th class="text-start">Espace Communauté (Forum)</th>
+                            <td>Basique</td>
+                            <td class="fw-800 text-primary">Avancé</td>
+                            <td class="fw-800">Avancé</td>
+                        </tr>
+                        <tr>
+                            <th class="text-start">Sessions Live (Visioconférence native)</th>
+                            <td><i class="fa-solid fa-minus minus-icon"></i></td>
+                            <td><i class="fa-solid fa-check check-icon"></i></td>
+                            <td><i class="fa-solid fa-check check-icon"></i></td>
+                        </tr>
+                        <tr>
+                            <th class="text-start">Mentor IA (Génération de cours)</th>
+                            <td><i class="fa-solid fa-minus minus-icon"></i></td>
+                            <td><i class="fa-solid fa-check check-icon"></i></td>
+                            <td><i class="fa-solid fa-check check-icon"></i></td>
+                        </tr>
+
+                        <tr><td colspan="4" class="table-category text-start">Marketing & Ventes</td></tr>
+                        <tr>
+                            <th class="text-start">Frais de transaction (par vente)</th>
+                            <td>10%</td>
+                            <td class="fw-800 text-primary">0%</td>
+                            <td class="fw-800">0%</td>
+                        </tr>
+                        <tr>
+                            <th class="text-start">Abonnements récurrents (Paiement)</th>
+                            <td><i class="fa-solid fa-minus minus-icon"></i></td>
+                            <td><i class="fa-solid fa-check check-icon"></i></td>
+                            <td><i class="fa-solid fa-check check-icon"></i></td>
+                        </tr>
+                        <tr>
+                            <th class="text-start">Outil d'Email Marketing intégré</th>
+                            <td><i class="fa-solid fa-minus minus-icon"></i></td>
+                            <td><i class="fa-solid fa-check check-icon"></i></td>
+                            <td><i class="fa-solid fa-check check-icon"></i></td>
+                        </tr>
+
+                        <tr><td colspan="4" class="table-category text-start">Administration & Support</td></tr>
+                        <tr>
+                            <th class="text-start">Nombre d'administrateurs / formateurs</th>
+                            <td>1</td>
+                            <td class="fw-800 text-primary">1</td>
+                            <td class="fw-800">Jusqu'à 5</td>
+                        </tr>
+                        <tr>
+                            <th class="text-start">Domaine personnalisé (Marque blanche)</th>
+                            <td><i class="fa-solid fa-minus minus-icon"></i></td>
+                            <td><i class="fa-solid fa-minus minus-icon"></i></td>
+                            <td><i class="fa-solid fa-check check-icon"></i></td>
+                        </tr>
+                        <tr>
+                            <th class="text-start">Support client</th>
+                            <td>Email (72h)</td>
+                            <td class="fw-800 text-primary">Prioritaire (24h)</td>
+                            <td class="fw-800">Dédié 24/7</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-5" style="background: #f8fafc;">
+        <div class="container-xl max-w-800" style="max-width: 800px;">
+            <h2 class="text-center mb-5">Questions fréquentes</h2>
+            <div class="accordion" id="pricingFAQ">
+                <div class="accordion-item rounded-custom mb-3 border-0 shadow-sm">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button rounded-custom fw-800 text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            Puis-je changer de plan à tout moment ?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#pricingFAQ">
+                        <div class="accordion-body text-muted fw-500 pt-0">
+                            Absolument. Vous pouvez passer au plan supérieur ou inférieur quand vous le souhaitez depuis les paramètres de votre tableau de bord. Le montant sera calculé au prorata.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item rounded-custom mb-3 border-0 shadow-sm">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed rounded-custom fw-800 text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            Y a-t-il des frais cachés sur le plan Pro ?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#pricingFAQ">
+                        <div class="accordion-body text-muted fw-500 pt-0">
+                            Non. Contrairement au plan Starter qui prend 10% sur vos ventes, les plans Pro et Entreprise ont 0% de frais de transaction de notre part. Vous ne payez que les frais standards de votre processeur de paiement (comme Stripe ou PayPal).
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item rounded-custom mb-3 border-0 shadow-sm">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed rounded-custom fw-800 text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            Ai-je besoin d'une carte de crédit pour l'essai gratuit ?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#pricingFAQ">
+                        <div class="accordion-body text-muted fw-500 pt-0">
+                            Non, vous pouvez commencer votre essai gratuit de 14 jours du plan Pro sans entrer de carte de crédit. Vous n'aurez à renseigner vos informations de facturation qu'à la fin de la période d'essai si vous décidez de continuer.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white py-5 border-top" style="border-color: #e2e8f0;">
+        <div class="container-xl d-flex justify-content-between align-items-center">
+            <div class="fw-900 text-dark fs-5" style="letter-spacing: -0.5px;">superdash</div>
+            <div class="text-muted fw-600" style="font-size: 13px;">© 2026 SuperDash. Tous droits réservés.</div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="tarifs.js">
+       
+    </script>
+</body>
+</html>

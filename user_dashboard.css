@@ -1,0 +1,153 @@
+ /* --- SUPERDASH BRAND IDENTITY --- */
+        :root {
+            --primary: #4f46e5;       
+            --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+            --primary-light: #e0e7ff; 
+            --dark: #0b0f19;          
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --bg: #F5F6FF;            
+            --border: #f1f5f9;        
+            --sidebar-width: 260px; 
+            --nav-height: 64px;       
+            --global-nav-height: 0px; 
+        }
+
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg); color: var(--text-main); font-size: 13.5px; margin: 0; overflow-x: hidden; -webkit-font-smoothing: antialiased; padding-top: var(--global-nav-height); }
+        h1, h2, h3, h4, h5, h6 { color: var(--dark); font-weight: 800; letter-spacing: -0.02em; }
+        .text-primary { color: var(--primary) !important; }
+        .bg-primary-subtle { background-color: var(--primary-light) !important; }
+        .border-primary { border-color: var(--primary) !important; }
+
+        /* 1. SIDEBAR */
+        #sidebar { width: var(--sidebar-width); height: 100vh; position: fixed; top: 0; left: 0; background: #fff; border-right: 1px solid var(--border); display: flex; flex-direction: column; z-index: 1000; }
+        .nav-menu { padding: 0 1rem 1.25rem 1rem; flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; }
+        .sidebar-logo-area { height: var(--nav-height); padding: 0 1.5rem; display: flex; align-items: center; gap: 12px; }
+        .logo-box { width: 32px; height: 32px; background: #4f46e5; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 18px; }
+        .sidebar-heading { font-size: 11px; font-weight: 800; color: #64748b; letter-spacing: 0.5px; margin-top: 1.5rem; margin-bottom: 0.5rem; text-transform: uppercase; padding: 0 0.5rem; }
+        
+        .nav-link { display: flex; align-items: center; gap: 12px; padding: 0.6rem 0.75rem; color: #64748b; font-weight: 600; transition: 0.2s; cursor: pointer; font-size: 14px; margin-bottom: 2px; }
+        .nav-link i { color: #94a3b8; transition: 0.2s; }
+        .nav-link:hover { background: #f8fafc; color: var(--dark); }
+        .nav-link.active { background: #f5f3ff; color: #4f46e5; font-weight: 700; }
+        .nav-link.active i { color: #4f46e5; }
+        
+        .nav-badge { font-size: 10px; font-weight: 800; padding: 4px 6px; }
+        .badge-live { background: #fee2e2; color: #ef4444; }
+        .badge-ia { background: #e0e7ff; color: #4f46e5; }
+        
+        .user-profile-card { background: #f8fafc; border: 1px solid var(--border); padding: 10px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: 0.2s; margin-top: 1rem; }
+        .user-profile-card:hover { background: #f1f5f9; }
+
+        /* 2. MAIN LAYOUT & TOP NAV */
+        #main-wrapper { margin-left: var(--sidebar-width); display: flex; flex-direction: column; min-height: calc(100vh - var(--global-nav-height)); position: relative; z-index: 1;}
+        #main-wrapper::before { content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 800px; height: 600px; background: radial-gradient(circle, rgba(79, 70, 229, 0.05) 0%, rgba(250,250,250,0) 70%); pointer-events: none; z-index: -1; }
+
+        .top-nav { height: var(--nav-height); background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(255,255,255,0.5); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; position: sticky; top: var(--global-nav-height); z-index: 999; }
+        
+        .app-view { display: none; padding: 2rem 2.5rem; animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .app-view.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* COMPONENTS */
+        .neo-card { background: #fff; border: 1px solid rgba(0,0,0,0.02); padding: 1.5rem; box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .form-control, .form-select { font-size: 13.5px; padding: 0.6rem 1rem; border: 1px solid #e2e8f0; background-color: #f8fafc; transition: all 0.2s ease; font-weight: 500; color: var(--dark);}
+        .form-control:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1); background-color: #fff; }
+        label { font-size: 11px; font-weight: 800; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 6px; display: block; text-transform: uppercase;}
+        
+        .btn { font-size: 13px; font-weight: 700; padding: 0.5rem 1.25rem; transition: all 0.2s; letter-spacing: 0.2px;}
+        .btn-sm { font-size: 12px; padding: 0.35rem 1rem;}
+        .btn-primary { background: var(--primary-gradient); border: none; box-shadow: 0 4px 12px -2px rgba(79, 70, 229, 0.4); color: #fff;}
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 15px -2px rgba(79, 70, 229, 0.5); color: #fff;}
+        .btn-light { background-color: #fff; color: var(--text-main); border: 1px solid var(--border); box-shadow: 0 2px 6px rgba(0,0,0,0.02);}
+        
+        /* Sub Nav (Filtres) */
+        .sub-nav { display: flex; gap: 1rem; border-bottom: 2px solid var(--border); margin-bottom: 1.5rem; }
+        .sub-nav-item { padding: 0.5rem 0; color: var(--text-muted); font-weight: 700; cursor: pointer; position: relative; transition: 0.2s; font-size: 13.5px; background: transparent; border: none;}
+        .sub-nav-item:hover { color: var(--dark); }
+        .sub-nav-item.active { color: var(--primary); }
+        .sub-nav-item.active::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 3px; background: var(--primary); border-radius: 6px 6px 0 0; }
+
+        /* SPECIFIQUE APPRENANT */
+        .dashboard-banner { background: var(--primary-gradient); color: white; }
+        .stat-icon-box { padding: 8px; display: inline-flex; align-items: center; justify-content: center; }
+        .progress-thin { height: 8px; background-color: #e2e8f0; overflow: hidden; }
+        .progress-thin .progress-bar { background: var(--primary-gradient); border-radius: 6px; }
+        .course-card-cover { height: 160px; background-size: cover; background-position: center; position: relative; }
+        
+        /* TUTOR IA & CHAT UI */
+        .chat-bubble { transition: 0.2s; }
+        .hover-bg-light:hover { background-color: #f1f5f9; }
+        .typing-indicator { display: flex; gap: 4px; padding: 8px 12px; background: #f1f5f9; width: fit-content; align-items: center;}
+        .typing-dot { width: 6px; height: 6px; background: #94a3b8; border-radius: 50%; animation: typing 1.4s infinite ease-in-out both; }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+        
+        .chat-user-item { transition: 0.2s; border-radius: 6px; }
+        .chat-user-item:hover { background: #f1f5f9; }
+        .chat-user-item.active { background: #e0e7ff; }
+
+        /* CALENDRIER & DYTE */
+        .calendar-wrapper { border: 1px solid var(--border); background: #fff; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.03); margin-bottom: 2rem; }
+        .calendar-header { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); background: var(--border); gap: 1px; }
+        .cal-day-name { background: #f8fafc; padding: 0.75rem; text-align: center; font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; }
+        .cal-cell { background: #fff; min-height: 100px; padding: 0.5rem; display: flex; flex-direction: column; gap: 4px; transition: 0.2s; cursor: pointer; }
+        .cal-cell:hover { background: #f8fafc; }
+        .cal-cell.other-month { background: #f8fafc; color: #cbd5e1; }
+        .cal-date { font-weight: 700; font-size: 13.5px; margin-bottom: 4px; display: inline-block; color: var(--text-main);}
+        .cal-cell.today .cal-date { background: var(--primary-gradient); color: #fff; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);}
+        .cal-event-chip { padding: 4px 6px; font-size: 11px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; transition: 0.2s; background: #fee2e2; color: #ef4444; cursor: pointer;}
+        .cal-event-chip:hover { filter: brightness(0.95); transform: translateY(-1px); }
+
+        #dyte-room-overlay { position: fixed; inset: 0; background: #0b0f19; z-index: 10000; display: flex; flex-direction: column; color: #fff; }
+        .dyte-header { padding: 1rem 2rem; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; background: #0b0f19; }
+        .dyte-grid { flex: 1; padding: 2rem; display: flex; align-items: center; justify-content: center; gap: 1.5rem; }
+        .dyte-video-box { background: #1e293b; overflow: hidden; flex: 1; height: 100%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.05); position: relative;}
+        .dyte-controls { padding: 1.5rem 2rem; background: #0b0f19; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: center; gap: 1rem; }
+        .dyte-btn { width: 48px; height: 48px; border: none; background: #1e293b; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s;}
+        .dyte-btn.danger { background: #ef4444; }
+
+        /* COMMUNAUTE & PARAMETRES */
+        .badge-educateur { background-color: #e0e7ff; color: #4338ca; font-weight: 800; padding: 4px 8px; font-size: 10px; }
+        .badge-apprenant { background-color: #dcfce7; color: #16a34a; font-weight: 800; padding: 4px 8px; font-size: 10px; }
+        .tag-pill { background-color: #f5f3ff; color: #6d28d9; font-weight: 700; padding: 6px 12px; font-size: 11.5px; border: 1px solid #ede9fe; transition: 0.2s; cursor: pointer; display: inline-block; margin: 0 4px 8px 0; }
+        .tag-pill-post { background-color: #f3f4f6; color: #4f46e5; font-weight: 800; padding: 4px 10px; font-size: 11px; }
+        .feed-action { color: #64748b; transition: 0.2s; cursor: pointer; display: flex; align-items: center; gap: 6px; font-weight: 700; font-size: 13px; }
+        .feed-action:hover { color: #0b0f19; }
+        .feed-action.liked { color: #ec4899; }
+        
+        .channel-link { padding: 8px 12px; color: #64748b; font-weight: 600; font-size: 13.5px; transition: 0.2s; cursor: pointer; display: flex; align-items: center; gap: 8px; margin-bottom: 2px;}
+        .channel-link:hover { background: #f1f5f9; color: var(--dark); }
+        .channel-link.active { background: #e0e7ff; color: var(--primary); font-weight: 700; }
+        
+        .settings-nav-link { display: flex; align-items: center; gap: 10px; padding: 0.75rem 1rem; color: #64748b; font-weight: 600; transition: 0.2s; cursor: pointer; font-size: 14.5px; margin-bottom: 4px; }
+        .settings-nav-link.active { background: #f5f3ff; color: #4f46e5; font-weight: 700; }
+        .settings-content-section { display: none; animation: fadeIn 0.3s ease; }
+        .settings-content-section.active { display: block; }
+        .danger-zone { background: #fef2f2; border: 1px solid #fecaca; }
+        
+        /* Spécifique à la vue communauté (Design Formateur importé) */
+        .sidebar-stat-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); }
+        .sidebar-stat-row:last-child { border-bottom: none; padding-bottom: 0; }
+        .cert-medal { width: 32px; height: 32px; background: #fef08a; color: #ca8a04; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        
+        #community-editor-wrapper .ql-toolbar.ql-snow { border: none; border-bottom: 1px solid var(--border); background: transparent; padding: 8px 0; border-radius: 0 !important; }
+        #community-editor-wrapper .ql-container.ql-snow { border: none; background: transparent; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 500; }
+        #community-editor-wrapper .ql-editor { padding: 12px 0; min-height: 60px; }
+        #community-editor-wrapper .ql-editor.ql-blank::before { left: 0; color: #94a3b8; font-style: normal; }
+
+        /* =========================================================
+           REGLE D'OR ABSOLUE : 6px BORDER RADIUS PARTOUT 
+           ========================================================= */
+        .btn, .btn-sm, .btn-primary, .btn-light, .form-control, .form-select, 
+        .neo-card, .rounded-circle, img, .nav-link, .badge, .badge-educateur, 
+        .badge-apprenant, .tag-pill, .tag-pill-post, .dropdown-menu, .dyte-video-box, 
+        .logo-box, .nav-badge, .chat-bubble, .settings-nav-link, .stat-icon-box, 
+        .progress-thin, .course-card-cover, .user-profile-card, .cal-event-chip, 
+        .calendar-wrapper, .dyte-btn, .channel-link, .typing-indicator, .cert-medal, .chat-user-item {
+            border-radius: 6px !important;
+        }
+        .form-check-input { border-radius: 2em !important; }
+        .form-switch .form-check-input { border-radius: 2em !important; }

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Project Management Course | SuperDash Course View</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+
+    <nav class="public-nav">
+        <div class="d-flex align-items-center gap-2 me-lg-2" style="cursor: pointer;" onclick="window.location.href='landing_page.html'">
+            <div class="text-white d-flex align-items-center justify-content-center fw-900" style="background-color: #4f46e5; width: 32px; height: 32px; font-size: 18px; border-radius: 6px;">S</div>
+            <h3 class="m-0 fw-900 d-none d-sm-block" style="color: #0b0f19; letter-spacing: -0.5px;">superdash</h3>
+        </div>
+        
+        <div class="nav-links d-none d-xl-flex align-items-center">
+            <a href="landing_page.html">Accueil</a>
+            <a href="discover.html">Découvrir</a>
+            <a href="#">Fonctionnalités</a>
+            <a href="#">Tarifs</a>
+        </div>
+        
+        <div class="search-bar d-none d-md-flex mx-auto">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Rechercher des cours, mentors...">
+        </div>
+        
+        <div class="d-flex align-items-center gap-3 ms-auto">
+            <span class="fw-bold text-gray-500 d-none d-lg-block" style="cursor: pointer; font-size: 14px;">Enseigner</span>
+            
+            <div class="position-relative d-none d-sm-block me-2" style="cursor: pointer;">
+                <i class="fa-solid fa-cart-shopping" style="color: #0b0f19; font-size: 18px;"></i>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill" style="background-color: #4f46e5; font-size: 9px; padding: 3px 5px; color: white;">2</span>
+            </div>
+            
+            <button class="btn btn-light d-none d-sm-block text-dark border">Connexion</button>
+            <button class="btn btn-primary">S'inscrire</button>
+        </div>
+    </nav>
+
+    <div class="course-container">
+        <div class="floating-sidebar neo-card">
+            <div class="course-preview-wrapper" style="border-radius: 6px 6px 0 0 !important;">
+                <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Course Preview" class="course-preview-img">
+                <div class="play-button-overlay">
+                    <i class="fa-solid fa-play text-white ms-1" style="font-size: 24px;"></i>
+                </div>
+            </div>
+            
+            <div class="sidebar-content">
+                <div class="d-flex align-items-baseline gap-3 mb-2">
+                    <div class="price-large">13,99 €</div>
+                    <div class="price-original">84,99 €</div>
+                    <div class="text-dark fw-800" style="font-size: 13.5px;">84% de réduction</div>
+                </div>
+                <div class="text-danger fw-800 mb-4 d-flex align-items-center gap-2" style="font-size: 12px;"><i class="fa-solid fa-clock" style="font-size: 14px;"></i> Plus que 5 heures à ce prix !</div>
+
+                <button class="btn btn-primary w-100 py-3 mb-2 fs-6" style="border-radius: 6px !important;">Ajouter au panier</button>
+                <button class="btn btn-light w-100 py-3 mb-3 fs-6" style="border-radius: 6px !important;">Acheter maintenant</button>
+                
+                <div class="text-center text-muted fw-600 mb-4" style="font-size: 11.5px;">Garantie satisfait ou remboursé de 30 jours</div>
+
+                <div class="fw-800 text-dark mb-3">Ce cours comprend :</div>
+                <ul class="includes-list">
+                    <li><i class="fa-solid fa-desktop text-primary" style="font-size: 14px; width: 16px;"></i> 14,5 heures de vidéo à la demande</li>
+                    <li><i class="fa-solid fa-file-lines text-primary" style="font-size: 14px; width: 16px;"></i> 18 articles et supports</li>
+                    <li><i class="fa-solid fa-download text-primary" style="font-size: 14px; width: 16px;"></i> 31 ressources téléchargeables</li>
+                    <li><i class="fa-solid fa-infinity text-primary" style="font-size: 14px; width: 16px;"></i> Accès à vie illimité</li>
+                    <li><i class="fa-solid fa-mobile-screen text-primary" style="font-size: 14px; width: 16px;"></i> Accès sur mobile et TV</li>
+                    <li><i class="fa-solid fa-trophy text-primary" style="font-size: 14px; width: 16px;"></i> Certificat de fin de formation</li>
+                </ul>
+
+                <div class="d-flex justify-content-between border-top pt-4 mt-4">
+                    <a href="#" class="text-muted fw-800" style="font-size: 13px;"><i class="fa-solid fa-share-nodes me-1"></i> Partager</a>
+                    <a href="#" class="text-muted fw-800" style="font-size: 13px;"><i class="fa-solid fa-gift me-1"></i> Offrir ce cours</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero-section">
+        <div class="course-container">
+            <div class="main-content" style="padding-top: 0; padding-bottom: 0;">
+                <div class="d-flex gap-2 mb-4">
+                    <a href="#" class="breadcrumb-link">Business</a> <span class="text-muted fw-800">></span>
+                    <a href="#" class="breadcrumb-link">Management</a> <span class="text-muted fw-800">></span>
+                    <a href="#" class="breadcrumb-link text-white">Gestion de Projet</a>
+                </div>
+                
+                <h1 class="hero-title">Le Cours Complet de Gestion de Projet : De Débutant à PRO</h1>
+                <p class="hero-subtitle">Apprenez les fondamentaux de la gestion de projet, les compétences pratiques et les techniques agiles (Scrum, Kanban).</p>
+                
+                <div class="d-flex align-items-center flex-wrap gap-3 mb-4">
+                    <span class="bestseller-badge rounded-custom">Meilleure Vente</span>
+                    <div class="rating-stars">
+                        <span class="rating-number">4.6</span>
+                        <i class="fa-solid fa-star" style="font-size: 12px;"></i>
+                        <i class="fa-solid fa-star" style="font-size: 12px;"></i>
+                        <i class="fa-solid fa-star" style="font-size: 12px;"></i>
+                        <i class="fa-solid fa-star" style="font-size: 12px;"></i>
+                        <i class="fa-solid fa-star-half-stroke" style="font-size: 12px;"></i>
+                    </div>
+                    <a href="#" class="text-primary fw-800" style="font-size: 13.5px;">(187 420 avis)</a>
+                    <span class="fw-600" style="font-size: 13.5px;">809 124 participants</span>
+                </div>
+                
+                <div class="fw-600 mb-3" style="font-size: 13.5px;">Créé par <a href="#" class="text-primary fw-800">Mauricio</a></div>
+                
+                <div class="d-flex align-items-center gap-4 fw-600" style="font-size: 13px;">
+                    <div class="d-flex align-items-center gap-1 text-muted"><i class="fa-solid fa-circle-exclamation"></i> Dernière mise à jour : 03/2026</div>
+                    <div class="d-flex align-items-center gap-1 text-muted"><i class="fa-solid fa-globe"></i> Anglais</div>
+                    <div class="d-flex align-items-center gap-1 text-muted"><i class="fa-solid fa-closed-captioning"></i> Français [Auto]</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="course-container">
+        <div class="main-content">
+            
+            <div class="neo-card mb-5">
+                <h2 class="section-title m-0 mb-4">Ce que vous apprendrez</h2>
+                <div class="learning-list">
+                    <div class="learning-item"><i class="fa-solid fa-check text-primary mt-1 flex-shrink-0" style="font-size: 14px;"></i> <span>Comprendre les fondamentaux de la gestion de projet de A à Z.</span></div>
+                    <div class="learning-item"><i class="fa-solid fa-check text-primary mt-1 flex-shrink-0" style="font-size: 14px;"></i> <span>Maîtriser les méthodologies Agile et Scrum en entreprise.</span></div>
+                    <div class="learning-item"><i class="fa-solid fa-check text-primary mt-1 flex-shrink-0" style="font-size: 14px;"></i> <span>Apprendre à délimiter la portée, planifier et budgétiser correctement.</span></div>
+                    <div class="learning-item"><i class="fa-solid fa-check text-primary mt-1 flex-shrink-0" style="font-size: 14px;"></i> <span>Diriger et communiquer efficacement avec des équipes interfonctionnelles.</span></div>
+                    <div class="learning-item"><i class="fa-solid fa-check text-primary mt-1 flex-shrink-0" style="font-size: 14px;"></i> <span>Gérer les risques liés aux projets et le contrôle qualité comme un pro.</span></div>
+                    <div class="learning-item"><i class="fa-solid fa-check text-primary mt-1 flex-shrink-0" style="font-size: 14px;"></i> <span>Utiliser des outils populaires comme Jira, Trello et Asana.</span></div>
+                </div>
+            </div>
+
+            <h2 class="section-title m-0 mb-3">Contenu du cours</h2>
+            <div class="d-flex justify-content-between align-items-center mb-3 fw-600 text-muted" style="font-size: 13.5px;">
+                <span>21 sections • 154 sessions • 14h 26m de durée totale</span>
+                <a href="#" class="text-primary fw-800 text-decoration-none">Tout développer</a>
+            </div>
+
+            <div class="accordion mb-5" id="courseAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                            <div class="d-flex justify-content-between w-100 me-3">
+                                <span>Introduction au Cours</span>
+                                <span class="text-muted fw-600" style="font-size:13px;">4 sessions • 12min</span>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show">
+                        <div class="accordion-body p-0">
+                            <div class="lecture-row">
+                                <div class="d-flex gap-3 align-items-center"><i class="fa-solid fa-circle-play text-primary"></i> <span class="text-dark">Bienvenue dans le cours</span></div>
+                                <span class="text-muted">02:14</span>
+                            </div>
+                            <div class="lecture-row">
+                                <div class="d-flex gap-3 align-items-center"><i class="fa-solid fa-circle-play text-muted"></i> <span class="text-dark">Comment tirer le meilleur parti de ce cours</span></div>
+                                <span class="text-muted">04:05</span>
+                            </div>
+                            <div class="lecture-row">
+                                <div class="d-flex gap-3 align-items-center"><i class="fa-solid fa-file-lines text-muted"></i> <span class="text-dark">Ressources Téléchargeables</span></div>
+                                <span class="text-muted">01:00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                            <div class="d-flex justify-content-between w-100 me-3">
+                                <span>Fondamentaux de la Gestion de Projet</span>
+                                <span class="text-muted fw-600" style="font-size:13px;">8 sessions • 45min</span>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse">
+                        <div class="accordion-body p-0">
+                            <div class="lecture-row">
+                                <div class="d-flex gap-3 align-items-center"><i class="fa-solid fa-circle-play text-muted"></i> <span class="text-dark">Qu'est-ce qu'un projet ?</span></div>
+                                <span class="text-muted">10:12</span>
+                            </div>
+                            <div class="lecture-row">
+                                <div class="d-flex gap-3 align-items-center"><i class="fa-solid fa-circle-play text-muted"></i> <span class="text-dark">Le cycle de vie du projet</span></div>
+                                <span class="text-muted">15:40</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title mb-3">Prérequis</h2>
+            <ul class="requirements-list mb-5 text-dark fw-medium">
+                <li>Aucune expérience préalable en gestion de projet n'est requise.</li>
+                <li>Une volonté d'apprendre et d'appliquer de nouvelles méthodologies.</li>
+                <li>Une compréhension de base des opérations commerciales est utile mais non obligatoire.</li>
+            </ul>
+
+            <h2 class="section-title mb-3">Description</h2>
+            <div class="description-text mb-5">
+                <p>Bienvenue dans <strong>Le Cours Complet de Gestion de Projet</strong>, la seule formation dont vous avez besoin pour passer de grand débutant à un chef de projet confiant et certifié.</p>
+                <p>Dans cette formation complète, nous couvrons tout, des méthodologies traditionnelles en cascade (Waterfall) aux frameworks Agile modernes comme Scrum et Kanban. Vous apprendrez non seulement les concepts théoriques, mais nous les appliquerons à l'aide d'études de cas réelles.</p>
+                <p>Nous examinerons en profondeur :</p>
+                <ul>
+                    <li>La création de chartes de projet précises et de documents de cadrage.</li>
+                    <li>L'estimation des budgets et l'allocation efficace des ressources.</li>
+                    <li>La gestion des attentes des parties prenantes et la communication en équipe.</li>
+                </ul>
+                <p>Rejoignez des milliers d'étudiants qui ont réussi et donnez un nouvel élan à votre carrière dès aujourd'hui !</p>
+            </div>
+
+            <h2 class="section-title m-0 mb-4">Les participants ont aussi acheté</h2>
+            <div class="neo-card p-0 mb-5 border-0 bg-transparent shadow-none">
+                <div class="bought-course-row px-3 bg-white mb-2" style="border: 1px solid var(--border); border-radius: 6px;">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" class="bought-course-img rounded-custom">
+                    <div class="flex-grow-1">
+                        <h4 class="bought-course-title">Cours Intensif Agile : Gestion de Projet Agile</h4>
+                        <div class="d-flex gap-3 align-items-center mt-2" style="font-size: 11.5px;">
+                            <span class="bestseller-badge rounded-custom" style="padding: 2px 6px;">Meilleure Vente</span>
+                            <span class="text-success fw-800">22,5 heures</span>
+                            <span class="text-muted fw-600">Mis à jour 10/2025</span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-1 text-dark fw-800" style="font-size: 14.5px;"><i class="fa-solid fa-star text-warning" style="font-size: 12px;"></i> 4.7</div>
+                    <div class="fw-900 text-dark ms-4" style="font-size: 16px;">14,99 €</div>
+                </div>
+
+                <div class="bought-course-row px-3 bg-white" style="border: 1px solid var(--border); border-radius: 6px;">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" class="bought-course-img rounded-custom">
+                    <div class="flex-grow-1">
+                        <h4 class="bought-course-title">Préparation à l'Examen de Certification PMP</h4>
+                        <div class="d-flex gap-3 align-items-center mt-2" style="font-size: 11.5px;">
+                            <span class="text-success fw-800">38 heures</span>
+                            <span class="text-muted fw-600">Mis à jour 01/2026</span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-1 text-dark fw-800" style="font-size: 14.5px;"><i class="fa-solid fa-star text-warning" style="font-size: 12px;"></i> 4.8</div>
+                    <div class="fw-900 text-dark ms-4" style="font-size: 16px;">19,99 €</div>
+                </div>
+            </div>
+
+            <h2 class="section-title mb-4">Formateur</h2>
+            <div class="neo-card mb-5">
+                <a href="#" class="fs-5 text-primary text-decoration-underline mb-1 d-block fw-900">Mauricio</a>
+                <div class="text-muted fw-700 mb-4" style="font-size: 14.5px;">Senior Project Manager & Formateur d'Entreprise</div>
+                
+                <div class="d-flex gap-4 align-items-start mb-4">
+                    <img src="https://ui-avatars.com/api/?name=Mauricio&background=0b0f19&color=fff&size=200" class="instructor-img">
+                    <ul class="list-unstyled d-flex flex-column gap-3 m-0 ms-2 text-dark fw-700" style="font-size: 13.5px;">
+                        <li class="d-flex gap-3 align-items-center"><i class="fa-solid fa-star text-warning" style="font-size: 14px;"></i> 4.6 Note du formateur</li>
+                        <li class="d-flex gap-3 align-items-center"><i class="fa-solid fa-award text-primary" style="font-size: 14px;"></i> 187 420 Avis</li>
+                        <li class="d-flex gap-3 align-items-center"><i class="fa-solid fa-users text-success" style="font-size: 14px;"></i> 809 124 Participants</li>
+                        <li class="d-flex gap-3 align-items-center"><i class="fa-solid fa-circle-play text-danger" style="font-size: 14px;"></i> 14 Cours</li>
+                    </ul>
+                </div>
+                <div class="description-text">
+                    <p>Mauricio a plus de 15 ans d'expérience dans la gestion de projets de plusieurs millions de dollars dans les domaines du développement logiciel, de la fabrication et de la transformation d'entreprise. Il détient les certifications PMP, Scrum Master et Six Sigma.</p>
+                    <p>Sa passion consiste à simplifier des concepts de gestion complexes afin que quiconque puisse apprendre à exécuter des projets dans les délais, dans le respect du budget et avec une qualité élevée.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

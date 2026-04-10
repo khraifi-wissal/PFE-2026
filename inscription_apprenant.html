@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superdash | Inscription Apprenant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="inscription_apprenant.css">
+</head>
+<body>
+
+<div class="layout">
+    <aside class="sidebar">
+        <div class="logo">superdash</div>
+        <div class="sidebar-card">
+            <h3>Prêt à apprendre ? 🚀</h3>
+            <p>Développez vos compétences dès aujourd'hui.</p>
+        </div>
+        <div class="feat-item"><span class="icon-check-box">✓</span> Accès à +340 formations expertes</div>
+        <div class="feat-item"><span class="icon-check-box">✓</span> Suivi de progression en temps réel</div>
+        <div class="feat-item"><span class="icon-check-box">✓</span> Certifications reconnues incluses</div>
+        
+        <div class="members-active">
+            <div class="avatars">
+                <div style="background: url('https://i.pravatar.cc/100?img=4') center/cover;"></div>
+                <div style="background: url('https://i.pravatar.cc/100?img=5') center/cover;"></div>
+                <div style="background: url('https://i.pravatar.cc/100?img=6') center/cover;"></div>
+            </div>
+            Rejoignez 12 400 apprenants actifs
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="top-nav">
+            <a class="nav-link" href="#">← Retour</a>
+            <div style="background: #F0F2FF; color: var(--primary); padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: 700;">🎓 Parcours Apprenant</div>
+        </div>
+
+        <div class="form-container">
+            <div class="stepper">
+                <div class="step active" id="st-1"><div class="step-circle">1</div><div class="step-label">Compte</div></div>
+                <div class="step" id="st-2"><div class="step-circle">2</div><div class="step-label">Objectifs</div></div>
+                <div class="step" id="st-3"><div class="step-circle">3</div><div class="step-label">Intérêts</div></div>
+            </div>
+
+            <form id="master-onboarding" onsubmit="return false;">
+                
+                <div id="step-1">
+                    <h1>Créez votre compte apprenant</h1>
+                    <p class="subtitle">Accédez à +340 formations et rejoignez 12 400 apprenants actifs.</p>
+                    
+                    <label class="label">Nom Complet</label>
+                    <input type="text" placeholder="Lucas Martin">
+                    
+                    <label class="label">Adresse E-mail</label>
+                    <input type="email" placeholder="vous@exemple.com">
+                    
+                    <label class="label">Mot de passe</label>
+                    <input type="password" placeholder="Minimum 6 caractères">
+                    
+                    <div style="display: flex; align-items: center; color: #D1D5DB; margin: 25px 0; font-size: 14px;">
+                        <div style="flex: 1; height: 1px; background: var(--border);"></div>
+                        <span style="margin: 0 15px;">ou</span>
+                        <div style="flex: 1; height: 1px; background: var(--border);"></div>
+                    </div>
+                    
+                    <button type="button" class="btn btn-prev" style="width:100%; justify-content:center; color: var(--text-dark); margin-bottom: 25px;">
+                        <img src="https://www.gstatic.com/images/branding/product/1x/gsa_512dp.png" width="18" alt="Google"> Continuer avec Google
+                    </button>
+
+                    <button type="button" class="btn btn-next" style="width:100%" onclick="goNext(2)">Continuer →</button>
+
+                    <div style="text-align: center; margin-top: 25px; font-size: 14px;">
+                        Déjà un compte ? <a href="connexion_apprenant.html" style="color: var(--primary); text-decoration: none; font-weight: 700;">Se connecter</a>
+                    </div>
+                </div>
+
+                <div id="step-2" class="hidden">
+                    <h1>Vos objectifs d'apprentissage</h1>
+                    <p class="subtitle">On personnalise votre expérience selon votre profil et vos ambitions.</p>
+                    
+                    <label class="label">Objectif Principal</label>
+                    <div class="grid-2">
+                        <div class="selectable-card obj-card selected" onclick="selectGroupCard(this, 'obj-card')">
+                            <span class="card-icon">💼</span>
+                            <div class="card-title">Changer de carrière</div>
+                            <p class="card-desc">Se reconvertir dans un nouveau domaine</p>
+                        </div>
+                        <div class="selectable-card obj-card" onclick="selectGroupCard(this, 'obj-card')">
+                            <span class="card-icon">📈</span>
+                            <div class="card-title">Monter en compétences</div>
+                            <p class="card-desc">Progresser dans mon domaine actuel</p>
+                        </div>
+                        <div class="selectable-card obj-card" onclick="selectGroupCard(this, 'obj-card')">
+                            <span class="card-icon">🖤</span>
+                            <div class="card-title">Par passion</div>
+                            <p class="card-desc">Apprendre par curiosité et plaisir</p>
+                        </div>
+                        <div class="selectable-card obj-card" onclick="selectGroupCard(this, 'obj-card')">
+                            <span class="card-icon">🔍</span>
+                            <div class="card-title">Trouver un emploi</div>
+                            <p class="card-desc">Obtenir des certifications reconnues</p>
+                        </div>
+                    </div>
+
+                    <label class="label">Votre Niveau Actuel</label>
+                    <div class="grid-3">
+                        <div class="selectable-card level-card lvl-card" onclick="selectGroupCard(this, 'lvl-card')">
+                            <div class="card-title">Débutant</div>
+                            <p class="card-desc">Je commence à zéro</p>
+                        </div>
+                        <div class="selectable-card level-card lvl-card selected" onclick="selectGroupCard(this, 'lvl-card')">
+                            <div class="card-title" style="color: var(--primary);">Intermédiaire</div>
+                            <p class="card-desc">J'ai quelques bases</p>
+                        </div>
+                        <div class="selectable-card level-card lvl-card" onclick="selectGroupCard(this, 'lvl-card')">
+                            <div class="card-title">Avancé</div>
+                            <p class="card-desc">Je veux approfondir</p>
+                        </div>
+                    </div>
+
+                    <label class="label">Disponibilité par semaine</label>
+                    <select>
+                        <option>Sélectionnez une option...</option>
+                        <option>1 à 3 heures</option>
+                        <option>3 à 5 heures</option>
+                        <option>Plus de 5 heures</option>
+                    </select>
+
+                    <div class="actions">
+                        <button type="button" class="btn btn-prev" onclick="goBack()">← Précédent</button>
+                        <button type="button" class="btn btn-next" onclick="goNext(3)">Continuer →</button>
+                    </div>
+                </div>
+
+                <div id="step-3" class="hidden">
+                    <h1>Vos centres d'intérêt</h1>
+                    <p class="subtitle">Choisissez les domaines qui vous passionnent pour des recommandations personnalisées.</p>
+                    
+                    <div class="tag-group">
+                        <div class="tag">Design</div>
+                        <div class="tag">Développement</div>
+                        <div class="tag">Marketing</div>
+                        <div class="tag">Business</div>
+                        <div class="tag">Photographie</div>
+                        <div class="tag">Musique</div>
+                        <div class="tag">Langues</div>
+                        <div class="tag">Finance</div>
+                        <div class="tag">Bien-être</div>
+                        <div class="tag">Sciences</div>
+                        <div class="tag">Droit</div>
+                        <div class="tag">Cuisine</div>
+                    </div>
+
+                    <div class="summary-box">
+                        <div class="summary-title">Ce qui vous attend</div>
+                        <ul class="summary-list">
+                            <li><span>🎓</span> Accès à votre tableau de bord personnel</li>
+                            <li><span>📚</span> Formations recommandées selon vos intérêts</li>
+                            <li><span>👥</span> Accès à la communauté d'apprenants</li>
+                            <li><span>🏆</span> Certifications après chaque parcours</li>
+                        </ul>
+                    </div>
+
+                    <div class="actions">
+                        <button type="button" class="btn btn-prev" onclick="goBack()">← Précédent</button>
+                        <button type="button" class="btn btn-next" onclick="window.location.href='user_dashboard.html'">Commencer mon parcours</button>
+                    </div>
+                </div>
+
+            </form>
+            <div class="footer-text" id="step-indicator">Étape 1 sur 3</div>
+        </div>
+    </main>
+</div>
+
+<script src="inscription_apprenant.js">
+    
+</script>
+
+</body>
+</html>

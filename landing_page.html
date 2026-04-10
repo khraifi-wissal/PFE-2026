@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperDash - La plateforme éducative</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="landing_page.css">
+</head>
+<body>
+
+    <nav class="public-nav">
+        <div class="d-flex align-items-center gap-2 me-lg-2" style="cursor: pointer;" onclick="window.location.href='landing_page.html'">
+            <div class="text-white d-flex align-items-center justify-content-center fw-900" style="background-color: #4f46e5; width: 32px; height: 32px; font-size: 18px; border-radius: 6px;">S</div>
+            <h3 class="m-0 fw-900 d-none d-sm-block" style="color: #0b0f19; letter-spacing: -0.5px;">superdash</h3>
+        </div>
+        
+        <div class="nav-links d-none d-xl-flex align-items-center">
+            <a href="landing_page.html" class="active">Accueil</a>
+            <a href="discover.html">Découvrir</a>
+            <a href="fonctionnalites.html">Fonctionnalités</a>
+            <a href="tarifs.html">Tarifs</a>
+        </div>
+        
+        <div class="search-bar d-none d-md-flex mx-auto">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Rechercher des cours, mentors...">
+        </div>
+        
+        <div class="d-flex align-items-center gap-3 ms-auto">
+
+            <div class="position-relative d-none d-sm-block me-2" style="cursor: pointer;">
+                <i class="fa-solid fa-cart-shopping" style="color: #0b0f19; font-size: 18px;"></i>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill" style="background-color: #4f46e5; font-size: 9px; padding: 3px 5px; color: white;">2</span>
+            </div>
+    
+            <a href="choix-profil.html"><button class="btn btn-primary">S'inscrire</button></a>
+            
+        </div>
+    </nav>
+
+    <header class="max-w-1400 px-4 hero-section overflow-hidden">
+        <div class="mx-auto position-relative z-3" style="max-width: 56rem; margin-bottom: 3rem;">
+            <h1 class="fw-extrabold tracking-tight text-gray-900 mb-4" style="font-size: clamp(28px, 4vw, 42px); line-height: 1.2;">
+                La communauté où l'éducation devient<br>
+                <span class="text-brand">collaborative</span> pour <span class="text-brand">créer.</span>
+            </h1>
+            <p class="text-gray-500 fw-medium mx-auto mb-5" style="max-width: 45rem; font-size: 15px; line-height: 1.6;">
+                SuperDash connecte éducateurs et apprenants dans un écosystème intelligent, interactif et<br class="d-none d-sm-block">
+                humain, pensé pour transformer le savoir en expérience collective.
+            </p>
+            
+            <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-3 mb-5">
+                <button class="btn-custom-brand px-4 py-3" style="font-size: 14px;">Rejoindre la communauté</button>
+                <button class="btn-custom-light px-4 py-3" style="font-size: 14px;">Découvrir l'écosystème</button>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-center gap-3">
+                <div class="d-flex" style="margin-right: -10px;">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150" class="rounded-circle border border-2 border-white" style="width: 40px; height: 40px; object-fit: cover; margin-left: -10px;">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150" class="rounded-circle border border-2 border-white" style="width: 40px; height: 40px; object-fit: cover; margin-left: -10px;">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150" class="rounded-circle border border-2 border-white" style="width: 40px; height: 40px; object-fit: cover; margin-left: -10px;">
+                </div>
+                <p class="text-gray-400 mb-0 fw-medium" style="font-size: 14px;">Rejoignez les premiers membres de la communauté.</p>
+            </div>
+        </div>
+
+        <div class="position-relative mx-auto d-flex justify-content-center align-items-center w-100" style="max-width: 1200px; height: 550px;">
+            
+            <div class="hero-glow"></div>
+            
+            <div class="phone-mockup">
+                <div class="phone-screen pb-2">
+                    <div class="phone-notch"></div>
+                    
+                    <div class="d-flex justify-content-between align-items-center px-3 pt-4 pb-2 mt-2">
+                        <span class="text-brand fw-bold" style="font-size: 10px;">SuperDash</span>
+                        <span class="text-white fw-bold rounded-custom px-2 py-1" style="background-color: #ef4444; font-size: 8px;">EN DIRECT</span>
+                    </div>
+                    
+                    <div class="px-2 flex-grow-1 d-flex flex-column justify-content-center">
+                        <div class="w-100 bg-secondary position-relative shadow-sm overflow-hidden mb-2" style="border-radius: 1.2rem; aspect-ratio: 4/5;">
+                             <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&q=80&w=400" class="w-100 h-100 object-fit-cover">
+                             <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center" style="background: rgba(0,0,0,0.1);">
+                                 <div class="rounded-custom d-flex align-items-center justify-content-center shadow-lg" style="width: 40px; height: 40px; background: rgba(255,255,255,0.7); backdrop-filter: blur(4px);">
+                                     <div style="width: 0; height: 0; border-top: 6px solid transparent; border-left: 10px solid white; border-bottom: 6px solid transparent; margin-left: 2px;"></div>
+                                 </div>
+                             </div>
+                        </div>
+                        <div class="text-start w-100 px-1">
+                            <h4 class="fw-bold text-gray-900 mb-1" style="font-size: 12px; line-height: 1.2;">UX Design pour Débutants</h4>
+                            <p class="text-brand fw-semibold mb-2" style="font-size: 9px;">Par Amina salah</p>
+                            <div class="d-flex justify-content-between align-items-center text-brand fw-bold" style="font-size: 8px;">
+                                <span>18:00 - 19:30</span>
+                                <span>124 participants</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="px-2 pb-2 mt-auto">
+                        <button class="w-100 btn text-white py-2 shadow-sm rounded-custom fw-bold" style="background-color: var(--brand); font-size: 10px;">Rejoindre maintenant</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-none d-lg-block position-absolute top-0 start-0 w-100 h-100 z-10">
+                <div class="floating-element" style="top: 5%; left: 10%; width: 50px; height: 50px;">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150" class="border border-3 border-white shadow-sm">
+                </div>
+                
+                <div class="floating-element card-shadow rounded-custom px-3 py-2 text-start" style="top: 25%; left: -2%;">
+                    <p class="mb-0 text-gray-600" style="font-size: 10px;">Adem vient de terminer le module <span class="text-brand fw-medium">UX Fundamentals</span></p>
+                </div>
+
+                <div class="floating-element" style="top: 38%; left: 2%; width: 80px; height: 80px;">
+                    <img src="https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&w=200" class="border border-4 shadow-lg" style="border-color: #fef08a;">
+                </div>
+                
+                <div class="floating-element" style="top: 15%; left: 22%; width: 150px; height: 150px;">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300" class="border border-5 shadow-xl" style="border-color: #fbcfe8;">
+                </div>
+
+                <div class="floating-element" style="bottom: 35%; left: -5%; width: 60px; height: 60px;">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150" class="border border-3 shadow-sm" style="border-color: #fed7aa;">
+                </div>
+
+                <div class="floating-element" style="bottom: 25%; left: 14%; width: 80px; height: 80px;">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200" class="border border-4 shadow-md" style="border-color: #fed7aa;">
+                </div>
+
+                <div class="floating-element card-shadow rounded-custom px-3 py-2 text-start ps-5" style="bottom: 12%; left: 10%;">
+                    <div class="position-absolute d-flex align-items-center justify-content-center text-white rounded-custom shadow-sm" style="top: -8px; left: -8px; width: 24px; height: 24px; background: var(--brand); font-size: 11px;">
+                        <i class="bi bi-stars"></i>
+                    </div>
+                    <p class="text-gray-500 fw-medium mb-0" style="font-size: 10px; line-height: 1.2;">Nouveau cours disponible :</p>
+                    <p class="text-brand fw-bold mb-0" style="font-size: 11px; line-height: 1.2;">UI Design 2026</p>
+                </div>
+
+                <div class="floating-element" style="bottom: 0%; left: 5%; width: 100px; height: 100px;">
+                    <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=200" class="border border-4 shadow-xl" style="border-color: #fce7f3;">
+                    <div class="position-absolute d-flex align-items-center justify-content-center text-white rounded-custom border border-2 border-white" style="bottom: 4px; right: 8px; width: 20px; height: 20px; background: var(--brand); font-size: 10px;">
+                        <i class="bi bi-check-lg"></i>
+                    </div>
+                </div>
+
+                <div class="floating-element" style="bottom: 12%; left: 28%; width: 40px; height: 40px;">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=100" class="border border-2 border-white shadow-sm">
+                    <div class="position-absolute d-flex align-items-center justify-content-center text-white rounded-custom border border-white" style="bottom: 0; right: -2px; width: 14px; height: 14px; background: var(--brand); font-size: 8px;">
+                        <i class="bi bi-check-lg"></i>
+                    </div>
+                </div>
+
+                <div class="floating-element card-shadow rounded-custom px-3 py-2 text-start ps-5" style="top: 25%; right: 5%;">
+                    <div class="position-absolute d-flex align-items-center justify-content-center text-white rounded-custom shadow-sm" style="top: -8px; left: -8px; width: 24px; height: 24px; background: var(--brand); font-size: 12px;">
+                        <i class="bi bi-play-fill ms-1"></i>
+                    </div>
+                    <p class="mb-0 text-gray-600" style="font-size: 10px; line-height: 1.2;">Lobna a lancé un <span class="text-brand fw-medium">live</span><br>maintenant</p>
+                </div>
+
+                <div class="floating-element" style="top: 35%; right: 28%; width: 90px; height: 90px;">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200" class="border border-4 shadow-lg" style="border-color: #dcfce7;">
+                </div>
+
+                <div class="floating-element" style="top: 45%; right: 15%; width: 45px; height: 45px;">
+                    <img src="https://images.unsplash.com/photo-1488161628813-04466f872be2?auto=format&fit=crop&w=150" class="border border-3 shadow-sm" style="border-color: #4ade80;">
+                </div>
+
+                <div class="floating-element" style="top: 50%; right: -5%; width: 140px; height: 140px;">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300" class="border border-5 shadow-xl" style="border-color: #fed7aa;">
+                    <div class="position-absolute d-flex align-items-center justify-content-center text-white rounded-custom border border-2 border-white" style="top: 50%; right: 4px; width: 24px; height: 24px; background: var(--brand); font-size: 12px;">
+                        <i class="bi bi-check-lg"></i>
+                    </div>
+                </div>
+
+                <div class="floating-element" style="bottom: 25%; right: 25%; width: 100px; height: 100px;">
+                    <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=200" class="border border-4 shadow-lg" style="border-color: #bbf7d0;">
+                    <div class="position-absolute d-flex align-items-center justify-content-center text-white rounded-custom border border-2 border-white" style="bottom: 4px; right: 8px; width: 20px; height: 20px; background: var(--brand); font-size: 10px;">
+                        <i class="bi bi-check-lg"></i>
+                    </div>
+                </div>
+
+                <div class="floating-element" style="bottom: 30%; right: 10%; width: 35px; height: 35px;">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100" class="border border-2 shadow-sm" style="border-color: #fb923c;">
+                </div>
+
+                <div class="floating-element" style="bottom: 5%; right: 15%; width: 120px; height: 120px;">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=200" class="border border-4 shadow-xl" style="border-color: #fed7aa;">
+                </div>
+
+                <div class="floating-element" style="bottom: 12%; right: -2%; width: 70px; height: 70px;">
+                    <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=150" class="border border-3 shadow-md" style="border-color: #f472b6;">
+                    <div class="position-absolute d-flex align-items-center justify-content-center text-white rounded-custom border border-2 border-white" style="bottom: 0; right: 0; width: 20px; height: 20px; background: #4ade80; font-size: 10px;">
+                        <i class="bi bi-check-lg"></i>
+                    </div>
+                </div>
+
+                <div class="floating-element card-shadow rounded-custom px-3 py-2 text-start" style="bottom: -2%; right: 22%;">
+                    <p class="text-[9px] leading-[1.3] text-gray-600 mb-0">Ahmed vient de <span class="text-brand fw-medium">rejoindre</span><br><span class="text-brand fw-medium">SuperDash</span> 🎉</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="bg-white section-padding border-top" style="border-color: #f3f4f6;">
+        <div class="max-w-1200 px-4 px-md-5">
+            <div class="text-center mb-5" style="padding-bottom: 2rem;">
+                <h2 class="fw-bold tracking-tight mb-3 text-gray-900" style="font-size: 1.875rem;">Créez des cours et<br>partagez votre savoir</h2>
+                <p class="text-gray-500" style="font-size: 1rem;">Un outil intuitif pour concevoir des programmes d'apprentissage sur-mesure<br>et développer votre audience rapidement.</p>
+            </div>
+            
+            <div class="row align-items-center gy-5">
+                <div class="col-md-6">
+                    <div class="position-relative">
+                        <div class="rounded-custom shadow-lg overflow-hidden bg-secondary" style="aspect-ratio: 16/9;">
+                            <img src="image 49.png" alt="Une femme créatrice souriante" class="w-100 h-100 object-fit-cover">
+                        </div>
+                        <div class="position-absolute bg-white px-4 py-2 rounded-custom shadow d-flex align-items-center gap-2" style="bottom: -1.5rem; left: 50%; transform: translateX(-50%); border: 1px solid #f3f4f6; white-space: nowrap;">
+                            <span class="text-warning"><i class="bi bi-star-fill"></i></span>
+                            <span class="fw-bold text-gray-900" style="font-size: 0.875rem;">98% Taux de satisfaction</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex flex-column gap-4" style="padding-left: 2rem;">
+                        <div class="d-flex align-items-start">
+                            <div class="number-badge">1</div>
+                            <div>
+                                <h3 class="fw-bold mb-2 text-gray-900" style="font-size: 1.125rem;">Formats sur-mesure</h3>
+                                <p class="text-gray-600 mb-0" style="line-height: 1.6;">Créez des vidéos, des quiz, des devoirs écrits et des documents téléchargeables en quelques clics.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start">
+                            <div class="number-badge">2</div>
+                            <div>
+                                <h3 class="fw-bold mb-2 text-gray-900" style="font-size: 1.125rem;">Analyse détaillée</h3>
+                                <p class="text-gray-600 mb-0" style="line-height: 1.6;">Suivez la progression de vos élèves grâce à des tableaux de bord et des statistiques précises.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start">
+                            <div class="number-badge">3</div>
+                            <div>
+                                <h3 class="fw-bold mb-2 text-gray-900" style="font-size: 1.125rem;">Revenus récurrents</h3>
+                                <p class="text-gray-600 mb-0" style="line-height: 1.6;">Mettez en place des abonnements mensuels ou des paiements uniques pour vos formations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-alternate section-padding">
+        <div class="max-w-1200 px-4 px-md-5">
+            <div class="text-center mb-5" style="padding-bottom: 2rem;">
+                <h2 class="fw-bold tracking-tight mb-3 text-gray-900" style="font-size: 1.875rem;">Sessions live interactives</h2>
+                <p class="text-gray-500" style="font-size: 1rem;">Connectez-vous avec vos élèves en temps réel pour des masterclasses,<br>des Q&A ou des sessions de coaching personnalisées.</p>
+            </div>
+            
+            <div class="row align-items-center flex-row-reverse gy-5">
+                <div class="col-md-6">
+                    <div class="d-flex flex-column gap-4" style="padding-right: 2rem;">
+                        <div class="d-flex align-items-start">
+                            <div class="number-badge">1</div>
+                            <div>
+                                <h3 class="fw-bold mb-1 text-gray-900" style="font-size: 1rem;">Tableau interactif et partage d'écran</h3>
+                                <p class="text-gray-600 mb-0" style="font-size: 0.875rem;">Illustrez vos propos en direct avec des outils visuels intégrés.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start">
+                            <div class="number-badge">2</div>
+                            <div>
+                                <h3 class="fw-bold mb-1 text-gray-900" style="font-size: 1rem;">Retours en direct et chat modéré</h3>
+                                <p class="text-gray-600 mb-0" style="font-size: 0.875rem;">Interagissez avec votre audience et répondez aux questions en temps réel.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start">
+                            <div class="number-badge">3</div>
+                            <div>
+                                <h3 class="fw-bold mb-1 text-gray-900" style="font-size: 1rem;">Qualité de streaming haute définition</h3>
+                                <p class="text-gray-600 mb-0" style="font-size: 0.875rem;">Une expérience fluide et professionnelle pour tous vos participants.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="position-relative">
+                        <div class="w-100 rounded-custom shadow-lg overflow-hidden bg-dark border border-4 border-white" style="aspect-ratio: 16/9;">
+                            <img src="Container.png" alt="Session vidéo en direct" class="w-100 h-100 object-fit-cover">
+                        </div>
+                        <div class="position-absolute bg-white px-3 py-2 rounded-custom shadow d-flex align-items-center gap-2" style="bottom: -1rem; right: -1rem; border: 1px solid #f3f4f6;">
+                            <div class="rounded-circle bg-danger" style="width: 8px; height: 8px; animation: pulse 2s infinite;"></div>
+                            <span class="fw-bold text-gray-900" style="font-size: 0.875rem;">1,248</span>
+                            <span class="text-gray-500" style="font-size: 0.75rem;">Participants</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-white section-padding">
+        <div class="max-w-1200 px-4 px-md-5 text-center">
+            <h2 class="fw-bold tracking-tight mb-3 text-gray-900" style="font-size: 1.875rem;">Fonctionnalités</h2>
+            <p class="text-gray-500 mb-5" style="font-size: 1rem; padding-bottom: 2rem;">Tout ce dont vous avez besoin pour gérer votre école en ligne.</p>
+
+            <div class="row gy-5">
+                <div class="col-md-4 d-flex flex-column align-items-center text-center">
+                    <div class="feature-icon-box"><i class="bi bi-laptop-fill"></i></div>
+                    <h3 class="fw-bold mb-2 text-gray-900" style="font-size: 1rem;">Classes en ligne</h3>
+                    <p class="text-gray-500 mb-0" style="font-size: 0.875rem;">Hébergez vos vidéos, documents et ressources au même endroit.</p>
+                </div>
+                <div class="col-md-4 d-flex flex-column align-items-center text-center">
+                    <div class="feature-icon-box"><i class="bi bi-record-circle-fill"></i></div>
+                    <h3 class="fw-bold mb-2 text-gray-900" style="font-size: 1rem;">Enregistrement</h3>
+                    <p class="text-gray-500 mb-0" style="font-size: 0.875rem;">Sauvegardez vos lives automatiquement pour le replay.</p>
+                </div>
+                <div class="col-md-4 d-flex flex-column align-items-center text-center">
+                    <div class="feature-icon-box"><i class="bi bi-card-text"></i></div>
+                    <h3 class="fw-bold mb-2 text-gray-900" style="font-size: 1rem;">Sous-titres</h3>
+                    <p class="text-gray-500 mb-0" style="font-size: 0.875rem;">Génération automatique de sous-titres multilingues.</p>
+                </div>
+                <div class="col-md-4 d-flex flex-column align-items-center text-center">
+                    <div class="feature-icon-box"><i class="bi bi-display-fill"></i></div>
+                    <h3 class="fw-bold mb-2 text-gray-900" style="font-size: 1rem;">Partage d'écran</h3>
+                    <p class="text-gray-500 mb-0" style="font-size: 0.875rem;">Montrez votre travail en haute qualité sans latence.</p>
+                </div>
+                <div class="col-md-4 d-flex flex-column align-items-center text-center">
+                    <div class="feature-icon-box"><i class="bi bi-bar-chart-fill"></i></div>
+                    <h3 class="fw-bold mb-2 text-gray-900" style="font-size: 1rem;">Outils d'analyse</h3>
+                    <p class="text-gray-500 mb-0" style="font-size: 0.875rem;">Suivez l'engagement de votre audience en temps réel.</p>
+                </div>
+                <div class="col-md-4 d-flex flex-column align-items-center text-center">
+                    <div class="feature-icon-box"><i class="bi bi-chat-fill"></i></div>
+                    <h3 class="fw-bold mb-2 text-gray-900" style="font-size: 1rem;">Chat en direct</h3>
+                    <p class="text-gray-500 mb-0" style="font-size: 0.875rem;">Créez des salons de discussion dédiés à chaque cours.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-section4 section-padding w-100">
+        <div class="max-w-800 px-4 px-md-5 text-center mx-auto">
+            <h2 class="fw-bold tracking-tight mb-3 text-gray-900" style="font-size: 1.875rem;">Une communauté toujours en mouvement</h2>
+            <p class="text-gray-500 mb-5" style="font-size: 1rem;">Découvrez ce qui se passe en ce moment sur SuperDash.</p>
+
+            <div class="d-flex flex-column gap-3">
+                <div class="bg-white p-3 pe-4 rounded-custom d-flex align-items-center justify-content-between shadow-sm border" style="border-color: #f9fafb;">
+                    <div class="d-flex align-items-center gap-3">
+                        <img src="https://i.pravatar.cc/150?u=lina" class="rounded-circle object-fit-cover" style="width: 3rem; height: 3rem;" alt="Lina">
+                        <span class="fw-medium text-gray-800" style="font-size: 15px;">Lina vient de lancer une session live</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="fw-semibold rounded-custom px-3 py-1" style="background-color: #fdf2f8; color: #7e22ce; font-size: 13px;">Live</span>
+                        <div class="rounded-custom d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 2rem; height: 2rem; background-color: var(--brand);">
+                            <i class="bi bi-play-fill" style="font-size: 1.2rem; margin-left: 2px;"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-3 pe-4 rounded-custom d-flex align-items-center justify-content-between shadow-sm border" style="border-color: #f9fafb;">
+                    <div class="d-flex align-items-center gap-3">
+                        <img src="https://i.pravatar.cc/150?u=ahmed" class="rounded-circle object-fit-cover" style="width: 3rem; height: 3rem;" alt="Ahmed">
+                        <span class="fw-medium text-gray-800" style="font-size: 15px;">Ahmed a publié un nouveau cours</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="fw-semibold rounded-custom px-3 py-1" style="background-color: #eff6ff; color: #2563eb; font-size: 13px;">Cours</span>
+                        <div class="rounded-custom d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 2rem; height: 2rem; background-color: var(--brand);">
+                            <i class="bi bi-journal-bookmark-fill" style="font-size: 0.9rem;"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-3 pe-4 rounded-custom d-flex align-items-center justify-content-between shadow-sm border" style="border-color: #f9fafb;">
+                    <div class="d-flex align-items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=150" class="rounded-circle object-fit-cover" style="width: 3rem; height: 3rem;" alt="Groupe">
+                        <span class="fw-medium text-gray-800" style="font-size: 15px;">32 membres participent à une discussion</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="fw-semibold rounded-custom px-3 py-1" style="background-color: #ecfdf5; color: #0f766e; font-size: 13px;">Actif</span>
+                        <div class="rounded-custom d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 2rem; height: 2rem; background-color: var(--brand);">
+                            <i class="bi bi-people-fill" style="font-size: 1rem;"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-3 pe-4 rounded-custom d-flex align-items-center justify-content-between shadow-sm border" style="border-color: #f9fafb;">
+                    <div class="d-flex align-items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150" class="rounded-circle object-fit-cover" style="width: 3rem; height: 3rem;" alt="AI Creators">
+                        <span class="fw-medium text-gray-800" style="font-size: 15px;">Nouveau groupe "AI Creators" créé</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="fw-semibold rounded-custom px-3 py-1" style="background-color: #fff7ed; color: #1d4ed8; font-size: 13px;">Nouveau</span>
+                        <div class="rounded-custom d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 2rem; height: 2rem; background-color: var(--brand);">
+                            <i class="bi bi-chat-fill" style="font-size: 0.9rem;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-white section-padding">
+        <div class="max-w-1200 px-4 px-md-5 text-center">
+            <h2 class="fw-black tracking-tight mb-5 text-gray-900" style="font-size: 2.25rem; padding-bottom: 1.5rem;">Conçue pour deux communautés</h2>
+            
+            <div class="row gy-4 text-start">
+                <div class="col-md-6">
+                    <div class="d-flex flex-column h-100 rounded-custom overflow-hidden shadow-sm" style="border: 1px solid #f3f4f6;">
+                        <div style="height: 250px;">
+                            <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600" alt="Éducateurs" class="w-100 h-100 object-fit-cover">
+                        </div>
+                        <div class="p-4 p-md-5 flex-grow-1" style="background-color: #fefcf8;">
+                            <h3 class="fw-bold mb-4 text-gray-900" style="font-size: 1.25rem;">Éducateurs</h3>
+                            <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
+                                <li class="d-flex align-items-center gap-3">
+                                    <div class="rounded-custom d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 20px; height: 20px; background-color: var(--brand); font-size: 12px;">
+                                        <i class="bi bi-check2"></i>
+                                    </div>
+                                    <span class="text-gray-600 fw-medium" style="font-size: 0.95rem;">Créer et publier des cours</span>
+                                </li>
+                                <li class="d-flex align-items-center gap-3">
+                                    <div class="rounded-custom d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 20px; height: 20px; background-color: var(--brand); font-size: 12px;">
+                                        <i class="bi bi-check2"></i>
+                                    </div>
+                                    <span class="text-gray-600 fw-medium" style="font-size: 0.95rem;">Construire leur audience</span>
+                                </li>
+                                <li class="d-flex align-items-center gap-3">
+                                    <div class="rounded-custom d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 20px; height: 20px; background-color: var(--brand); font-size: 12px;">
+                                        <i class="bi bi-check2"></i>
+                                    </div>
+                                    <span class="text-gray-600 fw-medium" style="font-size: 0.95rem;">Monétiser leurs connaissances</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="d-flex flex-column h-100 rounded-custom overflow-hidden shadow-sm" style="border: 1px solid #f3f4f6;">
+                        <div style="height: 250px;">
+                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600" alt="Apprenants" class="w-100 h-100 object-fit-cover">
+                        </div>
+                        <div class="p-4 p-md-5 flex-grow-1" style="background-color: #f4f7ff;">
+                            <h3 class="fw-bold mb-4 text-gray-900" style="font-size: 1.25rem;">Apprenants</h3>
+                            <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
+                                <li class="d-flex align-items-center gap-3">
+                                    <div class="rounded-custom d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 20px; height: 20px; background-color: var(--brand); font-size: 12px;">
+                                        <i class="bi bi-check2"></i>
+                                    </div>
+                                    <span class="text-gray-600 fw-medium" style="font-size: 0.95rem;">Accéder à des formations variées</span>
+                                </li>
+                                <li class="d-flex align-items-center gap-3">
+                                    <div class="rounded-custom d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 20px; height: 20px; background-color: var(--brand); font-size: 12px;">
+                                        <i class="bi bi-check2"></i>
+                                    </div>
+                                    <span class="text-gray-600 fw-medium" style="font-size: 0.95rem;">Échanger avec d'autres membres</span>
+                                </li>
+                                <li class="d-flex align-items-center gap-3">
+                                    <div class="rounded-custom d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 20px; height: 20px; background-color: var(--brand); font-size: 12px;">
+                                        <i class="bi bi-check2"></i>
+                                    </div>
+                                    <span class="text-gray-600 fw-medium" style="font-size: 0.95rem;">Développer de nouvelles compétences</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-section4 section-padding w-100" style="padding-top: 2rem;">
+        <div class="max-w-1000 px-4 px-md-5 text-center mx-auto">
+            <h2 class="fw-black tracking-tight mb-3 text-gray-900" style="font-size: 2.25rem;">Explorez les domaines qui façonnent l'avenir</h2>
+            <p class="text-gray-500 mb-5 mx-auto" style="font-size: 1rem; max-width: 38rem; line-height: 1.6; padding-bottom: 1rem;">Du développement web à l'intelligence artificielle, découvrez les sujets qui comptent.</p>
+
+            <div class="d-flex flex-wrap justify-content-center" style="gap: 1rem;">
+                <a href="#" class="domain-card text-decoration-none d-flex align-items-center bg-white px-4 py-3 rounded-custom shadow-sm border" style="border-color: #f9fafb; gap: 12px;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--brand)" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H4zm14 8h4a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-8a2 2 0 0 0-2 2v2h6a2 2 0 0 1 2 2v6z"/>
+                    </svg>
+                    <span class="fw-bold text-gray-800" style="font-size: 0.95rem;">Développement web</span>
+                </a>
+                
+                <a href="#" class="domain-card text-decoration-none d-flex align-items-center bg-white px-4 py-3 rounded-custom shadow-sm border" style="border-color: #f9fafb; gap: 12px;">
+                    <i class="bi bi-vector-pen text-brand" style="font-size: 1.4rem;"></i>
+                    <span class="fw-bold text-gray-800" style="font-size: 0.95rem;">Design et UX</span>
+                </a>
+                
+                <a href="#" class="domain-card text-decoration-none d-flex align-items-center bg-white px-4 py-3 rounded-custom shadow-sm border" style="border-color: #f9fafb; gap: 12px;">
+                    <i class="bi bi-robot text-brand" style="font-size: 1.4rem;"></i>
+                    <span class="fw-bold text-gray-800" style="font-size: 0.95rem;">Intelligence artificielle</span>
+                </a>
+                
+                <a href="#" class="domain-card text-decoration-none d-flex align-items-center bg-white px-4 py-3 rounded-custom shadow-sm border" style="border-color: #f9fafb; gap: 12px;">
+                    <i class="bi bi-megaphone-fill text-brand" style="font-size: 1.4rem;"></i>
+                    <span class="fw-bold text-gray-800" style="font-size: 0.95rem;">Marketing digital</span>
+                </a>
+                
+                <a href="#" class="domain-card text-decoration-none d-flex align-items-center bg-white px-4 py-3 rounded-custom shadow-sm border" style="border-color: #f9fafb; gap: 12px;">
+                    <div class="position-relative d-flex align-items-center justify-content-center">
+                        <i class="bi bi-briefcase-fill text-brand" style="font-size: 1.4rem;"></i>
+                        <i class="bi bi-clock-fill text-brand bg-white rounded-circle position-absolute" style="bottom: -2px; right: -4px; font-size: 0.65rem; border: 1.5px solid white;"></i>
+                    </div>
+                    <span class="fw-bold text-gray-800" style="font-size: 0.95rem;">Business et entrepreneuriat</span>
+                </a>
+                
+                <a href="#" class="domain-card text-decoration-none d-flex align-items-center bg-white px-4 py-3 rounded-custom shadow-sm border" style="border-color: #f9fafb; gap: 12px;">
+                    <i class="bi bi-camera-fill text-brand" style="font-size: 1.4rem;"></i>
+                    <span class="fw-bold text-gray-800" style="font-size: 0.95rem;">Création de contenu</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-white section-padding">
+        <div class="max-w-1000 px-4 px-md-5 text-center mx-auto">
+            <h2 class="fw-bold tracking-tight mb-5 text-gray-900" style="font-size: 1.5rem; padding-bottom: 2rem;">Une communauté en pleine croissance</h2>
+            
+            <div class="row gy-4">
+                <div class="col-6 col-md-3">
+                    <div class="stat-box stat-box-orange h-100">
+                        <div class="fw-extrabold text-gray-900 mb-2" style="font-size: 1.875rem;">4 000+</div>
+                        <div class="text-gray-600" style="font-size: 0.875rem;">Créateurs actifs</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-box stat-box-blue h-100">
+                        <div class="fw-extrabold text-gray-900 mb-2" style="font-size: 1.875rem;">100+</div>
+                        <div class="text-gray-600" style="font-size: 0.875rem;">Pays couverts</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-box stat-box-orange h-100">
+                        <div class="fw-extrabold text-gray-900 mb-2" style="font-size: 1.875rem;">250+</div>
+                        <div class="text-gray-600" style="font-size: 0.875rem;">Cours publiés</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-box stat-box-blue h-100">
+                        <div class="fw-extrabold text-gray-900 mb-2" style="font-size: 1.875rem;">50+</div>
+                        <div class="text-gray-600" style="font-size: 0.875rem;">Experts reconnus</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-white section-padding">
+        <div class="container-custom px-4 px-md-5 text-center">
+            <h2 class="fw-bold tracking-tight mb-5 text-gray-900" style="font-size: 1.875rem; padding-bottom: 2rem;">Tarifs simples</h2>
+            
+            <div class="row align-items-center gy-4 mx-auto" style="max-width: 68rem;">
+                
+                <div class="col-md-4">
+                    <div class="p-4 p-md-5 rounded-custom text-start d-flex flex-column h-100 card-shadow" style="background-color: #FFFDF8; border: 1.5px solid #A5B4FC;">
+                        <h3 class="fw-bold mb-2 text-gray-900" style="font-size: 1.25rem;">Starter</h3>
+                        <p class="text-gray-500 mb-4" style="font-size: 0.875rem;">Parfait pour découvrir la plateforme</p>
+                        
+                        <div class="d-flex align-items-baseline mb-4">
+                            <span class="fw-extrabold text-gray-900" style="font-size: 2.5rem; line-height: 1;">0DT</span>
+                            <span class="text-gray-500 ms-1 fw-medium" style="font-size: 0.875rem;">Gratuit</span>
+                        </div>
+
+                        <ul class="list-unstyled d-flex flex-column gap-3 mb-5 flex-grow-1">
+                            <li class="d-flex align-items-center gap-3">
+                                <div class="d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 18px; height: 18px; background-color: var(--brand); border-radius: 4px; font-size: 12px;">
+                                    <i class="bi bi-check2"></i>
+                                </div>
+                                <span class="text-gray-600" style="font-size: 0.95rem;">1 cours publié</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-3">
+                                <div class="d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 18px; height: 18px; background-color: var(--brand); border-radius: 4px; font-size: 12px;">
+                                    <i class="bi bi-check2"></i>
+                                </div>
+                                <span class="text-gray-600" style="font-size: 0.95rem;">50 apprenants max</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-3">
+                                <div class="d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 18px; height: 18px; background-color: var(--brand); border-radius: 4px; font-size: 12px;">
+                                    <i class="bi bi-check2"></i>
+                                </div>
+                                <span class="text-gray-600" style="font-size: 0.95rem;">Communauté basique</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-3">
+                                <div class="d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 18px; height: 18px; background-color: var(--brand); border-radius: 4px; font-size: 12px;">
+                                    <i class="bi bi-check2"></i>
+                                </div>
+                                <span class="text-gray-600" style="font-size: 0.95rem;">Certification standard</span>
+                            </li>
+                        </ul>
+                        
+                        <button class="w-100 btn-custom-light py-2 mt-auto" style="font-size: 0.9rem;">Commencer gratuitement</button>
+                    </div>
+                </div>
+
+                <div class="col-md-4" style="z-index: 10;">
+                    <div class="p-4 p-md-5 rounded-custom text-start d-flex flex-column h-100 card-shadow" style="background-color: #F4F7FF; border: 1.5px solid #A5B4FC; transform: scale(1.05);">
+                        <h3 class="fw-bold mb-2 text-gray-900" style="font-size: 1.5rem;">Pro</h3>
+                        <p class="text-gray-500 mb-4" style="font-size: 0.9rem;">Pour les éducateurs ambitieux</p>
+                        
+                        <div class="d-flex align-items-baseline mb-4">
+                            <span class="fw-extrabold text-gray-900" style="font-size: 3rem; line-height: 1;">49DT</span>
+                            <span class="text-gray-500 ms-1 fw-medium" style="font-size: 0.9rem;">/mois</span>
+                        </div>
+
+                        <ul class="list-unstyled d-flex flex-column gap-3 mb-5 flex-grow-1">
+                            <li class="d-flex align-items-center gap-3">
+                                <div class="d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 18px; height: 18px; background-color: var(--brand); border-radius: 4px; font-size: 12px;">
+                                    <i class="bi bi-check2"></i>
+                                </div>
+                                <span class="text-gray-600" style="font-size: 0.95rem;">Cours illimités</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-3">
+                                <div class="d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 18px; height: 18px; background-color: var(--brand); border-radius: 4px; font-size: 12px;">
+                                    <i class="bi bi-check2"></i>
+                                </div>
+                                <span class="text-gray-600" style="font-size: 0.95rem;">Apprenants illimités</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-3">
+                                <div class="d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 18px; height: 18px; background-color: var(--brand); border-radius: 4px; font-size: 12px;">
+                                    <i class="bi bi-check2"></i>
+                                </div>
+                                <span class="text-gray-600" style="font-size: 0.95rem;">Sessions live</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-3">
+                                <div class="d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 18px; height: 18px; background-color: var(--brand); border-radius: 4px; font-size: 12px;">
+                                    <i class="bi bi-check2"></i>
+                                </div>
+                                <span class="text-gray-600" style="font-size: 0.95rem;">Mentor IA</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-3">
+                                <div class="d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 18px; height: 18px; background-color: var(--brand); border-radius: 4px; font-size: 12px;">
+                                    <i class="bi bi-check2"></i>
+                                </div>
+                                <span class="text-gray-600" style="font-size: 0.95rem;">Email marketing</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-3">
+                                <div class="d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 18px; height: 18px; background-color: var(--brand); border-radius: 4px; font-size: 12px;">
+                                    <i class="bi bi-check2"></i>
+                                </div>
+                                <span class="text-gray-600" style="font-size: 0.95rem;">Analytics avancés</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-3">
+                                <div class="d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 18px; height: 18px; background-color: var(--brand); border-radius: 4px; font-size: 12px;">
+                                    <i class="bi bi-check2"></i>
+                                </div>
+                                <span class="text-gray-600" style="font-size: 0.95rem;">Certifications personnalisées</span>
+                            </li>
+                        </ul>
+                        
+                        <button class="w-100 btn-custom-brand py-3 mt-auto" style="font-size: 0.95rem;">Essai gratuit 14 jours</button>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="p-4 p-md-5 rounded-custom text-start d-flex flex-column h-100 card-shadow" style="background-color: #FFFDF8; border: 1.5px solid #A5B4FC;">
+                        <h3 class="fw-bold mb-2 text-gray-900" style="font-size: 1.25rem;">Entreprise</h3>
+                        <p class="text-gray-500 mb-4" style="font-size: 0.875rem;">Pour les organisations</p>
+                        
+                        <div class="d-flex align-items-baseline mb-4">
+                            <span class="fw-extrabold text-gray-900" style="font-size: 2.5rem; line-height: 1;">99DT</span>
+                            <span class="text-gray-500 ms-1 fw-medium" style="font-size: 0.875rem;">/mois</span>
+                        </div>
+
+                        <ul class="list-unstyled d-flex flex-column gap-3 mb-5 flex-grow-1">
+                            <li class="d-flex align-items-center gap-3">
+                                <div class="d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 18px; height: 18px; background-color: var(--brand); border-radius: 4px; font-size: 12px;">
+                                    <i class="bi bi-check2"></i>
+                                </div>
+                                <span class="text-gray-600" style="font-size: 0.95rem;">Tout du plan Pro</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-3">
+                                <div class="d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 18px; height: 18px; background-color: var(--brand); border-radius: 4px; font-size: 12px;">
+                                    <i class="bi bi-check2"></i>
+                                </div>
+                                <span class="text-gray-600" style="font-size: 0.95rem;">Multi-éducateurs</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-3">
+                                <div class="d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 18px; height: 18px; background-color: var(--brand); border-radius: 4px; font-size: 12px;">
+                                    <i class="bi bi-check2"></i>
+                                </div>
+                                <span class="text-gray-600" style="font-size: 0.95rem;">API personnalisée</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-3">
+                                <div class="d-flex align-items-center justify-content-center text-white flex-shrink-0" style="width: 18px; height: 18px; background-color: var(--brand); border-radius: 4px; font-size: 12px;">
+                                    <i class="bi bi-check2"></i>
+                                </div>
+                                <span class="text-gray-600" style="font-size: 0.95rem;">Support prioritaire</span>
+                            </li>
+                        </ul>
+                        
+                        <button class="w-100 btn-custom-light py-2 mt-auto" style="font-size: 0.9rem;">Contacter l'équipe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white py-5 border-top" style="border-color: #f3f4f6;">
+        <div class="max-w-1200 px-4 px-md-5 mx-auto">
+            <div class="row gy-5 mb-5">
+                <div class="col-lg-4 pe-lg-5">
+                    <div class="fs-5 fw-bold text-gray-900 mb-3">superdash</div>
+                    <p class="text-gray-500 mb-4" style="font-size: 0.95rem; line-height: 1.6;">La plateforme éducative communautaire intelligente tout-en-un qui connecte éducateurs et apprenants.</p>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="d-flex align-items-center justify-content-center text-brand text-decoration-none" style="width: 36px; height: 36px; background-color: #f3f4f6; border-radius: 6px; font-size: 1rem; transition: all 0.2s;">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="#" class="d-flex align-items-center justify-content-center text-brand text-decoration-none" style="width: 36px; height: 36px; background-color: #f3f4f6; border-radius: 6px; font-size: 1rem; transition: all 0.2s;">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                        <a href="#" class="d-flex align-items-center justify-content-center text-brand text-decoration-none" style="width: 36px; height: 36px; background-color: #f3f4f6; border-radius: 6px; font-size: 1rem; transition: all 0.2s;">
+                            <i class="bi bi-youtube"></i>
+                        </a>
+                        <a href="#" class="d-flex align-items-center justify-content-center text-brand text-decoration-none" style="width: 36px; height: 36px; background-color: #f3f4f6; border-radius: 6px; font-size: 1rem; transition: all 0.2s;">
+                            <i class="bi bi-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-6 col-sm-6 col-lg-2">
+                    <h6 class="fw-bold text-gray-900 mb-4">Plateforme</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
+                        <li><a href="#" class="text-decoration-none text-gray-500" style="font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='#111827'" onmouseout="this.style.color='#6b7280'">Cours en ligne</a></li>
+                        <li><a href="#" class="text-decoration-none text-gray-500" style="font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='#111827'" onmouseout="this.style.color='#6b7280'">Sessions live</a></li>
+                        <li><a href="#" class="text-decoration-none text-gray-500" style="font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='#111827'" onmouseout="this.style.color='#6b7280'">Événements</a></li>
+                        <li><a href="#" class="text-decoration-none text-gray-500" style="font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='#111827'" onmouseout="this.style.color='#6b7280'">Produits digitaux</a></li>
+                        <li><a href="#" class="text-decoration-none text-gray-500" style="font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='#111827'" onmouseout="this.style.color='#6b7280'">Communauté</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-6 col-sm-6 col-lg-2">
+                    <h6 class="fw-bold text-gray-900 mb-4">Éducateurs</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
+                        <li><a href="#" class="text-decoration-none text-gray-500" style="font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='#111827'" onmouseout="this.style.color='#6b7280'">Créer un cours</a></li>
+                        <li><a href="#" class="text-decoration-none text-gray-500" style="font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='#111827'" onmouseout="this.style.color='#6b7280'">Mentor IA</a></li>
+                        <li><a href="#" class="text-decoration-none text-gray-500" style="font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='#111827'" onmouseout="this.style.color='#6b7280'">Dashboard</a></li>
+                        <li><a href="#" class="text-decoration-none text-gray-500" style="font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='#111827'" onmouseout="this.style.color='#6b7280'">Revenus</a></li>
+                        <li><a href="#" class="text-decoration-none text-gray-500" style="font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='#111827'" onmouseout="this.style.color='#6b7280'">API Développeurs</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-6 col-sm-6 col-lg-2">
+                    <h6 class="fw-bold text-gray-900 mb-4">Apprenants</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
+                        <li><a href="#" class="text-decoration-none text-gray-500" style="font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='#111827'" onmouseout="this.style.color='#6b7280'">Explorer les cours</a></li>
+                        <li><a href="#" class="text-decoration-none text-gray-500" style="font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='#111827'" onmouseout="this.style.color='#6b7280'">Certificats</a></li>
+                        <li><a href="#" class="text-decoration-none text-gray-500" style="font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='#111827'" onmouseout="this.style.color='#6b7280'">Parcours guidé</a></li>
+                        <li><a href="#" class="text-decoration-none text-gray-500" style="font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='#111827'" onmouseout="this.style.color='#6b7280'">Forum</a></li>
+                        <li><a href="#" class="text-decoration-none text-gray-500" style="font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='#111827'" onmouseout="this.style.color='#6b7280'">Support</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-sm-6 col-lg-2">
+                    <h6 class="fw-bold text-gray-900 mb-4">Entreprise</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
+                        <li><a href="#" class="text-decoration-none text-gray-500" style="font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='#111827'" onmouseout="this.style.color='#6b7280'">À propos</a></li>
+                        <li><a href="#" class="text-decoration-none text-gray-500" style="font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='#111827'" onmouseout="this.style.color='#6b7280'">Blog</a></li>
+                        <li><a href="#" class="text-decoration-none text-gray-500" style="font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='#111827'" onmouseout="this.style.color='#6b7280'">Presse</a></li>
+                        <li><a href="#" class="text-decoration-none text-gray-500" style="font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='#111827'" onmouseout="this.style.color='#6b7280'">Partenariats</a></li>
+                        <li><a href="#" class="text-decoration-none text-gray-500" style="font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='#111827'" onmouseout="this.style.color='#6b7280'">Mentions légales</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center pt-4 border-top text-gray-400" style="font-size: 0.875rem; border-color: #f3f4f6 !important;">
+                <p class="mb-3 mb-md-0">© 2026 SuperDash. Tous droits réservés.</p>
+                <div class="d-flex gap-4">
+                    <a href="#" class="text-decoration-none text-gray-400" onmouseover="this.style.color='#111827'" onmouseout="this.style.color='#9ca3af'">Confidentialité</a>
+                    <a href="#" class="text-decoration-none text-gray-400" onmouseover="this.style.color='#111827'" onmouseout="this.style.color='#9ca3af'">Conditions</a>
+                    <a href="#" class="text-decoration-none text-gray-400" onmouseover="this.style.color='#111827'" onmouseout="this.style.color='#9ca3af'">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+:root {
+            --primary: #4E5DFF; /* Conservé selon votre design system de la plateforme */
+            --bg-sidebar: #FFFBF5;
+            --text-dark: #1A1A1A;
+            --text-muted: #6B7280;
+            --border: #E5E7EB;
+            --radius: 6px; 
+        }
+
+        * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { font-family: 'Inter', sans-serif; margin: 0; color: var(--text-dark); background: #fff; min-height: 100vh; }
+
+        .layout { display: flex; min-height: 100vh; }
+
+        /* --- SIDEBAR (Persistent) --- */
+        .sidebar { 
+            flex: 0 0 40%; 
+            background-color: var(--bg-sidebar); 
+            padding: 60px; 
+            border-right: 1px solid var(--border); 
+            display: flex; 
+            flex-direction: column; 
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+        .logo { font-weight: 800; font-size: 22px; margin-bottom: 50px; }
+        
+        .sidebar-card { 
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1000'); 
+            background-size: cover; 
+            background-position: center; 
+            height: 320px; 
+            border-radius: var(--radius); 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: flex-end; 
+            padding: 25px; 
+            color: white; 
+            margin-bottom: 30px; 
+        }
+        .sidebar-card h3 { margin: 0 0 8px 0; font-size: 20px; }
+        .sidebar-card p { margin: 0; font-size: 14px; opacity: 0.9; }
+
+        .feat-item { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; font-size: 14px; font-weight: 500; }
+        .icon-check-box { background: var(--primary); color: white; border-radius: 4px; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
+
+        .members-active { margin-top: auto; display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--text-muted); }
+        .avatars { display: flex; }
+        .avatars div { width: 24px; height: 24px; border-radius: 50%; background: #ccc; border: 2px solid var(--bg-sidebar); margin-left: -8px; }
+
+        /* --- MAIN CONTENT AREA --- */
+        .main-content { flex: 1; padding: 60px 100px; display: flex; flex-direction: column; align-items: center; }
+        .form-container { width: 100%; max-width: 580px; }
+
+        .top-nav { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 580px; margin-bottom: 40px; }
+        .nav-link { text-decoration: none; color: var(--text-muted); font-size: 14px; font-weight: 600; cursor: pointer; }
+
+        /* --- STEPPER --- */
+        .stepper { display: flex; justify-content: space-between; position: relative; margin-bottom: 50px; width: 100%; max-width: 480px; margin-left: auto; margin-right: auto; }
+        .stepper::before { content: ''; position: absolute; top: 16px; left: 0; right: 0; height: 2px; background: var(--border); z-index: 1; transition: 0.3s; }
+        
+        .step { display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; z-index: 2; background: #fff; padding: 0 10px; }
+        .step-circle { width: 34px; height: 34px; border-radius: 50%; background: #F3F4F6; color: #9CA3AF; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: bold; border: 2px solid transparent; transition: 0.3s; }
+        .step-label { font-size: 11px; text-transform: uppercase; font-weight: 800; color: var(--text-muted); }
+        
+        /* Stepper States */
+        .step.active .step-circle { background: white; border-color: var(--primary); color: var(--primary); }
+        .step.active .step-label { color: var(--primary); }
+        .step.completed .step-circle { background: var(--primary); color: white; border-color: var(--primary); font-size: 14px; }
+
+        /* --- TYPOGRAPHY & FORMS --- */
+        h1 { font-size: 30px; font-weight: 800; margin: 0 0 10px 0; letter-spacing: -0.5px; }
+        .subtitle { color: var(--text-muted); margin: 0 0 35px 0; font-size: 15px; line-height: 1.5; }
+        .label { display: block; font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 10px; }
+        
+        input, select, textarea { width: 100%; padding: 14px 16px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 15px; background: #F9FAFB; margin-bottom: 20px; font-family: inherit; transition: 0.2s; }
+        input:focus, select:focus, textarea:focus { border-color: var(--primary); outline: none; background: #fff; }
+
+        /* --- SPECIFIC UI ELEMENTS (Apprenant) --- */
+        
+        /* Cards Grids */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 25px; }
+        
+        .selectable-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; cursor: pointer; transition: 0.2s; background: #fff; display: flex; flex-direction: column; gap: 8px; }
+        .selectable-card:hover { border-color: #D1D5DB; }
+        .selectable-card.selected { border: 2px solid var(--primary); background: #F8F9FF; padding: 19px; /* Compensate for thicker border */ }
+        
+        .card-icon { font-size: 22px; margin-bottom: 4px; }
+        .card-title { font-size: 14px; font-weight: 700; color: var(--text-dark); }
+        .card-desc { font-size: 12px; color: var(--text-muted); margin: 0; line-height: 1.4; }
+
+        /* Center-aligned small cards (Levels) */
+        .level-card { text-align: center; padding: 15px; }
+        .level-card .card-title { font-size: 13px; margin-bottom: 2px; }
+
+        /* Step 3: Tags */
+        .tag-group { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+        .tag { padding: 10px 20px; border: 1px solid var(--border); border-radius: 30px; font-size: 14px; font-weight: 500; cursor: pointer; background: #F9FAFB; transition: 0.2s; color: var(--text-dark); }
+        .tag.selected { background: var(--primary); color: white; border-color: var(--primary); }
+
+        /* Summary Box */
+        .summary-box { background: #FFFBF5; border: 1px solid #F3E8D6; border-radius: var(--radius); padding: 25px; margin-bottom: 30px; }
+        .summary-title { font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--text-dark); margin-bottom: 15px; }
+        .summary-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+        .summary-list li { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--text-muted); }
+
+        /* --- BUTTONS --- */
+        .actions { display: flex; justify-content: space-between; margin-top: 40px; align-items: center; }
+        .btn { padding: 15px 24px; border-radius: var(--radius); font-weight: 700; font-size: 15px; cursor: pointer; border: none; display: flex; align-items: center; gap: 8px; transition: 0.2s; }
+        .btn-prev { background: white; border: 1px solid var(--border); color: var(--text-muted); }
+        .btn-next { background: var(--primary); color: white; min-width: 220px; justify-content: center; }
+        
+        .footer-text { text-align: center; color: #9CA3AF; font-size: 13px; margin-top: 25px; }
+        .hidden { display: none; }

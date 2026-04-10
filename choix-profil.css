@@ -1,0 +1,222 @@
+:root {
+            --primary: #4E5DFF;
+            --text-dark: #1A1A1A;
+            --text-muted: #6B7280;
+            --border: #E5E7EB;
+            --radius: 6px; /* Conservé selon le design system global */
+        }
+
+        * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; 
+            color: var(--text-dark); 
+            background: #fff; 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- HEADER --- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 50px;
+        }
+        .logo { 
+            font-weight: 800; 
+            font-size: 22px; 
+            letter-spacing: -0.5px;
+        }
+        .btn-outline {
+            padding: 10px 20px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .btn-outline:hover {
+            border-color: var(--text-dark);
+            color: var(--text-dark);
+        }
+
+        /* --- MAIN CONTENT --- */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .page-title {
+            font-size: 42px;
+            font-weight: 800;
+            margin: 0 0 15px 0;
+            letter-spacing: -1px;
+            text-align: center;
+        }
+        .page-subtitle {
+            color: var(--text-muted);
+            font-size: 16px;
+            text-align: center;
+            max-width: 500px;
+            line-height: 1.5;
+            margin: 0 0 60px 0;
+        }
+
+        /* --- CARDS CONTAINER --- */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* --- INDIVIDUAL CARDS --- */
+        .profile-card {
+            border-radius: 16px; /* Rayon un peu plus doux ici pour coller à l'image */
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        /* Variables spécifiques par carte */
+        .card-edu { background-color: #F4F7FF; }
+        .card-app { background-color: #F0FCF4; }
+
+        /* Image section with fade out */
+        .card-image-wrapper {
+            position: relative;
+            height: 220px;
+            width: 100%;
+        }
+        .card-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* Fade effect blending into the card background */
+        .card-edu .card-image-wrapper::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to bottom, transparent 40%, #F4F7FF 100%);
+        }
+        .card-app .card-image-wrapper::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to bottom, transparent 40%, #F0FCF4 100%);
+        }
+
+        /* Card Content */
+        .card-content {
+            padding: 0 40px 30px 40px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-title {
+            font-size: 24px;
+            font-weight: 800;
+            margin: 0 0 15px 0;
+        }
+        .card-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin: 0 0 30px 0;
+        }
+
+        /* Feature List */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 40px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        .icon-check {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+        }
+        
+        /* Specific coloring for lists */
+        .card-edu .icon-check { background: #E0E7FF; color: var(--primary); }
+        .card-app .icon-check { background: #DCFCE7; color: #16A34A; }
+
+        /* Card Footer / CTA */
+        .card-footer {
+            margin-top: auto;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .cta-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+        
+        /* Specific coloring for CTA */
+        .card-edu .card-footer { color: var(--primary); }
+        .card-edu .cta-btn { background: var(--primary); }
+        
+        .card-app .card-footer { color: #F59E0B; }
+        .card-app .cta-btn { background: #F59E0B; }
+
+        /* --- FOOTER --- */
+        .footer-terms {
+            margin-top: 60px;
+            font-size: 13px;
+            color: #9CA3AF;
+            text-align: center;
+        }
+        .footer-terms a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cards-grid { grid-template-columns: 1fr; }
+            .header { padding: 20px; }
+            .card-content { padding: 0 25px 25px 25px; }
+        }

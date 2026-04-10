@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperDash | Documentation & Fonctionnalités</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="fonctionnalites.css">
+</head>
+<body>
+
+    <nav class="public-nav">
+        <div class="d-flex align-items-center gap-2 me-lg-2" style="cursor: pointer;" onclick="window.location.href='landing_page.html'">
+            <div class="bg-primary text-white d-flex align-items-center justify-content-center fw-900 rounded-custom" style="width: 32px; height: 32px; font-size: 18px;">S</div>
+            <h3 class="m-0 fw-900 text-dark d-none d-sm-block" style="letter-spacing: -0.5px;">superdash</h3>
+        </div>
+        
+        <div class="nav-links d-none d-xl-flex align-items-center">
+            <a href="landing_page.html">Accueil</a>
+            <a href="discover.html">Découvrir</a>
+            <a href="fonctionnalites.html" class="active">Fonctionnalités</a>
+            <a href="tarifs.html">Tarifs</a>
+        </div>
+        
+        <div class="search-bar d-none d-md-flex mx-auto">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Rechercher dans la doc...">
+        </div>
+        
+        <div class="d-flex align-items-center gap-3 ms-auto">
+            <span class="fw-700 text-muted d-none d-lg-block" style="cursor: pointer; font-size: 14px;">Enseigner</span>
+            <button class="btn btn-light d-none d-sm-block py-2">Connexion</button>
+            <button class="btn btn-primary py-2">S'inscrire</button>
+        </div>
+    </nav>
+
+    <div class="docs-wrapper">
+        
+        <aside class="docs-sidebar-left d-none d-lg-block">
+            <div class="docs-nav-group">
+                <div class="docs-nav-title">Pour Commencer</div>
+                <ul class="docs-nav-list">
+                    <li><a data-target="doc-intro" class="docs-nav-link active">Introduction</a></li>
+                    <li><a data-target="doc-config" class="docs-nav-link">Configuration du profil</a></li>
+                    <li><a data-target="doc-stripe" class="docs-nav-link">Connecter Stripe</a></li>
+                </ul>
+            </div>
+            
+            <div class="docs-nav-group">
+                <div class="docs-nav-title">Création de Produits</div>
+                <ul class="docs-nav-list">
+                    <li><a data-target="doc-course" class="docs-nav-link">Éditeur de Cours</a></li>
+                    <li><a data-target="doc-ebook" class="docs-nav-link">Produits Digitaux</a></li>
+                </ul>
+            </div>
+
+            <div class="docs-nav-group">
+                <div class="docs-nav-title">Interactions en Direct</div>
+                <ul class="docs-nav-list">
+                    <li><a data-target="doc-live" class="docs-nav-link">Sessions Live Natives</a></li>
+                    <li><a data-target="doc-coach" class="docs-nav-link">Système de Coaching</a></li>
+                </ul>
+            </div>
+
+            <div class="docs-nav-group">
+                <div class="docs-nav-title">Marketing & Croissance</div>
+                <ul class="docs-nav-list">
+                    <li><a data-target="doc-comm" class="docs-nav-link">Espaces Communautaires</a></li>
+                    <li><a data-target="doc-email" class="docs-nav-link">Email Marketing</a></li>
+                    <li><a data-target="doc-mentor" class="docs-nav-link">Assistant Mentor IA</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="docs-main">
+            <div class="breadcrumb">
+                Documentation <span class="mx-2 text-muted">/</span> <span id="bc-category" class="text-muted">Pour Commencer</span> <span class="mx-2 text-muted">/</span> <span id="bc-page" class="text-dark">Introduction</span>
+            </div>
+
+            <div id="doc-intro" class="doc-page active docs-content">
+                <h1 class="docs-title">Introduction à SuperDash</h1>
+                <p class="docs-intro">SuperDash est la plateforme SaaS tout-en-un conçue pour les créateurs de contenu, les formateurs et les écoles en ligne. Découvrez comment unifier votre business éducatif.</p>
+                
+                <h2 id="intro-1">Le problème avec la stack actuelle</h2>
+                <p>Aujourd'hui, pour créer une académie en ligne professionnelle, un formateur doit assembler plusieurs outils coûteux et complexes :</p>
+                <ol>
+                    <li>Un hébergeur vidéo (Vimeo, Wistia)</li>
+                    <li>Un outil de webinaire (Zoom, Google Meet)</li>
+                    <li>Un gestionnaire d'emails (Mailchimp, ConvertKit)</li>
+                    <li>Une plateforme communautaire (Discord, Facebook Groups)</li>
+                    <li>Un processeur de paiement (Stripe, PayPal)</li>
+                </ol>
+                <p>Cette fragmentation entraîne une perte de données, des bugs d'intégration via Zapier, et une expérience utilisateur décousue pour vos apprenants.</p>
+
+                <h2 id="intro-2">La solution SuperDash</h2>
+                <p>SuperDash consolide tous ces outils dans un seul tableau de bord unifié. Votre étudiant s'inscrit une fois, paie une fois, et accède instantanément à vos vidéos, vos lives, votre forum et vos fichiers.</p>
+
+                <div class="docs-callout tip">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <div>
+                        <div class="callout-title">Migration simplifiée (Plan Pro)</div>
+                        <p class="callout-text">Si vous venez de Teachable, Thinkific ou Kajabi, notre équipe s'occupe d'importer vos vidéos et vos listes d'étudiants gratuitement si vous souscrivez au plan Pro annuel.</p>
+                    </div>
+                </div>
+
+                <h2 id="intro-3">Liste de contrôle de démarrage rapide</h2>
+                <p>Pour lancer votre académie en moins de 24h, suivez ces 3 étapes fondamentales :</p>
+                <ul>
+                    <li><span class="step-number">1</span> <strong>Complétez votre profil :</strong> Ajoutez votre photo, bio et liens sociaux.</li>
+                    <li><span class="step-number">2</span> <strong>Connectez Stripe :</strong> Indispensable pour recevoir l'argent de vos ventes.</li>
+                    <li><span class="step-number">3</span> <strong>Créez votre premier produit :</strong> Utilisez notre éditeur par blocs pour créer un produit digital gratuit (Lead Magnet) ou un cours complet.</li>
+                </ul>
+            </div>
+
+            <div id="doc-config" class="doc-page docs-content">
+                <h1 class="docs-title">Configuration du profil</h1>
+                <p class="docs-intro">Votre profil est votre vitrine. Apprenez à le configurer pour inspirer confiance à vos futurs élèves et optimiser vos conversions.</p>
+                
+                <h2 id="config-1">Ajouter une biographie optimisée</h2>
+                <p>Accédez à <strong>Paramètres > Profil</strong>. Rédigez une biographie claire qui met en avant votre expertise.</p>
+                <p>Une bonne biographie répond à 3 questions :</p>
+                <ul>
+                    <li>Qui êtes-vous et quelle est votre légitimité ?</li>
+                    <li>Quelle transformation apportez-vous à vos élèves ?</li>
+                    <li>Quels sont vos faits d'armes (années d'expérience, diplômes, chiffres clés) ?</li>
+                </ul>
+
+                <h2 id="config-2">Personnalisation (Marque Blanche)</h2>
+                <p>Les utilisateurs du plan <span class="badge bg-primary text-white rounded-custom px-2">Entreprise</span> peuvent masquer complètement le logo SuperDash et utiliser leurs propres couleurs et domaine.</p>
+                
+                <div class="docs-callout warning">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <div>
+                        <div class="callout-title">Configuration DNS</div>
+                        <p class="callout-text">Pour lier votre nom de domaine personnalisé (ex: <code>academie.votresite.com</code>), vous devrez ajouter un enregistrement CNAME dans la zone DNS de votre hébergeur pointant vers <code>domains.superdash.com</code>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="doc-stripe" class="doc-page docs-content">
+                <h1 class="docs-title">Connecter Stripe</h1>
+                <p class="docs-intro">SuperDash ne stocke pas votre argent. Les fonds de vos ventes vont directement de la carte de votre client vers votre compte bancaire via Stripe.</p>
+                
+                <h2 id="stripe-1">Le processus de connexion</h2>
+                <p>Allez dans l'onglet <strong>Transactions > Paiements</strong> et cliquez sur "Connect with Stripe". Vous serez redirigé vers l'interface de Stripe pour lier votre compte bancaire.</p>
+                
+                <h2 id="stripe-2">Différence de frais selon votre abonnement</h2>
+                <table class="docs-table">
+                    <thead>
+                        <tr>
+                            <th>Plan SuperDash</th>
+                            <th>Frais de plateforme</th>
+                            <th>Frais Stripe (Standard)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Starter (Gratuit)</td>
+                            <td>10% sur chaque vente</td>
+                            <td>~1.4% + 0.25€</td>
+                        </tr>
+                        <tr>
+                            <td>Pro (49 DT/mois)</td>
+                            <td class="text-success fw-800">0% (Aucun frais)</td>
+                            <td>~1.4% + 0.25€</td>
+                        </tr>
+                        <tr>
+                            <td>Entreprise (99 DT/mois)</td>
+                            <td class="text-success fw-800">0% (Aucun frais)</td>
+                            <td>~1.4% + 0.25€</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="docs-callout tip">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <div>
+                        <div class="callout-title">Gérer les remboursements</div>
+                        <p class="callout-text">Vous pouvez rembourser un étudiant en un clic depuis l'onglet <strong>Transactions</strong>. SuperDash gère automatiquement la révocation de l'accès au cours pour l'utilisateur remboursé.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="doc-course" class="doc-page docs-content">
+                <h1 class="docs-title">Éditeur de Cours</h1>
+                <p class="docs-intro">Concevez des parcours d'apprentissage complets avec notre éditeur visuel. Intégrez vidéos 4K, documents, quiz et lives en quelques clics.</p>
+                
+                <h2 id="course-1">L'architecture d'un cours</h2>
+                <p>Pour garantir une bonne expérience, la plateforme force une structure à deux niveaux :</p>
+                <ul>
+                    <li><strong>Chapitres (Modules) :</strong> Les grandes thématiques. Par exemple : <em>"Chapitre 1 : Les bases de la photographie"</em>.</li>
+                    <li><strong>Leçons :</strong> Le contenu consommable. Un chapitre contient plusieurs leçons. Chaque leçon a un type spécifique (Vidéo, Texte, Live, Quiz).</li>
+                </ul>
+
+                <h2 id="course-2">L'hébergement vidéo sécurisé</h2>
+                <p>Ne mettez plus vos vidéos en "Non répertorié" sur YouTube. Glissez simplement vos fichiers <code>.mp4</code> ou <code>.mov</code> dans notre éditeur.</p>
+                <ul>
+                    <li><strong>Encodage automatique :</strong> Nous créons des versions 1080p, 720p et 480p pour que la vidéo s'adapte à la connexion de l'élève.</li>
+                    <li><strong>Protection DRM :</strong> (Plan Pro) Vos vidéos sont chiffrées pour empêcher le téléchargement illégal via des extensions de navigateur.</li>
+                </ul>
+
+                <div class="docs-callout warning">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <div>
+                        <div class="callout-title">Limite d'upload</div>
+                        <p class="callout-text">La taille maximale par fichier vidéo est de <strong>2 Go</strong>. Si votre fichier est plus lourd, utilisez un logiciel comme Handbrake pour le compresser, ou coupez votre leçon en deux parties.</p>
+                    </div>
+                </div>
+
+                <h2 id="course-3">Modes de distribution</h2>
+                <p>Dans l'onglet "Paramètres" de votre cours, choisissez votre mode de distribution :</p>
+                <table class="docs-table">
+                    <thead>
+                        <tr>
+                            <th>Mode</th>
+                            <th>Description</th>
+                            <th>Cas d'usage idéal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Evergreen (Ouvert)</strong></td>
+                            <td>Accès instantané à l'achat, disponible 24/7/365.</td>
+                            <td>Revenus passifs, formations courtes.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cohorte (Fermé)</strong></td>
+                            <td>Inscriptions limitées dans le temps. Tout le monde commence à la même date.</td>
+                            <td>Bootcamps intensifs, formations avec beaucoup de support live.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="doc-ebook" class="doc-page docs-content">
+                <h1 class="docs-title">Produits Digitaux</h1>
+                <p class="docs-intro">SuperDash n'est pas limité aux cours vidéo. Vendez n'importe quel type de fichier numérique de manière 100% automatisée.</p>
+                
+                <h2 id="ebook-1">Types de fichiers supportés</h2>
+                <p>Vous pouvez monétiser votre expertise sous de multiples formes :</p>
+                <ul>
+                    <li><strong>PDF :</strong> Ebooks, guides, checklists, cheat sheets.</li>
+                    <li><strong>ZIP :</strong> Packs de templates, codes sources, banques d'images, presets Lightroom.</li>
+                    <li><strong>Audio :</strong> Fichiers MP3 pour des méditations guidées ou des podcasts privés.</li>
+                </ul>
+
+                <h2 id="ebook-2">Le processus de livraison</h2>
+                <p>L'expérience client est primordiale. Voici ce qui se passe lorsqu'un client achète votre produit digital :</p>
+                <ol>
+                    <li>Le paiement est validé via Stripe.</li>
+                    <li>SuperDash crée un compte sécurisé pour l'utilisateur (s'il n'en a pas).</li>
+                    <li>Un email contenant un lien unique et sécurisé est envoyé instantanément.</li>
+                    <li>L'utilisateur accède à un espace de téléchargement privé, empêchant le partage du lien brut sur internet.</li>
+                </ol>
+            </div>
+
+            <div id="doc-live" class="doc-page docs-content">
+                <h1 class="docs-title">Sessions Live Natives</h1>
+                <p class="docs-intro">Débarrassez-vous de vos licences Zoom ou Meet. SuperDash intègre un moteur de visioconférence WebRTC de pointe, directement dans le navigateur.</p>
+                
+                <h2 id="live-1">Comment créer une session Live ?</h2>
+                <p>Vous avez deux façons d'utiliser les lives :</p>
+                <ul>
+                    <li><strong>Comme Produit indépendant :</strong> Allez dans <code>Créer > Événement</code>. Parfait pour vendre un webinaire ponctuel ou une masterclass payante.</li>
+                    <li><strong>Dans un Cours :</strong> Dans l'éditeur de cours, ajoutez une leçon de type "Session Live". Parfait pour les Q&A hebdomadaires de votre cohorte.</li>
+                </ul>
+
+                <h2 id="live-2">Fonctionnalités de la salle</h2>
+                <p>La salle virtuelle (qui s'ouvre en surcouche sur le tableau de bord de l'élève) comprend :</p>
+                <ul>
+                    <li><strong>Le Partage d'écran :</strong> Partagez un onglet, une fenêtre ou tout votre écran avec l'audio système.</li>
+                    <li><strong>Le Chat Modéré :</strong> Bloquez des mots spécifiques, ou activez le mode "Q&A" où seules les questions s'affichent.</li>
+                    <li><strong>Le Mode Scène :</strong> Mettez en avant un élève (lui donner la parole) pendant une session de coaching de groupe.</li>
+                </ul>
+
+                <div class="docs-callout tip">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <div>
+                        <div class="callout-title">Enregistrement Automatique</div>
+                        <p class="callout-text">Activez l'option "Enregistrer sur le cloud" avant de lancer le live. Dès que vous coupez la caméra, le replay est traité et devient automatiquement disponible dans l'espace de vos élèves en moins de 10 minutes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="doc-coach" class="doc-page docs-content">
+                <h1 class="docs-title">Système de Coaching</h1>
+                <p class="docs-intro">SuperDash remplace Calendly. Vendez votre temps de cerveau disponible sans faire d'allers-retours par email pour trouver une date.</p>
+                
+                <h2 id="coach-1">Configuration des disponibilités</h2>
+                <p>Dans l'éditeur de produit "Coaching", vous définissez un emploi du temps type. Par exemple : <em>Lundi et Jeudi, de 14h à 18h</em>.</p>
+                <p>SuperDash gère automatiquement :</p>
+                <ul>
+                    <li><strong>Les fuseaux horaires :</strong> Si vous êtes à Paris et votre client à Montréal, le calendrier s'affiche automatiquement à son heure locale.</li>
+                    <li><strong>Les tampons (Buffers) :</strong> Vous pouvez exiger 15 minutes de pause obligatoire entre deux réservations.</li>
+                    <li><strong>Le préavis :</strong> Empêchez les réservations de dernière minute (ex: réservation impossible moins de 24h à l'avance).</li>
+                </ul>
+
+                <h2 id="coach-2">Synchronisation Google Calendar</h2>
+                <p>Dans <code>Paramètres > Intégrations</code>, connectez votre Google Calendar. SuperDash vérifiera vos événements existants (réunions privées, rendez-vous perso) pour ne jamais proposer un créneau où vous êtes déjà occupé.</p>
+            </div>
+
+            <div id="doc-comm" class="doc-page docs-content">
+                <h1 class="docs-title">Espaces Communautaires</h1>
+                <p class="docs-intro">L'apprentissage isolé ne fonctionne plus. SuperDash inclut un réseau social privé asynchrone pour fédérer vos étudiants.</p>
+                
+                <h2 id="comm-1">Le Feed principal</h2>
+                <p>L'espace ressemble à un réseau social moderne. Les élèves peuvent publier du texte, des images, des extraits de code, ou partager des liens. Ils peuvent commenter et "liker" les publications des autres.</p>
+
+                <h2 id="comm-2">Canaux et Permissions</h2>
+                <p>Vous pouvez structurer votre communauté avec des <strong>Canaux (Channels)</strong>, comme sur Slack ou Discord :</p>
+                <table class="docs-table">
+                    <thead>
+                        <tr>
+                            <th>Type de canal</th>
+                            <th>Visibilité</th>
+                            <th>Exemple d'utilisation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Public</td>
+                            <td>Tous les utilisateurs inscrits sur votre plateforme.</td>
+                            <td>#Général, #Présentations, #Annonces</td>
+                        </tr>
+                        <tr>
+                            <td>Privé (Lié à un cours)</td>
+                            <td>Uniquement les acheteurs d'un cours spécifique.</td>
+                            <td>#Support-UX-Design, #Cohorte-Mars</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="docs-callout tip">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <div>
+                        <div class="callout-title">Gamification avec les Badges</div>
+                        <p class="callout-text">Attribuez automatiquement des badges à côté des noms de vos étudiants (ex: "Certifié", "Top Contributeur") pour stimuler l'engagement dans le forum.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="doc-email" class="doc-page docs-content">
+                <h1 class="docs-title">Email Marketing Intégré</h1>
+                <p class="docs-intro">Gardez le contact avec votre audience sans payer d'abonnement supplémentaire à Mailchimp ou Brevo.</p>
+                
+                <h2 id="email-1">Éditeur Visuel</h2>
+                <p>Notre éditeur WYSIWYG (What You See Is What You Get) vous permet de construire des emails professionnels intégrant votre charte graphique, des boutons d'appel à l'action, et des images de vos cours.</p>
+
+                <h2 id="email-2">Segmentation de l'audience</h2>
+                <p>C'est l'avantage d'avoir un outil "Tout-en-un". Vous pouvez cibler des emails de manière ultra-précise en fonction des données d'apprentissage :</p>
+                <ul>
+                    <li>Envoyer une promo uniquement à ceux qui ont créé un compte gratuit mais n'ont rien acheté.</li>
+                    <li>Envoyer un email de félicitations aux étudiants qui ont atteint 100% de complétion sur un cours précis.</li>
+                    <li>Relancer les étudiants inactifs qui ne se sont pas connectés depuis 30 jours.</li>
+                </ul>
+
+                <h2 id="email-3">Délivrabilité et Spam</h2>
+                <p>Vos emails sont routés via des serveurs d'envoi premium à haute réputation. Si vous utilisez un domaine personnalisé (Plan Entreprise), nous vous guiderons pour configurer vos enregistrements DKIM et SPF afin de garantir que vos emails n'arrivent pas en spam.</p>
+            </div>
+
+            <div id="doc-mentor" class="doc-page docs-content">
+                <h1 class="docs-title">Assistant Mentor IA</h1>
+                <p class="docs-intro">Le Mentor IA est votre copilote. Il analyse votre contenu et vos statistiques pour vous aider à travailler plus vite et plus intelligemment.</p>
+                
+                <h2 id="mentor-1">Génération de contenu (Pour le formateur)</h2>
+                <p>Dans l'éditeur de cours, le bouton <strong>Assistant IA</strong> peut réaliser des tâches fastidieuses :</p>
+                <ul>
+                    <li><strong>Création de Sommaire :</strong> Tapez "Je veux un cours sur les bases de Python en 10 leçons". L'IA générera les 10 modules dans l'interface, prêts à recevoir vos vidéos.</li>
+                    <li><strong>Génération de Quiz :</strong> L'IA lit la transcription automatique de votre vidéo et génère 5 questions à choix multiples pertinentes pour tester vos élèves.</li>
+                    <li><strong>SEO :</strong> Rédaction automatique de descriptions optimisées pour les moteurs de recherche.</li>
+                </ul>
+
+                <h2 id="mentor-2">Support automatisé (Pour les élèves)</h2>
+                <p>Sur le plan Entreprise, vous pouvez activer le Mentor IA côté étudiant. Si un élève pose une question dans le forum (ex: "Quelle est la différence entre marge et padding ?"), l'IA cherchera la réponse <strong>exclusivement dans la transcription de vos propres vidéos</strong> pour lui répondre instantanément avec votre savoir.</p>
+                
+                <div class="docs-callout warning">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <div>
+                        <div class="callout-title">Contrôle humain</div>
+                        <p class="callout-text">Le Mentor IA propose des brouillons. Vous gardez toujours le contrôle final : vous devez valider un quiz ou un plan de cours avant qu'il ne soit publié pour vos étudiants.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="docs-pagination">
+                <div class="docs-page-link" id="btn-prev" onclick="navPagination(-1)">
+                    <span class="docs-page-sub"><i class="fa-solid fa-arrow-left me-1"></i> Précédent</span>
+                    <span class="docs-page-title text-dark" id="title-prev">---</span>
+                </div>
+                <div class="docs-page-link next" id="btn-next" onclick="navPagination(1)">
+                    <span class="docs-page-sub">Suivant <i class="fa-solid fa-arrow-right ms-1"></i></span>
+                    <span class="docs-page-title" id="title-next">---</span>
+                </div>
+            </div>
+
+        </main>
+
+        <aside class="docs-sidebar-right d-none d-xl-block">
+            <div class="toc-title">Sur cette page</div>
+            <ul class="toc-list" id="dynamic-toc">
+                </ul>
+        </aside>
+
+    </div>
+
+    <footer class="bg-white py-5 border-top" style="border-color: #e2e8f0;">
+        <div class="container-xl d-flex justify-content-between align-items-center px-4">
+            <div class="fw-900 text-dark fs-5" style="letter-spacing: -0.5px;">superdash</div>
+            <div class="text-muted fw-600" style="font-size: 13px;">© 2026 SuperDash. Tous droits réservés.</div>
+        </div>
+    </footer>
+
+    <script src="fonctionnalites.js">
+       
+    </script>
+</body>
+</html>

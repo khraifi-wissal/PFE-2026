@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espace Apprenant | SuperDash</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="user_dashboard.css">
+</head>
+<body>
+
+    <aside id="sidebar">
+        <div class="sidebar-logo-area">
+            <div class="logo-box">S</div>
+            <span class="fw-900 fs-5 text-dark" style="letter-spacing: -0.5px;">superdash</span>
+        </div>
+
+        <div class="nav-menu">
+            <div class="sidebar-heading">MON ESPACE</div>
+            <div class="nav-link active" onclick="navTo('started')"><i data-lucide="layout-dashboard" size="18"></i> Tableau de bord</div>
+            <div class="nav-link" onclick="navTo('learning')"><i data-lucide="book-open" size="18"></i> Mes Cours & Achats</div>
+            
+            <div class="sidebar-heading">PLANIFICATION</div>
+            <div class="nav-link d-flex justify-content-between align-items-center" onclick="navTo('calendar')">
+                <div class="d-flex align-items-center gap-3"><i data-lucide="calendar" size="18"></i> Calendrier & Lives</div>
+                <span class="nav-badge badge-live">Live ce soir</span>
+            </div>
+
+            <div class="sidebar-heading">OUTILS D'AIDE</div>
+            <div class="nav-link" onclick="navTo('tutor')">
+                <div class="d-flex align-items-center gap-3 flex-grow-1"><i data-lucide="sparkles" size="18"></i> Tutor IA</div>
+                <span class="nav-badge badge-ia me-1">IA</span>
+            </div>
+            <div class="nav-link" onclick="navTo('community')"><i data-lucide="users" size="18"></i> Communauté</div>
+            <div class="nav-link" onclick="navTo('community'); showCommunityTab('messages');"><i data-lucide="message-square" size="18"></i> Messages</div>
+
+            <div class="sidebar-heading">RÉUSSITES</div>
+            <div class="nav-link" onclick="navTo('certificates')"><i data-lucide="award" size="18"></i> Mes Certificats</div>
+
+            <div class="flex-grow-1"></div>
+
+            <div class="nav-link" onclick="navTo('settings')"><i data-lucide="settings" size="18"></i> Paramètres Profil</div>
+
+            <div class="user-profile-card">
+                <div class="d-flex align-items-center gap-3">
+                    <img src="https://ui-avatars.com/api/?name=Lucas+Martin&background=f97316&color=fff" width="36" height="36">
+                    <div class="d-flex flex-column">
+                        <span class="fw-800 text-dark" style="font-size: 13px;">Lucas Martin</span>
+                        <span class="text-muted fw-600" style="font-size: 11px;">lucas.m@email.com</span>
+                    </div>
+                </div>
+                <i data-lucide="log-out" size="16" class="text-muted"></i>
+            </div>
+        </div>
+    </aside>
+
+    <div id="main-wrapper">
+        
+        <header class="top-nav">
+            <span id="view-title" class="fw-900 text-dark fs-5">Tableau de bord</span>
+            
+            <div class="d-flex align-items-center justify-content-end gap-3" style="flex: 1;">
+                <div class="position-relative" style="max-width: 350px; width: 100%;">
+                    <i data-lucide="search" class="position-absolute top-50 start-0 translate-middle-y ms-3 text-muted" size="16"></i>
+                    <input type="text" class="form-control bg-white border-0 shadow-sm ps-5 py-2 fw-500 text-muted" placeholder="Rechercher une leçon, un cours..." style="font-size: 13.5px;">
+                </div>
+                
+                <button class="btn btn-light bg-transparent border-0 p-1 text-muted position-relative">
+                    <i data-lucide="bell" size="20"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge bg-danger border border-white" style="font-size: 9px; padding: 3px 5px;">3</span>
+                </button>
+                
+                <button class="btn btn-light bg-transparent border-0 p-1 text-muted">
+                    <i data-lucide="moon" size="20"></i>
+                </button>
+            </div>
+        </header>
+
+        <main class="app-view active" id="view-started">
+            <div class="neo-card dashboard-banner mb-4 border-0 p-4">
+                <div class="fw-600 mb-1" style="font-size: 13.5px; opacity: 0.9;">Bon retour, Lucas ! 👋</div>
+                <h2 class="fw-900 text-white mb-2 fs-3">Prêt à reprendre l'apprentissage ?</h2>
+                <p class="fw-500 mb-4" style="opacity: 0.85; max-width: 600px; font-size: 14.5px;">Vous avez complété 60% du cours UX Design. N'oubliez pas la session live Q&A prévue ce soir à 18h00 avec votre formateur.</p>
+                <div class="d-flex gap-3">
+                    <button class="btn fw-800 border-0 text-dark bg-white px-4" onclick="navTo('learning')"><i data-lucide="play-circle" size="16" class="me-2"></i> Continuer le cours</button>
+                    <button class="btn fw-800 text-white px-4" style="background: transparent; border: 1px solid rgba(255,255,255,0.4);" onclick="navTo('calendar')"><i data-lucide="calendar" size="16" class="me-2"></i> Voir le planning</button>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <div class="col-md-3">
+                    <div class="neo-card border-0 d-flex flex-column h-100 p-4">
+                        <div class="stat-icon-box text-primary mb-3" style="background: #e0e7ff; width: fit-content;"><i data-lucide="book-open" size="20"></i></div>
+                        <h2 class="fw-900 m-0 text-dark">4</h2>
+                        <div class="text-muted fw-600 mt-1" style="font-size: 12.5px;">Cours en cours</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="neo-card border-0 d-flex flex-column h-100 p-4">
+                        <div class="stat-icon-box text-success mb-3" style="background: #dcfce7; width: fit-content;"><i data-lucide="clock" size="20"></i></div>
+                        <h2 class="fw-900 m-0 text-dark">28h</h2>
+                        <div class="text-muted fw-600 mt-1" style="font-size: 12.5px;">Heures d'apprentissage</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="neo-card border-0 d-flex flex-column h-100 p-4">
+                        <div class="stat-icon-box text-warning mb-3" style="background: #fef9c3; width: fit-content;"><i data-lucide="award" size="20"></i></div>
+                        <h2 class="fw-900 m-0 text-dark">2</h2>
+                        <div class="text-muted fw-600 mt-1" style="font-size: 12.5px;">Certificats obtenus</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="neo-card border-0 d-flex flex-column h-100 p-4">
+                        <div class="stat-icon-box mb-3" style="background: #fce7f3; color: #db2777; width: fit-content;"><i data-lucide="flame" size="20"></i></div>
+                        <h2 class="fw-900 m-0 text-dark">5 Jours</h2>
+                        <div class="text-muted fw-600 mt-1" style="font-size: 12.5px;">Série de connexion</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-4">
+                <div class="col-md-8">
+                    <div class="d-flex justify-content-between align-items-end mb-3">
+                        <h5 class="fw-800 m-0 text-dark">Reprendre l'apprentissage</h5>
+                        <a href="#" class="text-primary fw-800 text-decoration-none" style="font-size: 12.5px;" onclick="navTo('learning')">Voir tous mes cours ></a>
+                    </div>
+                    <div class="neo-card p-0 overflow-hidden border-0 d-flex align-items-center mb-4">
+                        <div class="course-card-cover" style="width: 280px; background-image: url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                        <div class="p-4 flex-grow-1">
+                            <span class="badge bg-light text-primary fw-800 mb-2">Chapitre 3 : Les Personas</span>
+                            <h5 class="fw-900 text-dark mb-3">UX Design pour débutants</h5>
+                            <div class="d-flex justify-content-between text-muted fw-700 mb-2" style="font-size: 11px;"><span>Progression globale</span> <span class="text-primary">60%</span></div>
+                            <div class="progress-thin mb-3"><div class="progress-bar" style="width: 60%;"></div></div>
+                            <button class="btn btn-primary fw-800 px-4"><i data-lucide="play" size="14" class="me-1"></i> Reprendre la vidéo</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="d-flex justify-content-between align-items-end mb-3">
+                        <h5 class="fw-800 m-0 text-dark">Prochain Live</h5>
+                    </div>
+                    <div class="neo-card border-0 h-100 p-4 d-flex flex-column justify-content-center" style="border-left: 4px solid #ef4444 !important; background: #fff0f2;">
+                        <span class="badge bg-danger text-white fw-800 mb-3 align-self-start">AUJOURD'HUI 18:00</span>
+                        <h6 class="fw-800 text-dark mb-2 fs-5">Session Q&A - UX Design</h6>
+                        <p class="text-muted fw-600 mb-4" style="font-size: 13px;">Rejoignez le formateur et les autres élèves pour poser vos questions sur le Chapitre 3.</p>
+                        <button class="btn btn-danger fw-800 w-100 text-white mt-auto" onclick="openDyteRoom('Q&A UX Design')"><i data-lucide="video" size="16" class="me-2"></i> Rejoindre la salle</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <main class="app-view" id="view-learning">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h3 class="fw-900 m-0 text-dark">Mes Cours & Achats</h3>
+                    <p class="text-muted m-0 mt-1 fw-600" style="font-size: 14px;">Retrouvez ici tout votre contenu éducatif et ressources numériques.</p>
+                </div>
+                <div class="position-relative" style="width: 250px;">
+                    <i data-lucide="search" class="position-absolute top-50 start-0 translate-middle-y ms-3 text-muted" size="16"></i>
+                    <input type="text" class="form-control bg-white shadow-sm border-0 ps-5 fw-600" placeholder="Chercher un cours...">
+                </div>
+            </div>
+
+            <div class="sub-nav">
+                <button class="sub-nav-item active" onclick="filterLearning('all', this)">Tous les achats</button>
+                <button class="sub-nav-item" onclick="filterLearning('inprogress', this)">En cours (2)</button>
+                <button class="sub-nav-item" onclick="filterLearning('completed', this)">Terminés (1)</button>
+                <button class="sub-nav-item" onclick="filterLearning('digital', this)">Produits digitaux (1)</button>
+            </div>
+
+            <div class="row g-4" id="learning-grid">
+                <div class="col-md-4 learning-card" data-status="inprogress">
+                    <div class="neo-card p-0 overflow-hidden border-0 h-100 d-flex flex-column">
+                        <div class="course-card-cover" style="background-image: url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                            <div class="position-absolute top-0 start-0 p-3"><span class="badge bg-dark text-white fw-800">COURS</span></div>
+                            <div class="position-absolute top-0 end-0 p-3"><button class="btn btn-sm btn-light bg-white border-0 text-muted p-1 shadow-sm"><i data-lucide="star" size="14"></i></button></div>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <h6 class="fw-900 text-dark mb-2 fs-6">UX Design pour débutants</h6>
+                            <div class="text-muted fw-600 mb-4" style="font-size: 12px;">Formateur : Amira Salah</div>
+                            <div class="mt-auto pt-3 border-top">
+                                <div class="d-flex justify-content-between text-primary fw-800 mb-2" style="font-size: 11px;"><span>Progression</span> <span>60%</span></div>
+                                <div class="progress-thin mb-3"><div class="progress-bar" style="width: 60%;"></div></div>
+                                <div class="bg-light p-2 mb-3 d-flex align-items-center gap-2" style="border-radius: 6px;">
+                                    <i data-lucide="play-circle" size="14" class="text-primary"></i>
+                                    <span class="fw-700 text-dark" style="font-size: 11.5px;">Prochaine leçon : Les Personas</span>
+                                </div>
+                                <button class="btn btn-primary-subtle text-primary fw-800 w-100 py-2">Continuer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 learning-card" data-status="inprogress">
+                    <div class="neo-card p-0 overflow-hidden border-0 h-100 d-flex flex-column">
+                        <div class="course-card-cover" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                            <div class="position-absolute top-0 start-0 p-3"><span class="badge bg-dark text-white fw-800">COURS</span></div>
+                            <div class="position-absolute top-0 end-0 p-3"><button class="btn btn-sm btn-light bg-white border-0 text-muted p-1 shadow-sm"><i data-lucide="star" size="14"></i></button></div>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <h6 class="fw-900 text-dark mb-2 fs-6">Développement React TypeScript</h6>
+                            <div class="text-muted fw-600 mb-4" style="font-size: 12px;">Formateur : Marc Dupont</div>
+                            <div class="mt-auto pt-3 border-top">
+                                <div class="d-flex justify-content-between text-primary fw-800 mb-2" style="font-size: 11px;"><span>Progression</span> <span>15%</span></div>
+                                <div class="progress-thin mb-3"><div class="progress-bar" style="width: 15%;"></div></div>
+                                <div class="bg-light p-2 mb-3 d-flex align-items-center gap-2" style="border-radius: 6px;">
+                                    <i data-lucide="play-circle" size="14" class="text-primary"></i>
+                                    <span class="fw-700 text-dark" style="font-size: 11.5px;">Prochaine leçon : Les Props</span>
+                                </div>
+                                <button class="btn btn-primary-subtle text-primary fw-800 w-100 py-2">Continuer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 learning-card" data-status="digital">
+                    <div class="neo-card p-0 overflow-hidden border-0 h-100 d-flex flex-column">
+                        <div class="course-card-cover" style="background-image: url('https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                            <div class="position-absolute top-0 start-0 p-3"><span class="badge bg-info text-white fw-800">PRODUIT DIGITAL</span></div>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <h6 class="fw-900 text-dark mb-2 fs-6">Templates Email Marketing Pros</h6>
+                            <div class="text-muted fw-600 mb-4" style="font-size: 12px;">Acheté le 12 Mars 2026</div>
+                            <div class="mt-auto pt-3 border-top">
+                                <div class="bg-light p-2 mb-3 d-flex align-items-center gap-2" style="border-radius: 6px;">
+                                    <i data-lucide="folder-archive" size="14" class="text-muted"></i>
+                                    <span class="fw-700 text-dark" style="font-size: 11.5px;">Archive ZIP (14 MB)</span>
+                                </div>
+                                <button class="btn btn-light bg-white border fw-800 text-dark w-100 py-2 d-flex align-items-center justify-content-center gap-2"><i data-lucide="download" size="16"></i> Télécharger</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 learning-card" data-status="completed">
+                    <div class="neo-card p-0 overflow-hidden border-0 h-100 d-flex flex-column" style="background: #f8fafc; opacity: 0.9;">
+                        <div class="course-card-cover" style="background-image: url('https://images.unsplash.com/photo-1542038784456-1ea8e935640e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); filter: grayscale(30%);">
+                            <div class="position-absolute top-0 end-0 p-3"><span class="badge bg-success text-white fw-800 px-2 py-1"><i data-lucide="check" size="12" class="me-1"></i> Terminé</span></div>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <h6 class="fw-900 text-dark mb-2 fs-6">Bases de la Photographie</h6>
+                            <div class="text-muted fw-600 mb-4" style="font-size: 12px;">Terminé le 5 Mars 2026</div>
+                            <div class="mt-auto pt-3 border-top">
+                                <button class="btn btn-light bg-light border fw-800 text-muted w-100 py-2 mb-2">Revoir le contenu</button>
+                                <button class="btn btn-warning-subtle text-warning-emphasis fw-800 w-100 py-2 d-flex align-items-center justify-content-center gap-2" onclick="navTo('certificates')"><i data-lucide="award" size="16"></i> Voir le certificat</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <main class="app-view" id="view-calendar">
+            <div class="d-flex justify-content-between align-items-end mb-4">
+                <div>
+                    <h3 class="fw-900 m-0 text-dark">Calendrier & Lives</h3>
+                    <p class="text-muted m-0 mt-1 fw-600" style="font-size: 14px;">Suivez les dates de vos cours, événements et sessions de coaching.</p>
+                </div>
+            </div>
+            
+            <div class="calendar-wrapper border-0">
+                <div class="calendar-header">
+                    <h5 class="fw-800 m-0 text-dark">Mars 2026</h5>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-sm btn-light border"><i data-lucide="chevron-left" size="16"></i></button>
+                        <button class="btn btn-sm btn-light border fw-700 px-3">Aujourd'hui</button>
+                        <button class="btn btn-sm btn-light border"><i data-lucide="chevron-right" size="16"></i></button>
+                    </div>
+                </div>
+                <div class="calendar-grid">
+                    <div class="cal-day-name">Lun</div><div class="cal-day-name">Mar</div><div class="cal-day-name">Mer</div><div class="cal-day-name">Jeu</div><div class="cal-day-name">Ven</div><div class="cal-day-name">Sam</div><div class="cal-day-name">Dim</div>
+                    
+                    <div class="cal-cell other-month"><span class="cal-date">23</span></div><div class="cal-cell other-month"><span class="cal-date">24</span></div><div class="cal-cell other-month"><span class="cal-date">25</span></div><div class="cal-cell other-month"><span class="cal-date">26</span></div><div class="cal-cell other-month"><span class="cal-date">27</span></div><div class="cal-cell other-month"><span class="cal-date">28</span></div><div class="cal-cell"><span class="cal-date">1</span></div>
+                    <div class="cal-cell"><span class="cal-date">2</span></div><div class="cal-cell"><span class="cal-date">3</span></div><div class="cal-cell"><span class="cal-date">4</span></div><div class="cal-cell"><span class="cal-date">5</span></div><div class="cal-cell"><span class="cal-date">6</span></div><div class="cal-cell"><span class="cal-date">7</span></div><div class="cal-cell"><span class="cal-date">8</span></div>
+                    <div class="cal-cell"><span class="cal-date">9</span></div><div class="cal-cell"><span class="cal-date">10</span></div><div class="cal-cell"><span class="cal-date">11</span></div><div class="cal-cell"><span class="cal-date">12</span></div>
+                    <div class="cal-cell today"><span class="cal-date">13</span><div class="cal-event-chip mt-1" onclick="openDyteRoom('Q&A UX Design')">18:00 • Q&A UX</div></div>
+                    <div class="cal-cell"><span class="cal-date">14</span></div><div class="cal-cell"><span class="cal-date">15</span></div>
+                    <div class="cal-cell"><span class="cal-date">16</span></div><div class="cal-cell"><span class="cal-date">17</span></div><div class="cal-cell"><span class="cal-date">18</span><div class="cal-event-chip" style="background: #e0e7ff; color: #4f46e5;" onclick="openDyteRoom('Coaching One-to-One')">10:00 • Coaching</div></div><div class="cal-cell"><span class="cal-date">19</span></div><div class="cal-cell"><span class="cal-date">20</span></div><div class="cal-cell"><span class="cal-date">21</span></div><div class="cal-cell"><span class="cal-date">22</span></div>
+                </div>
+            </div>
+
+            <h5 class="fw-800 mb-3 text-dark mt-5">Prochainement</h5>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="neo-card p-0 overflow-hidden border-0 mb-3"><div class="p-3 d-flex justify-content-between align-items-center" style="border-left: 4px solid #ef4444;"><div class="d-flex gap-3 align-items-center"><div class="bg-danger-subtle text-danger p-2" style="border-radius:6px;"><i data-lucide="video" size="20"></i></div><div><h6 class="fw-800 m-0 text-dark">Session Q&A - UX Design</h6><div class="text-muted fw-medium mt-1" style="font-size:12px;">Aujourd'hui • 18:00 (1h)</div></div></div><button class="btn btn-sm btn-danger fw-700 px-3" onclick="openDyteRoom('Q&A UX Design')">Rejoindre</button></div></div>
+                </div>
+                <div class="col-md-6">
+                    <div class="neo-card p-0 overflow-hidden border-0 mb-3"><div class="p-3 d-flex justify-content-between align-items-center" style="border-left: 4px solid #4f46e5;"><div class="d-flex gap-3 align-items-center"><div class="bg-primary-subtle text-primary p-2" style="border-radius:6px;"><i data-lucide="user" size="20"></i></div><div><h6 class="fw-800 m-0 text-dark">Coaching Individuel - Marc D.</h6><div class="text-muted fw-medium mt-1" style="font-size:12px;">18 Mars • 10:00 AM (30 min)</div></div></div><button class="btn btn-sm btn-light border fw-700 text-primary px-3">Détails</button></div></div>
+                </div>
+            </div>
+        </main>
+
+        <main class="app-view" id="view-tutor">
+            <div class="d-flex h-100 gap-4">
+                <div class="d-flex flex-column" style="width: 280px; flex-shrink: 0;">
+                    <button class="btn btn-primary w-100 mb-4 py-2"><i data-lucide="plus" size="14" class="me-2"></i> Nouvelle session</button>
+
+                    <div class="d-flex flex-column gap-2 overflow-auto">
+                        <div class="text-muted fw-800 mb-1 mt-2" style="font-size: 10px; letter-spacing: 0.5px;">AUJOURD'HUI</div>
+                        <div class="p-3 chat-bubble" style="background: #f5f3ff; border: 1px solid #ede9fe; cursor: pointer;">
+                            <div class="fw-700 text-dark mb-1" style="font-size: 13.5px;"><i data-lucide="message-square" size="12" class="me-1 text-primary"></i> Révision Personas UX</div>
+                            <div class="text-muted" style="font-size: 11px;">Il y a 2h</div>
+                        </div>
+
+                        <div class="text-muted fw-800 mb-1 mt-3" style="font-size: 10px; letter-spacing: 0.5px;">HIER</div>
+                        <div class="p-3 hover-bg-light chat-bubble border" style="cursor: pointer; transition: 0.2s;">
+                            <div class="fw-700 text-dark mb-1" style="font-size: 13.5px;"><i data-lucide="message-square" size="12" class="me-1 text-muted"></i> Quiz React Hooks</div>
+                        </div>
+                        <div class="p-3 hover-bg-light chat-bubble border" style="cursor: pointer; transition: 0.2s;">
+                            <div class="fw-700 text-dark mb-1" style="font-size: 13.5px;"><i data-lucide="message-square" size="12" class="me-1 text-muted"></i> Comprendre Flexbox</div>
+                        </div>
+
+                        <div class="text-muted fw-800 mb-1 mt-3" style="font-size: 10px; letter-spacing: 0.5px;">LES 7 DERNIERS JOURS</div>
+                        <div class="p-3 hover-bg-light chat-bubble border" style="cursor: pointer; transition: 0.2s;">
+                            <div class="fw-700 text-dark mb-1" style="font-size: 13.5px;"><i data-lucide="message-square" size="12" class="me-1 text-muted"></i> Traduction vocabulaire</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="neo-card flex-grow-1 d-flex flex-column p-0 border-0">
+                    <div class="d-flex justify-content-between align-items-center p-3 border-bottom bg-light" style="border-radius: 6px 6px 0 0;">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; background: linear-gradient(135deg, #4f46e5, #9333ea); color: white; border-radius: 6px;">
+                                <i data-lucide="sparkles" size="16"></i>
+                            </div>
+                            <div>
+                                <div class="fw-800 text-dark" style="font-size: 15px;">Tutor IA Personnel</div>
+                                <div class="d-flex align-items-center gap-1 text-success fw-700" style="font-size: 11.5px;">
+                                    <span style="width: 6px; height: 6px; background: #22c55e; border-radius: 6px; display: inline-block;"></span>
+                                    Connecté à vos cours
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex-grow-1 p-4 overflow-auto d-flex flex-column gap-4" style="background: #fff; min-height: 400px;">
+                        
+                        <div class="d-flex gap-3 align-self-end flex-row-reverse">
+                            <img src="https://ui-avatars.com/api/?name=Lucas+Martin&background=f97316&color=fff" class="rounded-circle" width="28" height="28">
+                            <div class="text-end">
+                                <div class="bg-primary text-white p-3 fw-500 chat-bubble" style="font-size: 14px; line-height: 1.6; border-radius: 6px;">
+                                    Peux-tu me rappeler la différence principale entre l'UX et l'UI ? Je confonds toujours les deux.
+                                </div>
+                                <div class="text-muted fw-600 mt-1" style="font-size: 11px;">Il y a 2 min</div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-3">
+                            <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width: 28px; height: 28px; background: linear-gradient(135deg, #4f46e5, #9333ea); color: white; border-radius: 6px;">
+                                <i data-lucide="sparkles" size="14"></i>
+                            </div>
+                            <div>
+                                <div class="bg-light p-3 text-dark fw-500 chat-bubble" style="font-size: 14px; line-height: 1.6; border-radius: 6px;">
+                                    Bien sûr Lucas ! Pour faire simple :<br><br>
+                                    🎨 <b>L'UI (User Interface)</b>, c'est l'apparence. C'est le design visuel : les couleurs, les boutons, la typographie. C'est la carrosserie et la peinture de la voiture.<br><br>
+                                    🧠 <b>L'UX (User Experience)</b>, c'est le fonctionnement. C'est l'expérience globale, la facilité de navigation, la logique. C'est le moteur, le confort des sièges et la tenue de route de la voiture.<br><br>
+                                    Veux-tu qu'on fasse un mini-quiz pour tester ça ?
+                                </div>
+                                <div class="text-muted fw-600 mt-1" style="font-size: 11px;">Maintenant</div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-3 mt-2 d-none" id="typing-indicator-box">
+                            <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width: 28px; height: 28px; background: linear-gradient(135deg, #4f46e5, #9333ea); color: white; border-radius: 6px;">
+                                <i data-lucide="sparkles" size="14"></i>
+                            </div>
+                            <div class="typing-indicator">
+                                <div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="p-4 border-top bg-white chat-bubble" style="border-radius: 0 0 6px 6px;">
+                        <div class="d-flex gap-2 mb-3 overflow-auto pb-1">
+                            <button class="btn btn-sm btn-light bg-white border text-muted fw-600 px-3 py-2 d-flex align-items-center gap-2 flex-shrink-0"><i data-lucide="zap" size="12" class="text-warning"></i> Oui, lance un quiz</button>
+                            <button class="btn btn-sm btn-light bg-white border text-muted fw-600 px-3 py-2 d-flex align-items-center gap-2 flex-shrink-0"><i data-lucide="zap" size="12" class="text-warning"></i> Donne-moi un autre exemple</button>
+                        </div>
+                        
+                        <div class="position-relative">
+                            <input type="text" class="form-control bg-light border-0 shadow-none px-3 py-3 fw-500 text-dark w-100" style="font-size: 14.5px;" placeholder="Posez votre question...">
+                            <button class="btn btn-light bg-transparent border-0 text-muted position-absolute top-50 end-0 translate-middle-y me-2 p-1"><i data-lucide="send" size="16"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <main class="app-view" id="view-community">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h3 class="fw-900 m-0 text-dark">Communauté</h3>
+                    <div class="d-flex gap-3 mt-2">
+                        <span class="sub-nav-item active cursor-pointer" id="tab-feed" onclick="showCommunityTab('feed')">Fil d'actualité</span>
+                        <span class="sub-nav-item cursor-pointer" id="tab-messages" onclick="showCommunityTab('messages')">Messages directs</span>
+                    </div>
+                </div>
+                <div class="position-relative" style="width: 320px;">
+                    <i data-lucide="search" class="position-absolute top-50 start-0 translate-middle-y ms-3 text-muted" size="16"></i>
+                    <input type="text" class="form-control bg-white ps-5 py-2 fw-600 shadow-sm border-0" style="border-radius: 12px;" placeholder="Rechercher dans la communauté...">
+                </div>
+            </div>
+            
+            <div id="community-feed-container">
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        
+                        <div class="neo-card p-4 mb-4 border-0">
+                            <div class="d-flex align-items-start gap-3 mb-3">
+                                <img src="https://ui-avatars.com/api/?name=Lucas+Martin&background=f97316&color=fff" class="rounded-circle mt-2" width="44" height="44">
+                                <div class="w-100" id="community-editor-wrapper">
+                                    <div id="community-editor-container"></div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center pt-2">
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-sm btn-light border bg-white fw-700 text-muted d-flex align-items-center gap-2 px-3 py-2"><i data-lucide="image" size="16"></i> Photo</button>
+                                    <button class="btn btn-sm btn-light border bg-white fw-700 text-muted d-flex align-items-center gap-2 px-3 py-2"><i data-lucide="paperclip" size="16"></i> Fichier</button>
+                                </div>
+                                <button class="btn btn-light bg-light border fw-800 text-muted px-4 py-2 d-flex align-items-center gap-2"><i data-lucide="send" size="16"></i> Publier</button>
+                            </div>
+                        </div>
+            
+                        <div class="neo-card p-4 mb-4 border-0">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="d-flex gap-3">
+                                    <div class="position-relative">
+                                        <img src="https://ui-avatars.com/api/?name=Amira+Salah&background=3b82f6&color=fff" class="rounded-circle" width="44" height="44">
+                                        <span class="position-absolute bottom-0 end-0 bg-success border border-white rounded-circle" style="width:12px;height:12px; border-width: 2px !important;"></span>
+                                    </div>
+                                    <div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="fw-800 text-dark fs-6">Amira Salah</span>
+                                            <span class="badge-educateur">Éducatrice</span>
+                                        </div>
+                                        <div class="text-muted fw-600 mt-1" style="font-size: 12px;">Il y a 2 min</div>
+                                    </div>
+                                </div>
+                                <span class="tag-pill-post">#UX Design</span>
+                            </div>
+                            <p class="text-dark fw-500 mb-4" style="font-size: 14.5px; line-height: 1.6;">
+                                🎨 Nouveau chapitre disponible dans mon cours UX Design ! Cette semaine, on plonge dans la recherche utilisateur avec des méthodes pratiques. Vos retours sont précieux 💙
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                                <div class="d-flex gap-4">
+                                    <div class="feed-action"><i data-lucide="heart" size="18"></i> 47</div>
+                                    <div class="feed-action"><i data-lucide="message-circle" size="18"></i> 12</div>
+                                </div>
+                                <div class="d-flex gap-3">
+                                    <i data-lucide="share-2" size="18" class="feed-action"></i>
+                                    <i data-lucide="bookmark" size="18" class="feed-action"></i>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="neo-card p-4 mb-4 border-0">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="d-flex gap-3">
+                                    <div class="position-relative">
+                                        <img src="https://ui-avatars.com/api/?name=Lucas+Martin&background=f97316&color=fff" class="rounded-circle" width="44" height="44">
+                                        <span class="position-absolute bottom-0 end-0 bg-success border border-white rounded-circle" style="width:12px;height:12px; border-width: 2px !important;"></span>
+                                    </div>
+                                    <div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="fw-800 text-dark fs-6">Lucas Martin</span>
+                                            <span class="badge-apprenant">Apprenant</span>
+                                        </div>
+                                        <div class="text-muted fw-600 mt-1" style="font-size: 12px;">Il y a 8 min</div>
+                                    </div>
+                                </div>
+                                <span class="tag-pill-post">#Dev Web</span>
+                            </div>
+                            <p class="text-dark fw-500 mb-4" style="font-size: 14.5px; line-height: 1.6;">
+                                🎓 Je viens d'obtenir mon certificat en développement web ! Merci à toute la communauté SuperDash. En 3 semaines, j'ai appris plus qu'en 6 mois en auto-didacte 🚀
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                                <div class="d-flex gap-4">
+                                    <div class="feed-action liked"><i data-lucide="heart" size="18" fill="#ec4899"></i> 134</div>
+                                    <div class="feed-action"><i data-lucide="message-circle" size="18"></i> 28</div>
+                                </div>
+                                <div class="d-flex gap-3">
+                                    <i data-lucide="share-2" size="18" class="feed-action"></i>
+                                    <i data-lucide="bookmark" size="18" class="feed-action"></i>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="neo-card p-4 mb-4 border-0">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="d-flex gap-3">
+                                    <img src="https://ui-avatars.com/api/?name=Marc+Dupont&background=0b0f19&color=fff" class="rounded-circle" width="44" height="44">
+                                    <div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="fw-800 text-dark fs-6">Marc Dupont</span>
+                                            <span class="badge-educateur">Éducateur</span>
+                                        </div>
+                                        <div class="text-muted fw-600 mt-1" style="font-size: 12px;">Il y a 20 min</div>
+                                    </div>
+                                </div>
+                                <span class="tag-pill-post" style="color: #db2777; background: #fce7f3;">#Marketing</span>
+                            </div>
+                            <p class="text-dark fw-500 mb-4" style="font-size: 14.5px; line-height: 1.6;">
+                                📊 Atelier en direct sur le marketing digital DEMAIN à 18h ! Je vais partager 5 stratégies qui ont multiplié mes résultats par 3. Places limitées à 50 personnes — inscrivez-vous !
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                                <div class="d-flex gap-4">
+                                    <div class="feed-action"><i data-lucide="heart" size="18"></i> 89</div>
+                                    <div class="feed-action"><i data-lucide="message-circle" size="18"></i> 34</div>
+                                </div>
+                                <div class="d-flex gap-3">
+                                    <i data-lucide="share-2" size="18" class="feed-action"></i>
+                                    <i data-lucide="bookmark" size="18" class="feed-action"></i>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="neo-card p-4 border-0 mb-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="d-flex gap-3">
+                                    <img src="https://ui-avatars.com/api/?name=Fatou+Diallo&background=84cc16&color=fff" class="rounded-circle" width="44" height="44">
+                                    <div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="fw-800 text-dark fs-6">Fatou Diallo</span>
+                                            <span class="badge-apprenant">Apprenante</span>
+                                        </div>
+                                        <div class="text-muted fw-600 mt-1" style="font-size: 12px;">Il y a 45 min</div>
+                                    </div>
+                                </div>
+                                <span class="tag-pill-post">#Design</span>
+                            </div>
+                            <p class="text-dark fw-500 mb-4" style="font-size: 14.5px; line-height: 1.6;">
+                                Question pour la communauté : est-ce que quelqu'un peut m'expliquer la différence entre un wireframe et un mockup ? Je me perds un peu dans les termes 😅
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                                <div class="d-flex gap-4">
+                                    <div class="feed-action"><i data-lucide="heart" size="18"></i> 23</div>
+                                    <div class="feed-action"><i data-lucide="message-circle" size="18"></i> 15</div>
+                                </div>
+                                <div class="d-flex gap-3">
+                                    <i data-lucide="share-2" size="18" class="feed-action"></i>
+                                    <i data-lucide="bookmark" size="18" class="feed-action"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="col-lg-4">
+                        <div class="neo-card p-4 mb-4 border-0">
+                            <h6 class="fw-800 text-dark mb-3 d-flex align-items-center gap-2"><i data-lucide="trending-up" size="18" class="text-primary"></i> Tendances</h6>
+                            <div>
+                                <span class="tag-pill">#UXDesign</span>
+                                <span class="tag-pill">#ReactJS</span>
+                                <span class="tag-pill">#Marketing</span>
+                                <span class="tag-pill">#Figma</span>
+                                <span class="tag-pill">#Certificat</span>
+                                <span class="tag-pill">#LiveSession</span>
+                                <span class="tag-pill">#MentorIA</span>
+                                <span class="tag-pill">#Design</span>
+                            </div>
+                        </div>
+            
+                        <div class="neo-card p-4 mb-4 border-0">
+                            <h6 class="fw-800 text-dark mb-3 d-flex align-items-center gap-2"><i data-lucide="users" size="18" class="text-danger"></i> Membres actifs</h6>
+                            
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="position-relative"><img src="https://ui-avatars.com/api/?name=Amira+S&background=3b82f6&color=fff" class="rounded-circle" width="36"><span class="position-absolute bottom-0 end-0 bg-success border border-white rounded-circle" style="width:10px;height:10px; border-width: 2px !important;"></span></div>
+                                    <div><div class="fw-800 text-dark" style="font-size: 13px;">Amira S.</div><div class="text-muted fw-600" style="font-size: 11px;">Éducatrice</div></div>
+                                </div>
+                                <span class="fw-800 text-primary" style="font-size: 12px;">48 posts</span>
+                            </div>
+            
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="position-relative"><img src="https://ui-avatars.com/api/?name=Marc+D&background=0b0f19&color=fff" class="rounded-circle" width="36"></div>
+                                    <div><div class="fw-800 text-dark" style="font-size: 13px;">Marc D.</div><div class="text-muted fw-600" style="font-size: 11px;">Éducateur</div></div>
+                                </div>
+                                <span class="fw-800" style="color: #9333ea; font-size: 12px;">32 posts</span>
+                            </div>
+            
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="position-relative"><img src="https://ui-avatars.com/api/?name=Lucas+M&background=f97316&color=fff" class="rounded-circle" width="36"><span class="position-absolute bottom-0 end-0 bg-success border border-white rounded-circle" style="width:10px;height:10px; border-width: 2px !important;"></span></div>
+                                    <div><div class="fw-800 text-dark" style="font-size: 13px;">Lucas M.</div><div class="text-muted fw-600" style="font-size: 11px;">Apprenant</div></div>
+                                </div>
+                                <span class="fw-800 text-success" style="font-size: 12px;">27 posts</span>
+                            </div>
+            
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="position-relative"><img src="https://ui-avatars.com/api/?name=Fatou+D&background=84cc16&color=fff" class="rounded-circle" width="36"><span class="position-absolute bottom-0 end-0 bg-success border border-white rounded-circle" style="width:10px;height:10px; border-width: 2px !important;"></span></div>
+                                    <div><div class="fw-800 text-dark" style="font-size: 13px;">Fatou D.</div><div class="text-muted fw-600" style="font-size: 11px;">Apprenante</div></div>
+                                </div>
+                                <span class="fw-800 text-warning" style="font-size: 12px;">19 posts</span>
+                            </div>
+                        </div>
+            
+                        <div class="neo-card p-4 mb-4 border-0" style="background: #f8fafc;">
+                            <h6 class="fw-800 text-dark mb-3">Cette semaine</h6>
+                            <div class="sidebar-stat-row">
+                                <span class="text-muted fw-700">Nouveaux posts</span>
+                                <span class="fw-900 text-primary fs-6">890</span>
+                            </div>
+                            <div class="sidebar-stat-row">
+                                <span class="text-muted fw-700">Nouveaux membres</span>
+                                <span class="fw-900 fs-6" style="color: #9333ea;">124</span>
+                            </div>
+                            <div class="sidebar-stat-row">
+                                <span class="text-muted fw-700">Questions répondues</span>
+                                <span class="fw-900 text-success fs-6">340</span>
+                            </div>
+                        </div>
+            
+                        <div class="neo-card p-4 border-0">
+                            <h6 class="fw-800 text-dark mb-3 d-flex align-items-center gap-2"><i data-lucide="award" size="18" class="text-warning"></i> Dernières certifications</h6>
+                            
+                            <div class="d-flex gap-3 mb-3">
+                                <div class="cert-medal"><i data-lucide="award" size="16"></i></div>
+                                <div>
+                                    <div class="fw-700 text-dark" style="font-size: 13px;"><b>Lucas M.</b> a obtenu <b>React & TypeScript</b></div>
+                                    <div class="text-muted fw-600 mt-1" style="font-size: 11px;">Il y a 2h</div>
+                                </div>
+                            </div>
+            
+                            <div class="d-flex gap-3 mb-3">
+                                <div class="cert-medal" style="background: #fed7aa; color: #c2410c;"><i data-lucide="award" size="16"></i></div>
+                                <div>
+                                    <div class="fw-700 text-dark" style="font-size: 13px;"><b>Fatou D.</b> a obtenu <b>UX Design Fondamentaux</b></div>
+                                    <div class="text-muted fw-600 mt-1" style="font-size: 11px;">Hier</div>
+                                </div>
+                            </div>
+            
+                            <div class="d-flex gap-3">
+                                <div class="cert-medal" style="background: #fef08a; color: #ca8a04;"><i data-lucide="award" size="16"></i></div>
+                                <div>
+                                    <div class="fw-700 text-dark" style="font-size: 13px;"><b>Yuki T.</b> a obtenu <b>Marketing Digital</b></div>
+                                    <div class="text-muted fw-600 mt-1" style="font-size: 11px;">Il y a 2 jours</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="community-messages-container" class="d-none">
+                <div class="neo-card p-0 border-0 overflow-hidden d-flex" style="height: 600px;">
+                    <div class="border-end d-flex flex-column" style="width: 320px; background: #f8fafc;">
+                        <div class="p-3 bg-white border-bottom">
+                            <input type="text" class="form-control form-control-sm" placeholder="Rechercher une discussion...">
+                        </div>
+                        <div class="flex-grow-1 overflow-auto">
+                            <div class="p-3 d-flex align-items-center gap-3 border-bottom bg-white chat-user-item active cursor-pointer">
+                                <div class="position-relative">
+                                    <img src="https://ui-avatars.com/api/?name=Amira+S&background=3b82f6&color=fff" class="rounded-circle" width="44">
+                                    <span class="position-absolute bottom-0 end-0 bg-success border border-white rounded-circle" style="width:12px;height:12px; border-width: 2px !important;"></span>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="fw-800 text-dark" style="font-size: 13.5px;">Amira Salah</div>
+                                    <div class="text-muted text-truncate fw-600" style="font-size: 11.5px;">C'est super, merci !</div>
+                                </div>
+                                <div class="text-end">
+                                    <div class="text-muted mb-1" style="font-size: 10px;">14:30</div>
+                                    <span class="badge bg-primary rounded-circle" style="padding: 4px 6px;">1</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 d-flex flex-column bg-white">
+                        <div class="p-3 border-bottom d-flex align-items-center justify-content-between bg-white">
+                            <div class="d-flex align-items-center gap-3">
+                                <img src="https://ui-avatars.com/api/?name=Amira+S&background=3b82f6&color=fff" class="rounded-circle" width="36">
+                                <div>
+                                    <div class="fw-800 text-dark">Amira Salah</div>
+                                    <div class="text-success fw-700" style="font-size: 11px;">En ligne</div>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-light border-0"><i data-lucide="phone" size="18"></i></button>
+                                <button class="btn btn-light border-0"><i data-lucide="video" size="18"></i></button>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 p-4 overflow-auto d-flex flex-column gap-3 bg-light bg-opacity-10">
+                            <div class="align-self-start bg-white p-3 shadow-sm chat-bubble" style="max-width: 70%; font-weight: 500; border: 1px solid #f1f5f9;">
+                                Bonjour ! Avez-vous pu regarder le nouveau chapitre sur l'UX ?
+                            </div>
+                            <div class="align-self-end bg-primary text-white p-3 shadow-sm chat-bubble" style="max-width: 70%; font-weight: 500;">
+                                Oui, c'était très clair ! J'ai particulièrement aimé la partie sur le prototypage.
+                            </div>
+                        </div>
+                        <div class="p-3 border-top bg-white">
+                            <div class="input-group gap-2">
+                                <button class="btn btn-light border-0 p-2"><i data-lucide="paperclip" size="18"></i></button>
+                                <input type="text" class="form-control border-0 bg-light px-3" placeholder="Écrivez votre message...">
+                                <button class="btn btn-primary px-3"><i data-lucide="send" size="18"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <main class="app-view" id="view-certificates">
+            <h3 class="fw-900 m-0 text-dark mb-4">Mes Certificats</h3>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="neo-card border-0 p-4 text-center d-flex flex-column align-items-center" style="background: linear-gradient(to bottom right, #ffffff, #fffbeb);">
+                        <div class="stat-icon-box mb-3" style="background: #fef08a; color: #ca8a04; width: 64px; height: 64px;"><i data-lucide="award" size="32"></i></div>
+                        <h5 class="fw-900 text-dark mb-1">Bases de la Photographie</h5>
+                        <p class="text-muted fw-600 mb-4" style="font-size: 12px;">Obtenu le 5 Mars 2026</p>
+                        <div class="d-flex gap-2 w-100">
+                            <button class="btn btn-primary w-100 fw-800"><i data-lucide="download" size="16" class="me-2"></i> PDF</button>
+                            <button class="btn btn-light border bg-white w-100 fw-800 text-dark"><i data-lucide="linkedin" size="16" class="me-2 text-primary"></i> Partager</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="neo-card border-0 p-4 text-center d-flex flex-column align-items-center" style="background: linear-gradient(to bottom right, #ffffff, #f1f5f9); border: 2px dashed #cbd5e1 !important;">
+                        <div class="stat-icon-box mb-3 bg-light text-muted" style="width: 64px; height: 64px;"><i data-lucide="lock" size="32"></i></div>
+                        <h5 class="fw-900 text-muted mb-1">UX Design pour débutants</h5>
+                        <p class="text-muted fw-600 mb-4" style="font-size: 12px;">Progression actuelle : 60%</p>
+                        <button class="btn btn-light bg-white border text-muted w-100 fw-800" disabled>Complétez le cours</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <main class="app-view" id="view-settings">
+            <div class="mb-4">
+                <h3 class="fw-900 m-0 text-dark">Paramètres Profil</h3>
+                <p class="text-muted m-0 mt-1 fw-600" style="font-size: 14px;">Gérez vos informations personnelles et préférences.</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="d-flex flex-column gap-1 sticky-top" style="top: 80px;">
+                        <div class="settings-nav-link active" onclick="switchSettingsTab('profile', this)"><i data-lucide="user" size="18"></i> Mon Profil</div>
+                        <div class="settings-nav-link" onclick="switchSettingsTab('notifications', this)"><i data-lucide="bell" size="18"></i> Notifications</div>
+                        <div class="settings-nav-link" onclick="switchSettingsTab('billing', this)"><i data-lucide="credit-card" size="18"></i> Facturation</div>
+                        <div class="settings-nav-link" onclick="switchSettingsTab('security', this)"><i data-lucide="shield" size="18"></i> Sécurité</div>
+                    </div>
+                </div>
+
+                <div class="col-md-9" style="max-width: 800px;">
+                    <div id="settings-profile" class="settings-content-section active">
+                        <div class="neo-card border-0 mb-4">
+                            <h5 class="fw-800 mb-4 text-dark">Informations du profil</h5>
+                            
+                            <div class="d-flex gap-4 align-items-center mb-4 pb-4 border-bottom">
+                                <div class="position-relative">
+                                    <img src="https://ui-avatars.com/api/?name=Lucas+Martin&background=f97316&color=fff&size=100" width="80" height="80">
+                                    <button class="btn btn-primary position-absolute p-1 d-flex align-items-center justify-content-center" style="width: 24px; height: 24px; bottom: -4px; right: -4px; border: 2px solid white;"><i data-lucide="upload" size="12"></i></button>
+                                </div>
+                                <div>
+                                    <h5 class="fw-800 m-0 text-dark">Lucas Martin</h5>
+                                    <div class="text-muted fw-600 mb-2" style="font-size: 12px;">lucas.m@email.com</div>
+                                    <div class="d-flex gap-2">
+                                        <span class="badge bg-success-subtle text-success fw-800 d-flex align-items-center gap-1" style="font-size: 10px;"><i data-lucide="graduation-cap" size="12"></i> Apprenant</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row g-4 mb-4">
+                                <div class="col-md-6"><label>NOM COMPLET</label><input type="text" class="form-control" value="Lucas Martin"></div>
+                                <div class="col-md-6"><label>EMAIL</label><input type="email" class="form-control text-muted" value="lucas.m@email.com" readonly></div>
+                                <div class="col-12"><label>BIO (Visible sur la communauté)</label><textarea class="form-control" rows="3" placeholder="Parlez un peu de vous..."></textarea></div>
+                            </div>
+                            <button class="btn btn-primary px-4 py-2">Sauvegarder les modifications</button>
+                        </div>
+                    </div>
+
+                    <div id="settings-notifications" class="settings-content-section">
+                        <div class="neo-card border-0 mb-4">
+                            <h5 class="fw-800 mb-4 text-dark">Préférences d'emails</h5>
+                            <div class="d-flex justify-content-between align-items-center py-3 border-bottom"><div><div class="fw-800 text-dark fs-6 mb-1">Rappels de cours en direct</div><div class="text-muted fw-600" style="font-size: 12px;">1h avant le début d'une session live</div></div><div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" checked style="width: 40px; height: 22px;"></div></div>
+                            <div class="d-flex justify-content-between align-items-center py-3 border-bottom"><div><div class="fw-800 text-dark fs-6 mb-1">Mises à jour des formateurs</div><div class="text-muted fw-600" style="font-size: 12px;">Nouveaux chapitres et ressources ajoutés</div></div><div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" checked style="width: 40px; height: 22px;"></div></div>
+                            <div class="d-flex justify-content-between align-items-center py-3"><div><div class="fw-800 text-dark fs-6 mb-1">Activité de la communauté</div><div class="text-muted fw-600" style="font-size: 12px;">Réponses à vos questions sur le forum</div></div><div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" checked style="width: 40px; height: 22px;"></div></div>
+                        </div>
+                    </div>
+
+                    <div id="settings-billing" class="settings-content-section">
+                        <div class="neo-card border-0 mb-4">
+                            <h5 class="fw-800 mb-4 text-dark">Moyen de paiement enregistré</h5>
+                            <div class="d-flex align-items-center justify-content-between p-3 border mb-3" style="border-radius: 6px;">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="bg-dark text-white fw-900 d-flex align-items-center justify-content-center" style="width: 46px; height: 32px; font-size: 10px; border-radius: 4px;">CB</div>
+                                    <div>
+                                        <div class="fw-800 text-dark fs-6">•••• •••• •••• 1234</div>
+                                        <div class="text-muted fw-600" style="font-size: 12px;">Expire 08/2026</div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-light bg-transparent border-0 text-danger"><i data-lucide="trash" size="16"></i></button>
+                            </div>
+                            <button class="btn btn-light bg-white border text-primary fw-800 w-100 py-2 d-flex align-items-center justify-content-center gap-2"><i data-lucide="plus" size="16"></i> Ajouter une carte</button>
+                        </div>
+                    </div>
+
+                    <div id="settings-security" class="settings-content-section">
+                        <div class="neo-card border-0 mb-4">
+                            <h5 class="fw-800 mb-4 text-dark">Mot de passe</h5>
+                            <div class="mb-3"><label>NOUVEAU MOT DE PASSE</label><input type="password" class="form-control" placeholder="••••••••"></div>
+                            <div class="mb-4"><label>CONFIRMER</label><input type="password" class="form-control" placeholder="••••••••"></div>
+                            <button class="btn btn-primary px-4 py-2">Mettre à jour</button>
+                        </div>
+
+                        <div class="neo-card danger-zone mb-4">
+                            <h5 class="fw-800 mb-2 text-danger">Supprimer mon compte étudiant</h5>
+                            <p class="text-danger opacity-75 fw-600 mb-4" style="font-size: 13.5px;">Vous perdrez l'accès à tous vos cours achetés. Action irréversible.</p>
+                            <button class="btn btn-danger-subtle bg-danger-subtle text-danger fw-800 px-4 py-2" style="border: 1px solid #fecaca;"><i data-lucide="trash-2" size="16" class="me-2"></i> Supprimer définitivement</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <div id="dyte-room-overlay" class="d-none">
+        <div class="dyte-header">
+            <div class="fw-800 fs-5" id="dyte-room-title">Meeting Room</div>
+            <div class="d-flex align-items-center gap-3">
+                <span class="badge bg-danger px-3 py-1 fw-800"><i data-lucide="radio" size="12" class="me-1"></i> LIVE</span>
+            </div>
+        </div>
+        <div class="dyte-grid">
+            <div class="dyte-video-box"><img src="https://ui-avatars.com/api/?name=Amira+Salah&background=3b82f6&color=fff&size=150"><div class="dyte-name-tag">Amira (Formateur)</div></div>
+            <div class="dyte-video-box"><img src="https://ui-avatars.com/api/?name=Lucas+M&background=f97316&color=fff&size=150" class="opacity-50"><div class="dyte-name-tag">Lucas (Vous)</div></div>
+        </div>
+        <div class="dyte-controls">
+            <button class="dyte-btn"><i data-lucide="mic-off" size="20"></i></button>
+            <button class="dyte-btn"><i data-lucide="video-off" size="20"></i></button>
+            <button class="dyte-btn danger" onclick="closeDyteRoom()"><i data-lucide="phone-off" size="20"></i></button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script> 
+    
+    <script src="user_dashboard.js"></script>
+</body>
+</html>

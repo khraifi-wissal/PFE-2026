@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperDash Dashboard</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <aside id="sidebar">
+        <div class="sidebar-logo-area">
+            <div class="logo-box">S</div>
+            <span class="fw-900 fs-5 text-dark" style="letter-spacing: -0.5px;">superdash</span>
+        </div>
+
+        <div class="nav-menu">
+
+            <div class="sidebar-heading">PRINCIPAL</div>
+            <div class="nav-link active" onclick="navTo('started')"><i data-lucide="layout-dashboard" size="18"></i> Tableau de bord</div>
+
+            <div class="sidebar-heading">PRODUITS</div>
+            <div class="nav-link" onclick="navTo('products')"><i data-lucide="package" size="18"></i> Produits</div>
+
+            <div class="sidebar-heading">ÉVÉNEMENTS</div>
+            <div class="nav-link d-flex justify-content-between align-items-center" onclick="navTo('sessions')">
+                <div class="d-flex align-items-center gap-3"><i data-lucide="calendar" size="18"></i> Événements</div>
+                <span class="nav-badge badge-live">Live</span>
+            </div>
+
+            <div class="sidebar-heading">OUTILS</div>
+            <div class="nav-link" onclick="navTo('mentor')">
+                <div class="d-flex align-items-center gap-3 flex-grow-1"><i data-lucide="sparkles" size="18"></i> Mentor IA</div>
+                <span class="nav-badge badge-ia me-1">IA</span>
+                <i data-lucide="chevron-right" size="16"></i>
+            </div>
+            <div class="nav-link" onclick="navTo('community')"><i data-lucide="users" size="18"></i> Communauté</div>
+            <div class="nav-link" onclick="navTo('community'); showCommunityTab('messages');"><i data-lucide="message-square" size="18"></i> Messages</div>
+            <div class="nav-link" onclick="navTo('marketing')"><i data-lucide="mail" size="18"></i> Email Marketing</div>
+
+            <div class="sidebar-heading">ANALYSES</div>
+            <div class="nav-link" onclick="navTo('analytics')"><i data-lucide="bar-chart-2" size="18"></i> Analytiques</div>
+
+            <div class="sidebar-heading">COMPTE</div>
+            
+            <div class="nav-link" onclick="navTo('settings')">
+                <div class="d-flex align-items-center gap-3 flex-grow-1"><i data-lucide="settings" size="18"></i> Paramètres & Ab...</div>
+                <i data-lucide="chevron-right" size="16"></i>
+            </div>
+            
+            <div class="flex-grow-1"></div>
+
+            <div class="pro-plan-card">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <i data-lucide="zap" size="16" style="color: #4f46e5;"></i>
+                    <span class="fw-800" style="font-size: 13.5px; color: #4f46e5;">Plan Pro actif</span>
+                </div>
+                <div class="text-muted fw-600" style="font-size: 11.5px; line-height: 1.5;">
+                    Email marketing, sessions illimitées & analytiques avancées
+                </div>
+            </div>
+
+            <div class="user-profile-card">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="position-relative">
+                        <img src="https://ui-avatars.com/api/?name=jhfh&background=random" width="36" height="36">
+                        <span class="position-absolute bottom-0 end-0 bg-success border border-white" style="width:10px;height:10px; border-width: 2px !important; right: -2px !important; bottom: -2px !important;"></span>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <span class="fw-800 text-dark" style="font-size: 13px;">jhfh</span>
+                        <span class="text-muted fw-600" style="font-size: 11px;">azizhkili1@gmail.com</span>
+                    </div>
+                </div>
+                <i data-lucide="log-out" size="16" class="text-muted"></i>
+            </div>
+        </div>
+    </aside>
+
+    <div id="main-wrapper">
+        
+        <header class="top-nav">
+            <span id="view-title" class="d-none"></span>
+            
+            <div class="d-flex align-items-center gap-3" style="flex: 1;">
+                <div class="position-relative" style="max-width: 400px; width: 100%;">
+                    <i data-lucide="search" class="position-absolute top-50 start-0 translate-middle-y ms-3 text-muted" size="16"></i>
+                    <input type="text" class="form-control bg-white border-0 shadow-sm ps-5 py-2 fw-500 text-muted" placeholder="Rechercher cours, membres, ressources..." style="font-size: 13.5px;">
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-end gap-3" style="flex: 1;">
+                <div class="dropdown">
+                    <button class="btn btn-primary fw-700 d-flex align-items-center gap-2 px-3 py-2" data-bs-toggle="dropdown"><i data-lucide="plus" size="16"></i> Créer</button>
+                    <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2 p-2" style="min-width: 200px;">
+                        <li><span class="dropdown-header fw-800 text-uppercase text-muted mb-1" style="font-size: 10px; letter-spacing: 0.5px;">Création</span></li>
+                        <li><a class="dropdown-item py-2 fw-700 cursor-pointer" style="font-size:13.5px;" onclick="openEditor('course')"><i data-lucide="book-open" size="16" class="me-2 text-primary"></i> Nouveau Cours</a></li>
+                        <li><a class="dropdown-item py-2 fw-700 cursor-pointer" style="font-size:13.5px;" onclick="openEditor('digital')"><i data-lucide="file-archive" size="16" class="me-2 text-info"></i> Nouveau Produit Digital</a></li>
+                        <li><hr class="dropdown-divider my-1"></li>
+                        <li><a class="dropdown-item py-2 fw-700 cursor-pointer" style="font-size:13.5px;" onclick="openEditor('event')"><i data-lucide="calendar-plus" size="16" class="me-2 text-danger"></i> Nouvel Événement</a></li>
+                        <li><a class="dropdown-item py-2 fw-700 cursor-pointer" style="font-size:13.5px;" onclick="openEditor('coaching')"><i data-lucide="phone-call" size="16" class="me-2 text-success"></i> Session Coaching</a></li>
+                    </ul>
+                </div>
+                
+                <button class="btn btn-light bg-transparent border-0 p-1 text-muted position-relative d-flex align-items-center justify-content-center">
+                    <i data-lucide="bell" size="20"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge bg-danger border border-white" style="font-size: 9px; padding: 3px 5px;">2</span>
+                </button>
+                
+                <button class="btn btn-light bg-transparent border-0 p-1 text-muted d-flex align-items-center justify-content-center">
+                    <i data-lucide="moon" size="20"></i>
+                </button>
+
+                <div class="position-relative ms-2">
+                    <img src="https://ui-avatars.com/api/?name=jhfh&background=random" width="36" height="36" style="border: 2px solid #22c55e;">
+                </div>
+            </div>
+        </header>
+
+        <main class="app-view active" id="view-started">
+            <div class="neo-card dashboard-banner mb-4 border-0 p-4">
+                <div class="fw-600 mb-1" style="font-size: 13.5px; opacity: 0.9;">samedi 14 mars 👋</div>
+                <h2 class="fw-900 text-white mb-2 fs-3">Dd</h2>
+                <p class="fw-500 mb-4" style="opacity: 0.85; max-width: 600px; font-size: 14.5px;">Vous avez 3 nouvelles inscriptions et 1 session live aujourd'hui. Votre cours UX Design est en tête des ventes.</p>
+                <div class="d-flex gap-3">
+                    <button class="btn fw-800 border-0 text-white px-4" style="background: rgba(255,255,255,0.25);" onclick="openEditor('course')">Créer un cours</button>
+                    <button class="btn fw-800 text-white px-4" style="background: transparent; border: 1px solid rgba(255,255,255,0.4);" onclick="openEditor('event')">Planifier un live</button>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <div class="neo-card border-0 d-flex flex-column h-100 p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div class="stat-icon-box text-success" style="background: #dcfce7;"><i data-lucide="users" size="20"></i></div>
+                            <span class="badge text-success fw-800" style="background: #dcfce7;">+12%</span>
+                        </div>
+                        <h2 class="fw-900 m-0 text-dark">529</h2>
+                        <div class="text-muted fw-600 mt-1" style="font-size: 12.5px;">Apprenants actifs</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="neo-card border-0 d-flex flex-column h-100 p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div class="stat-icon-box" style="background: #e0f2fe; color: #0284c7;"><i data-lucide="book-open" size="20"></i></div>
+                            <span class="badge fw-800" style="background: #dcfce7; color: #16a34a;">+2 ce mois</span>
+                        </div>
+                        <h2 class="fw-900 m-0 text-dark">8</h2>
+                        <div class="text-muted fw-600 mt-1" style="font-size: 12.5px;">Cours publiés</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="neo-card border-0 d-flex flex-column h-100 p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div class="stat-icon-box text-success" style="background: #dcfce7;"><i data-lucide="banknote" size="20"></i></div>
+                            <span class="badge text-success fw-800" style="background: #dcfce7;">+23%</span>
+                        </div>
+                        <h2 class="fw-900 m-0 text-dark">4 100 DT</h2>
+                        <div class="text-muted fw-600 mt-1" style="font-size: 12.5px;">Revenus du mois</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="neo-card border-0 d-flex flex-column h-100 p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div class="stat-icon-box" style="background: #dcfce7; color: #16a34a;"><i data-lucide="video" size="20"></i></div>
+                            <span class="badge fw-800" style="background: #dcfce7; color: #16a34a;">+5</span>
+                        </div>
+                        <h2 class="fw-900 m-0 text-dark">14</h2>
+                        <div class="text-muted fw-600 mt-1" style="font-size: 12.5px;">Sessions live</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-end mb-3 mt-2">
+                <div>
+                    <h5 class="fw-800 m-0 text-dark d-flex align-items-center gap-2"><i data-lucide="video" size="18" class="text-danger"></i> Cours avec sessions live</h5>
+                    <div class="text-muted fw-600 mt-1" style="font-size: 12px;">Planning intégré & calendrier</div>
+                </div>
+                <a href="#" class="text-primary fw-800 text-decoration-none" style="font-size: 12.5px;">Voir toutes les sessions ></a>
+            </div>
+            
+            <div class="row g-4 mb-4">
+                <div class="col-md-6">
+                    <div class="neo-card border-0 p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-4">
+                            <div>
+                                <h6 class="fw-900 text-dark mb-2 fs-6">UX Design pour débutants</h6>
+                                <span class="badge fw-800" style="background: #fee2e2; color: #ef4444;"><span style="font-size: 8px; margin-right: 4px;">🔴</span> 4 sessions</span>
+                            </div>
+                            <div class="stat-icon-box text-primary" style="background: #e0e7ff;"><i data-lucide="video" size="18"></i></div>
+                        </div>
+                        <div class="d-flex justify-content-between pt-3 border-top">
+                            <div><div class="text-muted fw-700 mb-1" style="font-size: 10.5px;">Prochaine</div><div class="fw-800 text-primary" style="font-size: 13.5px;">Aujourd'hui 18:00</div></div>
+                            <div><div class="text-muted fw-700 mb-1" style="font-size: 10.5px;">Apprenants</div><div class="fw-800 text-dark" style="font-size: 13.5px;">248</div></div>
+                            <div><div class="text-muted fw-700 mb-1" style="font-size: 10.5px;">Revenus</div><div class="fw-800 text-success" style="font-size: 13.5px;">1 240€</div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="neo-card border-0 p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-4">
+                            <div>
+                                <h6 class="fw-900 text-dark mb-2 fs-6">Marketing Digital Avancé</h6>
+                                <span class="badge fw-800" style="background: #fee2e2; color: #ef4444;"><span style="font-size: 8px; margin-right: 4px;">🔴</span> 2 sessions</span>
+                            </div>
+                            <div class="stat-icon-box text-primary" style="background: #e0e7ff;"><i data-lucide="video" size="18"></i></div>
+                        </div>
+                        <div class="d-flex justify-content-between pt-3 border-top">
+                            <div><div class="text-muted fw-700 mb-1" style="font-size: 10.5px;">Prochaine</div><div class="fw-800 text-primary" style="font-size: 13.5px;">Sam. 10:00</div></div>
+                            <div><div class="text-muted fw-700 mb-1" style="font-size: 10.5px;">Apprenants</div><div class="fw-800 text-dark" style="font-size: 13.5px;">184</div></div>
+                            <div><div class="text-muted fw-700 mb-1" style="font-size: 10.5px;">Revenus</div><div class="fw-800 text-success" style="font-size: 13.5px;">920€</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-end mb-3 mt-2">
+                <div>
+                    <h5 class="fw-800 m-0 text-dark d-flex align-items-center gap-2"><i data-lucide="book-open" size="18" style="color: #8b5cf6;"></i> Formations enregistrées</h5>
+                    <div class="text-muted fw-600 mt-1" style="font-size: 12px;">Accessibles en replay — autonomie totale</div>
+                </div>
+                <a href="#" class="text-primary fw-800 text-decoration-none" style="font-size: 12.5px;">Voir tout ></a>
+            </div>
+
+            <div class="neo-card border-0 mb-5 p-0">
+                <div class="p-4 border-bottom">
+                    <div class="d-flex gap-4 align-items-center">
+                        <div class="stat-icon-box" style="background: #fce7f3; color: #db2777; width: 44px; height: 44px;"><i data-lucide="book-open" size="20"></i></div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="fw-800 text-dark fs-6">Développement React TypeScript</span>
+                                <span class="fw-900 text-success fs-6">485€</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-3 mb-2 text-muted fw-600" style="font-size: 11.5px;">
+                                <span>97 apprenants</span>
+                                <span>18 chapitres</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-4 border-bottom">
+                    <div class="d-flex gap-4 align-items-center">
+                        <div class="stat-icon-box" style="background: #dcfce7; color: #16a34a; width: 44px; height: 44px;"><i data-lucide="book-open" size="20"></i></div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="fw-800 text-dark fs-6">Email Marketing Masterclass</span>
+                                <span class="fw-900 text-success fs-6">1 560€</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-3 mb-2 text-muted fw-600" style="font-size: 11.5px;">
+                                <span>312 apprenants</span>
+                                <span>24 chapitres</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-4">
+                    <div class="d-flex gap-4 align-items-center">
+                        <div class="stat-icon-box" style="background: #fef9c3; color: #eab308; width: 44px; height: 44px;"><i data-lucide="book-open" size="20"></i></div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="fw-800 text-dark fs-6">Figma Pro — Design System</span>
+                                <span class="fw-900 text-success fs-6">780€</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-3 mb-2 text-muted fw-600" style="font-size: 11.5px;">
+                                <span>156 apprenants</span>
+                                <span>20 chapitres</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <div class="col-lg-7">
+                    <div class="neo-card border-0 h-100 p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div>
+                                <h5 class="fw-800 m-0 text-dark">Revenus & Inscriptions</h5>
+                                <div class="text-muted fw-600 mt-1" style="font-size: 12px;">6 derniers mois</div>
+                            </div>
+                            <span class="badge text-success fw-800 d-flex align-items-center gap-1" style="background: #dcfce7; font-size: 11px; padding: 6px 10px;"><i data-lucide="trending-up" size="14"></i> +23%</span>
+                        </div>
+                        
+                        <svg viewBox="0 0 500 150" class="w-100 mt-4" style="height: 200px; overflow: visible;">
+                            <line x1="0" y1="30" x2="500" y2="30" stroke="#e2e8f0" stroke-dasharray="4 4" />
+                            <line x1="0" y1="70" x2="500" y2="70" stroke="#e2e8f0" stroke-dasharray="4 4" />
+                            <line x1="0" y1="110" x2="500" y2="110" stroke="#e2e8f0" stroke-dasharray="4 4" />
+                            <line x1="0" y1="150" x2="500" y2="150" stroke="#e2e8f0" stroke-dasharray="4 4" />
+                            <text x="0" y="25" fill="#94a3b8" font-size="10" font-weight="600">6000</text>
+                            <text x="0" y="65" fill="#94a3b8" font-size="10" font-weight="600">4500</text>
+                            <text x="0" y="105" fill="#94a3b8" font-size="10" font-weight="600">3000</text>
+                            <text x="0" y="145" fill="#94a3b8" font-size="10" font-weight="600">1500</text>
+                            <path d="M 30,130 C 100,110 150,70 200,80 C 250,90 300,120 350,110 C 400,100 450,60 500,50" fill="none" stroke="#4f46e5" stroke-width="4" stroke-linecap="round" />
+                            <text x="30" y="170" fill="#94a3b8" font-size="10" font-weight="600">Oct</text>
+                            <text x="120" y="170" fill="#94a3b8" font-size="10" font-weight="600">Nov</text>
+                            <text x="210" y="170" fill="#94a3b8" font-size="10" font-weight="600">Déc</text>
+                            <text x="300" y="170" fill="#94a3b8" font-size="10" font-weight="600">Jan</text>
+                            <text x="400" y="170" fill="#94a3b8" font-size="10" font-weight="600">Fév</text>
+                            <text x="480" y="170" fill="#94a3b8" font-size="10" font-weight="600">Mar</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="neo-card border-0 h-100 p-4 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="fw-800 m-0 text-dark">Sessions à venir</h5>
+                            <a href="#" class="text-primary fw-800 text-decoration-none" style="font-size: 12px;">Voir tout</a>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <div class="stat-icon-box text-primary" style="background: #e0e7ff; width: 40px; height: 40px;"><i data-lucide="video" size="18"></i></div>
+                            <div>
+                                <h6 class="fw-800 text-dark mb-1 fs-6">UX Design — Session Q&A</h6>
+                                <div class="text-muted fw-600" style="font-size: 11.5px;">Aujourd'hui 18:00 <span class="fw-800 text-primary ms-2">24 inscrits</span></div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <div class="stat-icon-box" style="background: #f3e8ff; color: #9333ea; width: 40px; height: 40px;"><i data-lucide="video" size="18"></i></div>
+                            <div>
+                                <h6 class="fw-800 text-dark mb-1 fs-6">Atelier Figma avancé</h6>
+                                <div class="text-muted fw-600" style="font-size: 11.5px;">Demain 14:00 <span class="fw-800 text-primary ms-2" style="color: #9333ea !important;">18 inscrits</span></div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <div class="stat-icon-box" style="background: #fce7f3; color: #db2777; width: 40px; height: 40px;"><i data-lucide="video" size="18"></i></div>
+                            <div>
+                                <h6 class="fw-800 text-dark mb-1 fs-6">Live Marketing Digital</h6>
+                                <div class="text-muted fw-600" style="font-size: 11.5px;">Sam. 10:00 <span class="fw-800 text-primary ms-2" style="color: #db2777 !important;">56 inscrits</span></div>
+                            </div>
+                        </div>
+
+                        <div class="mt-auto pt-3">
+                            <button class="btn btn-light bg-light border-0 text-muted w-100 fw-800 py-2 d-flex align-items-center justify-content-center gap-2" onclick="openEditor('event')"><i data-lucide="plus" size="16"></i> Planifier une session</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <div class="col-lg-4">
+                    <div class="neo-card border-0 h-100 p-4">
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <div class="stat-icon-box text-primary" style="background: #e0e7ff; width: 44px; height: 44px;"><i data-lucide="mail" size="20"></i></div>
+                            <div>
+                                <h6 class="fw-900 text-dark m-0 fs-6">Email Marketing</h6>
+                                <div class="d-flex align-items-center gap-1 text-success fw-700 mt-1" style="font-size: 11px;">
+                                    <span style="width: 6px; height: 6px; background: #22c55e; border-radius: 6px; display: inline-block;"></span>
+                                    Dernière campagne envoyée
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between mb-4 pb-4 border-bottom text-center">
+                            <div><h4 class="fw-900 text-dark m-0">1240</h4><div class="text-muted fw-600 mt-1" style="font-size: 11px;">Envoyés</div></div>
+                            <div><h4 class="fw-900 text-primary m-0">68%</h4><div class="text-muted fw-600 mt-1" style="font-size: 11px;">Ouverture</div></div>
+                            <div><h4 class="fw-900 text-success m-0">34%</h4><div class="text-muted fw-600 mt-1" style="font-size: 11px;">Clics</div></div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="text-muted fw-600 mb-1" style="font-size: 11px;">Dernière campagne</div>
+                            <h6 class="fw-900 text-dark m-0">Newsletter Mars 2026</h6>
+                        </div>
+
+                        <button class="btn btn-primary-subtle text-primary fw-800 w-100 py-2 d-flex align-items-center justify-content-center gap-2 border border-primary" onclick="navTo('marketing')"><i data-lucide="mail" size="16"></i> Créer une campagne</button>
+                    </div>
+                </div>
+
+                <div class="col-lg-8">
+                    <div class="neo-card border-0 h-100 p-4">
+                        <h5 class="fw-800 mb-4 text-dark">Activité récente</h5>
+                        
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <div class="stat-icon-box text-primary" style="background: #e0e7ff; width: 36px; height: 36px;"><i data-lucide="user" size="16"></i></div>
+                            <div>
+                                <h6 class="fw-700 text-dark mb-1" style="font-size: 13.5px;">3 nouveaux apprenants dans UX Design</h6>
+                                <div class="text-muted fw-600" style="font-size: 11px;">Il y a 5 min</div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <div class="stat-icon-box text-warning" style="background: #fef9c3; width: 36px; height: 36px;"><i data-lucide="bell" size="16"></i></div>
+                            <div>
+                                <h6 class="fw-700 text-dark mb-1" style="font-size: 13.5px;">Votre session live commence dans 2h</h6>
+                                <div class="text-muted fw-600" style="font-size: 11px;">Il y a 12 min</div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <div class="stat-icon-box text-success" style="background: #dcfce7; width: 36px; height: 36px;"><i data-lucide="check-circle" size="16"></i></div>
+                            <div>
+                                <h6 class="fw-700 text-dark mb-1" style="font-size: 13.5px;">Nouveau commentaire dans le forum</h6>
+                                <div class="text-muted fw-600" style="font-size: 11px;">Il y a 30 min</div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <div class="stat-icon-box" style="background: #fce7f3; color: #db2777; width: 36px; height: 36px;"><i data-lucide="award" size="16"></i></div>
+                            <div>
+                                <h6 class="fw-700 text-dark mb-1" style="font-size: 13.5px;">Lucas Martin a obtenu son certificat</h6>
+                                <div class="text-muted fw-600" style="font-size: 11px;">Il y a 1h</div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="stat-icon-box" style="background: #f3e8ff; color: #9333ea; width: 36px; height: 36px;"><i data-lucide="mail" size="16"></i></div>
+                            <div>
+                                <h6 class="fw-700 text-dark mb-1" style="font-size: 13.5px;">Campagne email ouverte par 68% des abonnés</h6>
+                                <div class="text-muted fw-600" style="font-size: 11px;">Hier</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="neo-card border-0 p-4">
+                <h5 class="fw-800 mb-1 text-dark">Nouvelles inscriptions cette semaine</h5>
+                <p class="text-muted fw-500 mb-4" style="font-size: 12.5px;">Toutes formations confondues</p>
+                
+                <div class="d-flex justify-content-between align-items-end mt-5 pt-4" style="height: 150px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">
+                    <div class="d-flex flex-column align-items-center gap-2"><div class="chart-mock-bar" style="height: 40px;"></div><span class="text-muted fw-600" style="font-size: 11px;">Lun</span></div>
+                    <div class="d-flex flex-column align-items-center gap-2"><div class="chart-mock-bar" style="height: 80px;"></div><span class="text-muted fw-600" style="font-size: 11px;">Mar</span></div>
+                    <div class="d-flex flex-column align-items-center gap-2"><div class="chart-mock-bar" style="height: 30px;"></div><span class="text-muted fw-600" style="font-size: 11px;">Mer</span></div>
+                    <div class="d-flex flex-column align-items-center gap-2"><div class="chart-mock-bar" style="height: 100px;"></div><span class="text-muted fw-600" style="font-size: 11px;">Jeu</span></div>
+                    <div class="d-flex flex-column align-items-center gap-2"><div class="chart-mock-bar" style="height: 130px;"></div><span class="text-muted fw-600" style="font-size: 11px;">Ven</span></div>
+                    <div class="d-flex flex-column align-items-center gap-2"><div class="chart-mock-bar" style="height: 70px;"></div><span class="text-muted fw-600" style="font-size: 11px;">Sam</span></div>
+                    <div class="d-flex flex-column align-items-center gap-2"><div class="chart-mock-bar" style="height: 50px;"></div><span class="text-muted fw-600" style="font-size: 11px;">Dim</span></div>
+                </div>
+            </div>
+        </main>
+
+        <main class="app-view" id="view-products">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h3 class="fw-900 m-0 text-dark">Mes produits</h3>
+                    <p class="text-muted m-0 mt-1 fw-600" style="font-size: 14px;">Gérez vos cours et ressources téléchargeables</p>
+                </div>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-light bg-white border fw-800 text-dark px-4 d-flex align-items-center gap-2" onclick="openEditor('digital')"><i data-lucide="book-open" size="16"></i> Produit Digital</button>
+                    <button class="btn btn-primary fw-800 px-4 d-flex align-items-center gap-2" onclick="openEditor('course')"><i data-lucide="video" size="16"></i> Créer un Cours</button>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-4">
+                <div class="col-md-6"><div class="neo-card border-0 d-flex align-items-center justify-content-between p-4 h-100" style="border: 1px solid #fecaca !important; background: #fff0f2;"><div class="d-flex align-items-center gap-3"><div class="stat-icon-box bg-white text-danger shadow-sm" style="width: 48px; height: 48px;"><i data-lucide="video" size="24"></i></div><div><h6 class="fw-800 text-dark mb-1 fs-5">Cours avec sessions live</h6><div class="text-muted fw-600" style="font-size: 12px;">Planning intégré & calendrier</div></div></div><div class="text-end"><h2 class="fw-900 text-danger m-0" style="font-size: 32px;">2</h2><span class="badge bg-danger-subtle text-danger fw-800 mt-1" style="font-size: 11px;">Live</span></div></div></div>
+                <div class="col-md-6"><div class="neo-card border-0 d-flex align-items-center justify-content-between p-4 h-100" style="border: 1px solid #e9d5ff !important; background: #fdf4ff;"><div class="d-flex align-items-center gap-3"><div class="stat-icon-box bg-white shadow-sm" style="color: #9333ea; width: 48px; height: 48px;"><i data-lucide="book-open" size="24"></i></div><div><h6 class="fw-800 text-dark mb-1 fs-5">Formations enregistrées</h6><div class="text-muted fw-600" style="font-size: 12px;">Accessibles en replay 24/7</div></div></div><div class="text-end"><h2 class="fw-900 m-0" style="color: #9333ea; font-size: 32px;">4</h2><span class="badge fw-800 mt-1" style="background: #f3e8ff; color: #9333ea; font-size: 11px;">Replay</span></div></div></div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="position-relative" style="width: 300px;">
+                    <i data-lucide="search" class="position-absolute top-50 start-0 translate-middle-y ms-3 text-muted" size="16"></i>
+                    <input type="text" class="form-control bg-white border-0 shadow-sm ps-5 py-2 fw-600" placeholder="Rechercher un produit...">
+                </div>
+                
+                <div class="d-flex gap-4">
+                    <div class="d-flex gap-1 bg-white p-1 border shadow-sm" style="border-radius: 6px;">
+                        <button class="btn btn-sm fw-800 px-3 sub-nav-item active" style="background: #f1f5f9; color: var(--dark);" onclick="filterProducts('all', this)">Tous</button>
+                        <button class="btn btn-sm bg-transparent fw-700 text-muted px-3 sub-nav-item" onclick="filterProducts('course', this)">Avec live</button>
+                        <button class="btn btn-sm bg-transparent fw-700 text-muted px-3 sub-nav-item" onclick="filterProducts('digital', this)">Enregistrés</button>
+                    </div>
+                    <div class="d-flex gap-1 bg-white p-1 border shadow-sm" style="border-radius: 6px;">
+                        <button class="btn btn-sm fw-800 px-3" style="background: #f1f5f9; color: var(--dark);">Tous</button>
+                        <button class="btn btn-sm bg-transparent fw-700 text-muted px-3">Publiés</button>
+                        <button class="btn btn-sm bg-transparent fw-700 text-muted px-3">Brouillons</button>
+                        <button class="btn btn-sm bg-transparent fw-700 text-muted px-3">Archivés</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-5" id="products-grid">
+                <div class="col-md-4 product-card" data-type="course"><div class="neo-card p-0 overflow-hidden border-0 h-100 d-flex flex-column"><div class="course-card-cover" style="background-image: url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"><div class="position-absolute top-0 start-0 p-3 d-flex gap-2"><span class="badge bg-dark text-white fw-800">Design</span><span class="badge bg-danger text-white fw-800 d-flex align-items-center gap-1"><span style="width:6px;height:6px;background:#fff;border-radius:6px;display:inline-block;"></span> Live</span></div><div class="position-absolute top-0 end-0 p-3"><span class="badge bg-success text-white fw-800">Publié</span></div></div><div class="p-4 d-flex flex-column flex-grow-1"><h6 class="fw-900 text-dark mb-4 fs-6">UX Design pour débutants</h6><div class="mt-auto"><div class="course-card-stats"><span><i data-lucide="users" size="14"></i> 248</span><span class="text-success"><i data-lucide="banknote" size="14"></i> 1 240€</span><span class="text-danger"><i data-lucide="video" size="14"></i> 4 sessions</span><span><i data-lucide="clock" size="14"></i> 18h</span><span class="text-warning"><i data-lucide="star" size="14" fill="currentColor"></i> 4.9</span></div></div></div></div></div>
+                <div class="col-md-4 product-card" data-type="course"><div class="neo-card p-0 overflow-hidden border-0 h-100 d-flex flex-column"><div class="course-card-cover" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"><div class="position-absolute top-0 start-0 p-3 d-flex gap-2"><span class="badge bg-dark text-white fw-800" style="background: #4c1d95 !important;">Marketing</span><span class="badge bg-danger text-white fw-800 d-flex align-items-center gap-1"><span style="width:6px;height:6px;background:#fff;border-radius:6px;display:inline-block;"></span> Live</span></div><div class="position-absolute top-0 end-0 p-3"><span class="badge bg-success text-white fw-800">Publié</span></div></div><div class="p-4 d-flex flex-column flex-grow-1"><h6 class="fw-900 text-dark mb-4 fs-6">Marketing Digital Avancé</h6><div class="mt-auto"><div class="course-card-stats"><span><i data-lucide="users" size="14"></i> 184</span><span class="text-success"><i data-lucide="banknote" size="14"></i> 920€</span><span class="text-danger"><i data-lucide="video" size="14"></i> 2 sessions</span><span><i data-lucide="clock" size="14"></i> 14h</span><span class="text-warning"><i data-lucide="star" size="14" fill="currentColor"></i> 4.7</span></div></div></div></div></div>
+                <div class="col-md-4 product-card" data-type="digital"><div class="neo-card p-0 overflow-hidden border-0 h-100 d-flex flex-column"><div class="course-card-cover" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"><div class="position-absolute top-0 start-0 p-3 d-flex gap-2"><span class="badge bg-dark text-white fw-800" style="background: #0f172a !important;">Dev</span><span class="badge text-white fw-800 d-flex align-items-center gap-1" style="background: #9333ea;"><i data-lucide="play-circle" size="10"></i> Replay</span></div><div class="position-absolute top-0 end-0 p-3"><span class="badge bg-warning text-dark fw-800">Brouillon</span></div></div><div class="p-4 d-flex flex-column flex-grow-1"><h6 class="fw-900 text-dark mb-4 fs-6">Développement React TypeScript</h6><div class="mt-auto"><div class="course-card-stats"><span><i data-lucide="users" size="14"></i> 97</span><span class="text-success"><i data-lucide="banknote" size="14"></i> 485€</span><span><i data-lucide="clock" size="14"></i> 22h</span><span class="text-warning"><i data-lucide="star" size="14" fill="currentColor"></i> 4.8</span></div></div></div></div></div>
+                <div class="col-md-4 product-card" data-type="digital"><div class="neo-card p-0 overflow-hidden border-0 h-100 d-flex flex-column"><div class="course-card-cover" style="background-image: url('https://images.unsplash.com/photo-1542038784456-1ea8e935640e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"><div class="position-absolute top-0 start-0 p-3 d-flex gap-2"><span class="badge text-white fw-800" style="background: #ea580c;">Art</span><span class="badge text-white fw-800 d-flex align-items-center gap-1" style="background: #9333ea;"><i data-lucide="play-circle" size="10"></i> Replay</span></div><div class="position-absolute top-0 end-0 p-3"><span class="badge bg-warning text-dark fw-800">Brouillon</span></div></div><div class="p-4 d-flex flex-column flex-grow-1"><h6 class="fw-900 text-dark mb-4 fs-6">Photographie moderne</h6><div class="mt-auto"><div class="course-card-stats"><span><i data-lucide="users" size="14"></i> 0</span><span class="text-muted"><i data-lucide="banknote" size="14"></i> 0€</span><span><i data-lucide="clock" size="14"></i> 6h</span></div></div></div></div></div>
+                <div class="col-md-4 product-card" data-type="digital"><div class="neo-card p-0 overflow-hidden border-0 h-100 d-flex flex-column"><div class="course-card-cover" style="background-image: url('https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"><div class="position-absolute top-0 start-0 p-3 d-flex gap-2"><span class="badge text-white fw-800" style="background: #16a34a;">Marketing</span><span class="badge text-white fw-800 d-flex align-items-center gap-1" style="background: #9333ea;"><i data-lucide="play-circle" size="10"></i> Replay</span></div><div class="position-absolute top-0 end-0 p-3"><span class="badge bg-success text-white fw-800">Publié</span></div></div><div class="p-4 d-flex flex-column flex-grow-1"><h6 class="fw-900 text-dark mb-4 fs-6">Email Marketing Masterclass</h6><div class="mt-auto"><div class="course-card-stats"><span><i data-lucide="users" size="14"></i> 312</span><span class="text-success"><i data-lucide="banknote" size="14"></i> 1 560€</span><span><i data-lucide="clock" size="14"></i> 12h</span><span class="text-warning"><i data-lucide="star" size="14" fill="currentColor"></i> 4.6</span></div></div></div></div></div>
+                <div class="col-md-4">
+                    <div class="neo-card p-0 overflow-hidden border-0 h-100 d-flex flex-column align-items-center justify-content-center text-center cursor-pointer" style="border: 2px dashed #cbd5e1 !important; background: transparent;" onclick="openEditor('course')">
+                        <div class="btn btn-light bg-white text-primary shadow-sm mb-3 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; border-radius: 50% !important;"><i data-lucide="plus" size="24"></i></div>
+                        <h6 class="fw-900 text-dark mb-1 fs-6">Créer un nouveau cours</h6>
+                        <p class="text-muted fw-600 m-0" style="font-size: 12px;">Live ou enregistré — vous choisissez</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <main class="app-view" id="view-sessions">
+            <div class="d-flex justify-content-between align-items-end mb-4">
+                <div><h4 class="fw-800 m-0">Événements</h4><p class="text-muted m-0 mt-1 fw-500">Gérez votre calendrier et vos sessions en direct.</p></div>
+                <button class="btn btn-sm btn-primary fw-bold px-3" onclick="openEditor('event')"><i data-lucide="plus" size="14" class="me-1"></i> Créer un événement</button>
+            </div>
+            
+            <div class="calendar-wrapper border-0">
+                <div class="calendar-header">
+                    <h5 class="fw-800 m-0 text-dark">March 2026</h5>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-sm btn-light border"><i data-lucide="chevron-left" size="16"></i></button>
+                        <button class="btn btn-sm btn-light border fw-700 px-3">Today</button>
+                        <button class="btn btn-sm btn-light border"><i data-lucide="chevron-right" size="16"></i></button>
+                    </div>
+                </div>
+                <div class="calendar-grid">
+                    <div class="cal-day-name">Sun</div><div class="cal-day-name">Mon</div><div class="cal-day-name">Tue</div><div class="cal-day-name">Wed</div><div class="cal-day-name">Thu</div><div class="cal-day-name">Fri</div><div class="cal-day-name">Sat</div>
+                    
+                    <div class="cal-cell other-month"><span class="cal-date">22</span></div><div class="cal-cell other-month"><span class="cal-date">23</span></div><div class="cal-cell other-month"><span class="cal-date">24</span></div><div class="cal-cell other-month"><span class="cal-date">25</span></div><div class="cal-cell other-month"><span class="cal-date">26</span></div><div class="cal-cell other-month"><span class="cal-date">27</span></div><div class="cal-cell other-month"><span class="cal-date">28</span></div>
+                    <div class="cal-cell"><span class="cal-date">1</span></div><div class="cal-cell"><span class="cal-date">2</span></div><div class="cal-cell"><span class="cal-date">3</span></div><div class="cal-cell"><span class="cal-date">4</span></div>
+                    <div class="cal-cell today"><span class="cal-date">5</span><div class="cal-event-chip chip-coaching mt-1" onclick="openDyteRoom('David')">10:00 AM • David</div></div>
+                    <div class="cal-cell"><span class="cal-date">6</span></div><div class="cal-cell"><span class="cal-date">7</span></div>
+                    <div class="cal-cell"><span class="cal-date">8</span></div><div class="cal-cell"><span class="cal-date">9</span></div><div class="cal-cell"><span class="cal-date">10</span></div><div class="cal-cell"><span class="cal-date">11</span></div><div class="cal-cell"><span class="cal-date">12</span></div><div class="cal-cell"><span class="cal-date">13</span></div><div class="cal-cell"><span class="cal-date">14</span></div>
+                    <div class="cal-cell"><span class="cal-date">15</span><div class="cal-event-chip chip-community mt-1" onclick="openDyteRoom('Workshop')">2:00 PM • Pricing Workshop</div></div>
+                    <div class="cal-cell"><span class="cal-date">16</span></div><div class="cal-cell"><span class="cal-date">17</span></div><div class="cal-cell"><span class="cal-date">18</span></div><div class="cal-cell"><span class="cal-date">19</span></div>
+                    <div class="cal-cell"><span class="cal-date">20</span><div class="cal-event-chip chip-stream mt-1" onclick="openDyteRoom('Q&A')">7:00 PM • Live Q&A</div></div>
+                    <div class="cal-cell"><span class="cal-date">21</span></div>
+                </div>
+            </div>
+
+            <div class="row g-4" id="sessions-grid">
+                <div class="col-md-6">
+                    <h6 class="fw-800 mb-3 text-dark text-uppercase" style="font-size: 11px; letter-spacing: 0.5px;"><i data-lucide="calendar" size="14" class="text-primary me-1"></i> Upcoming Calls</h6>
+                    <div class="neo-card p-0 overflow-hidden border-0 mb-3"><div class="event-card p-3 d-flex justify-content-between align-items-center"><div class="d-flex gap-3 align-items-center"><img src="https://ui-avatars.com/api/?name=David" class="rounded-circle" width="40"><div><h6 class="fw-800 m-0 text-dark">Portfolio Review</h6><div class="text-muted fw-medium mt-1" style="font-size:12px;">Today • 10:00 AM (45 min)</div></div></div><button class="btn btn-sm btn-light border fw-700 text-primary px-3" onclick="openDyteRoom('David')">Join Call</button></div></div>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="fw-800 mb-3 text-dark text-uppercase" style="font-size: 11px; letter-spacing: 0.5px;"><i data-lucide="users" size="14" class="text-success me-1"></i> Next Event</h6>
+                    <div class="neo-card p-0 overflow-hidden border-0 mb-3"><div class="event-card p-3 d-flex justify-content-between align-items-center" style="border-left-color: #ec4899;"><div><span class="badge bg-danger-subtle text-danger mb-1 px-2 py-1 fw-800 rounded-pill" style="font-size:9px;">LIVE IN 2H</span><h6 class="fw-800 m-0 text-dark">Freelance Pricing Workshop</h6><div class="text-muted fw-medium mt-1" style="font-size:12px;">Mar 15 • 2:00 PM</div></div><button class="btn btn-sm btn-dark fw-700 px-3" onclick="openDyteRoom('Workshop')">Start Room</button></div></div>
+                </div>
+            </div>
+        </main>
+
+        <main class="app-view" id="view-mentor">
+            <div class="d-flex h-100 gap-4">
+                <div class="d-flex flex-column" style="width: 280px; flex-shrink: 0;">
+                    <button class="btn btn-primary w-100 mb-4 py-2"><i data-lucide="plus" size="14" class="me-2"></i> Nouvelle conversation</button>
+
+                    <div class="text-muted fw-800 mb-3" style="font-size: 11px; letter-spacing: 0.5px;">JE PEUX VOUS AIDER À</div>
+                    <div class="d-flex flex-column gap-2 mb-4 text-muted fw-600" style="font-size: 13px;">
+                        <div class="d-flex align-items-center gap-2"><i data-lucide="book-open" size="12" class="text-primary"></i> Structurer vos cours</div>
+                        <div class="d-flex align-items-center gap-2"><i data-lucide="check-circle" size="12" class="text-success"></i> Générer des quiz</div>
+                        <div class="d-flex align-items-center gap-2"><i data-lucide="award" size="12" class="text-warning"></i> Préparer les certifications</div>
+                    </div>
+
+                    <div class="d-flex flex-column gap-2 overflow-auto">
+                        <div class="p-3 chat-bubble" style="background: #f5f3ff; border: 1px solid #ede9fe; cursor: pointer;">
+                            <div class="fw-700 text-dark mb-1" style="font-size: 13.5px;">Structure cours UX Design</div>
+                            <div class="text-muted" style="font-size: 11px;">Il y a 2h</div>
+                        </div>
+                        <div class="p-3 hover-bg-light chat-bubble" style="cursor: pointer; transition: 0.2s;">
+                            <div class="fw-700 text-dark mb-1" style="font-size: 13.5px;">Quiz chapitre 3</div>
+                            <div class="text-muted" style="font-size: 11px;">Hier</div>
+                        </div>
+                        <div class="p-3 hover-bg-light chat-bubble" style="cursor: pointer; transition: 0.2s;">
+                            <div class="fw-700 text-dark mb-1" style="font-size: 13.5px;">Offres d'emploi UX</div>
+                            <div class="text-muted" style="font-size: 11px;">Il y a 3 jours</div>
+                        </div>
+                        <div class="p-3 hover-bg-light chat-bubble" style="cursor: pointer; transition: 0.2s;">
+                            <div class="fw-700 text-dark mb-1" style="font-size: 13.5px;">Stratégie d'engagement</div>
+                            <div class="text-muted" style="font-size: 11px;">La semaine dernière</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="neo-card flex-grow-1 d-flex flex-column p-0 border-0">
+                    <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; background: linear-gradient(135deg, #f97316, #ef4444); color: white; border-radius: 6px;">
+                                <i data-lucide="sparkles" size="16"></i>
+                            </div>
+                            <div>
+                                <div class="fw-800 text-dark" style="font-size: 15px;">Mentor IA SuperDash</div>
+                                <div class="d-flex align-items-center gap-1 text-success fw-700" style="font-size: 11.5px;">
+                                    <span style="width: 6px; height: 6px; background: #22c55e; border-radius: 6px; display: inline-block;"></span>
+                                    En ligne — Répond instantanément
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <button class="btn btn-light bg-white border d-flex align-items-center justify-content-center p-2 text-muted" style="width: 32px; height: 32px;"><i data-lucide="refresh-cw" size="14"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="flex-grow-1 p-4 overflow-auto d-flex flex-column gap-4">
+                        <div class="d-flex gap-3">
+                            <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width: 28px; height: 28px; background: linear-gradient(135deg, #f97316, #ef4444); color: white; border-radius: 6px;">
+                                <i data-lucide="sparkles" size="14"></i>
+                            </div>
+                            <div>
+                                <div class="bg-light p-3 text-dark fw-500 chat-bubble" style="font-size: 14px; line-height: 1.6; max-width: 85%;">
+                                    Bonjour ! 👋 Je suis votre Mentor IA SuperDash.<br>
+                                    Je peux vous aider à :<br>
+                                    • Structurer et améliorer vos cours<br>
+                                    • Générer des quiz et exercices<br>
+                                    • Répondre à vos questions pédagogiques<br>
+                                    • Analyser vos statistiques d'engagement<br>
+                                    • Trouver des offres d'emploi (apprenants)<br><br>
+                                    Que puis-je faire pour vous aujourd'hui ?
+                                </div>
+                                <div class="text-muted fw-600 mt-1" style="font-size: 11px;">Maintenant</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-4 border-top bg-white chat-bubble">
+                        <div class="d-flex gap-2 mb-3 overflow-auto pb-1">
+                            <button class="btn btn-sm btn-light bg-white border text-muted fw-600 px-3 py-2 d-flex align-items-center gap-2 flex-shrink-0"><i data-lucide="zap" size="12" class="text-warning"></i> Comment améliorer l'engagement dans mes cours ?</button>
+                            <button class="btn btn-sm btn-light bg-white border text-muted fw-600 px-3 py-2 d-flex align-items-center gap-2 flex-shrink-0"><i data-lucide="zap" size="12" class="text-warning"></i> Génère un quiz pour mon chapitre 3</button>
+                            <button class="btn btn-sm btn-light bg-white border text-muted fw-600 px-3 py-2 d-flex align-items-center gap-2 flex-shrink-0"><i data-lucide="zap" size="12" class="text-warning"></i> Suggère une structur...</button>
+                        </div>
+                        
+                        <div class="position-relative">
+                            <input type="text" class="form-control bg-light border-0 shadow-none px-3 py-3 fw-500 text-dark w-100" style="font-size: 14.5px;" placeholder="Posez votre question...">
+                            <button class="btn btn-light bg-transparent border-0 text-muted position-absolute top-50 end-0 translate-middle-y me-2 p-1"><i data-lucide="send" size="16"></i></button>
+                        </div>
+                        <div class="text-center text-muted fw-600 mt-2" style="font-size: 10px;">Le Mentor IA peut faire des erreurs. Vérifiez les informations importantes.</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <main class="app-view" id="view-community">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h3 class="fw-900 m-0 text-dark">Communauté</h3>
+                    <div class="d-flex gap-3 mt-2">
+                        <span class="sub-nav-item active cursor-pointer" id="tab-feed" onclick="showCommunityTab('feed')">Fil d'actualité</span>
+                        <span class="sub-nav-item cursor-pointer" id="tab-messages" onclick="showCommunityTab('messages')">Messages directs</span>
+                    </div>
+                </div>
+                <div class="position-relative" style="width: 320px;">
+                    <i data-lucide="search" class="position-absolute top-50 start-0 translate-middle-y ms-3 text-muted" size="16"></i>
+                    <input type="text" class="form-control bg-white ps-5 py-2 fw-600 shadow-sm border-0" placeholder="Rechercher...">
+                </div>
+            </div>
+            
+            <div id="community-feed-container">
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        
+                        <div class="neo-card p-4 mb-4 border-0">
+                            <div class="d-flex align-items-start gap-3 mb-3">
+                                <img src="https://ui-avatars.com/api/?name=Alex&background=0b0f19&color=fff" class="rounded-circle mt-2" width="44" height="44">
+                                <div class="w-100" id="community-editor-wrapper">
+                                    <div id="community-editor-container"></div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center pt-2">
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-sm btn-light border bg-white fw-700 text-muted d-flex align-items-center gap-2 rounded-3 px-3 py-2"><i data-lucide="image" size="16"></i> Photo</button>
+                                    <button class="btn btn-sm btn-light border bg-white fw-700 text-muted d-flex align-items-center gap-2 rounded-3 px-3 py-2"><i data-lucide="paperclip" size="16"></i> Fichier</button>
+                                </div>
+                                <button class="btn btn-light bg-light border fw-800 text-muted px-4 py-2 d-flex align-items-center gap-2" style="border-radius: 8px;"><i data-lucide="send" size="16"></i> Publier</button>
+                            </div>
+                        </div>
+            
+                        <div class="neo-card p-4 mb-4 border-0">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="d-flex gap-3">
+                                    <div class="position-relative">
+                                        <img src="https://ui-avatars.com/api/?name=Amira+Salah&background=3b82f6&color=fff" class="rounded-circle" width="44" height="44">
+                                        <span class="position-absolute bottom-0 end-0 bg-success border border-white rounded-circle" style="width:12px;height:12px; border-width: 2px !important;"></span>
+                                    </div>
+                                    <div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="fw-800 text-dark fs-6">Amira Salah</span>
+                                            <span class="badge-educateur">Éducatrice</span>
+                                        </div>
+                                        <div class="text-muted fw-600 mt-1" style="font-size: 12px;">Il y a 2 min</div>
+                                    </div>
+                                </div>
+                                <span class="tag-pill-post">#UX Design</span>
+                            </div>
+                            <p class="text-dark fw-500 mb-4" style="font-size: 14.5px; line-height: 1.6;">
+                                🎨 Nouveau chapitre disponible dans mon cours UX Design ! Cette semaine, on plonge dans la recherche utilisateur avec des méthodes pratiques. Vos retours sont précieux 💙
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                                <div class="d-flex gap-4">
+                                    <div class="feed-action"><i data-lucide="heart" size="18"></i> 47</div>
+                                    <div class="feed-action"><i data-lucide="message-circle" size="18"></i> 12</div>
+                                </div>
+                                <div class="d-flex gap-3">
+                                    <i data-lucide="share-2" size="18" class="feed-action"></i>
+                                    <i data-lucide="bookmark" size="18" class="feed-action"></i>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="neo-card p-4 mb-4 border-0">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="d-flex gap-3">
+                                    <div class="position-relative">
+                                        <img src="https://ui-avatars.com/api/?name=Lucas+Martin&background=f97316&color=fff" class="rounded-circle" width="44" height="44">
+                                        <span class="position-absolute bottom-0 end-0 bg-success border border-white rounded-circle" style="width:12px;height:12px; border-width: 2px !important;"></span>
+                                    </div>
+                                    <div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="fw-800 text-dark fs-6">Lucas Martin</span>
+                                            <span class="badge-apprenant">Apprenant</span>
+                                        </div>
+                                        <div class="text-muted fw-600 mt-1" style="font-size: 12px;">Il y a 8 min</div>
+                                    </div>
+                                </div>
+                                <span class="tag-pill-post">#Dev Web</span>
+                            </div>
+                            <p class="text-dark fw-500 mb-4" style="font-size: 14.5px; line-height: 1.6;">
+                                🎓 Je viens d'obtenir mon certificat en développement web ! Merci à toute la communauté SuperDash. En 3 semaines, j'ai appris plus qu'en 6 mois en auto-didacte 🚀
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                                <div class="d-flex gap-4">
+                                    <div class="feed-action liked"><i data-lucide="heart" size="18" fill="#ec4899"></i> 134</div>
+                                    <div class="feed-action"><i data-lucide="message-circle" size="18"></i> 28</div>
+                                </div>
+                                <div class="d-flex gap-3">
+                                    <i data-lucide="share-2" size="18" class="feed-action"></i>
+                                    <i data-lucide="bookmark" size="18" class="feed-action"></i>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="neo-card p-4 mb-4 border-0">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="d-flex gap-3">
+                                    <img src="https://ui-avatars.com/api/?name=Marc+Dupont&background=0b0f19&color=fff" class="rounded-circle" width="44" height="44">
+                                    <div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="fw-800 text-dark fs-6">Marc Dupont</span>
+                                            <span class="badge-educateur">Éducateur</span>
+                                        </div>
+                                        <div class="text-muted fw-600 mt-1" style="font-size: 12px;">Il y a 20 min</div>
+                                    </div>
+                                </div>
+                                <span class="tag-pill-post" style="color: #db2777; background: #fce7f3;">#Marketing</span>
+                            </div>
+                            <p class="text-dark fw-500 mb-4" style="font-size: 14.5px; line-height: 1.6;">
+                                📊 Atelier en direct sur le marketing digital DEMAIN à 18h ! Je vais partager 5 stratégies qui ont multiplié mes résultats par 3. Places limitées à 50 personnes — inscrivez-vous !
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                                <div class="d-flex gap-4">
+                                    <div class="feed-action"><i data-lucide="heart" size="18"></i> 89</div>
+                                    <div class="feed-action"><i data-lucide="message-circle" size="18"></i> 34</div>
+                                </div>
+                                <div class="d-flex gap-3">
+                                    <i data-lucide="share-2" size="18" class="feed-action"></i>
+                                    <i data-lucide="bookmark" size="18" class="feed-action"></i>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="neo-card p-4 border-0 mb-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="d-flex gap-3">
+                                    <img src="https://ui-avatars.com/api/?name=Fatou+Diallo&background=84cc16&color=fff" class="rounded-circle" width="44" height="44">
+                                    <div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="fw-800 text-dark fs-6">Fatou Diallo</span>
+                                            <span class="badge-apprenant">Apprenante</span>
+                                        </div>
+                                        <div class="text-muted fw-600 mt-1" style="font-size: 12px;">Il y a 45 min</div>
+                                    </div>
+                                </div>
+                                <span class="tag-pill-post">#Design</span>
+                            </div>
+                            <p class="text-dark fw-500 mb-4" style="font-size: 14.5px; line-height: 1.6;">
+                                Question pour la communauté : est-ce que quelqu'un peut m'expliquer la différence entre un wireframe et un mockup ? Je me perds un peu dans les termes 😅
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                                <div class="d-flex gap-4">
+                                    <div class="feed-action"><i data-lucide="heart" size="18"></i> 23</div>
+                                    <div class="feed-action"><i data-lucide="message-circle" size="18"></i> 15</div>
+                                </div>
+                                <div class="d-flex gap-3">
+                                    <i data-lucide="share-2" size="18" class="feed-action"></i>
+                                    <i data-lucide="bookmark" size="18" class="feed-action"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="col-lg-4">
+                        <div class="neo-card p-4 mb-4 border-0">
+                            <h6 class="fw-800 text-dark mb-3 d-flex align-items-center gap-2"><i data-lucide="trending-up" size="18" class="text-primary"></i> Tendances</h6>
+                            <div>
+                                <span class="tag-pill">#UXDesign</span>
+                                <span class="tag-pill">#ReactJS</span>
+                                <span class="tag-pill">#Marketing</span>
+                                <span class="tag-pill">#Figma</span>
+                                <span class="tag-pill">#Certificat</span>
+                                <span class="tag-pill">#LiveSession</span>
+                                <span class="tag-pill">#MentorIA</span>
+                                <span class="tag-pill">#Design</span>
+                            </div>
+                        </div>
+            
+                        <div class="neo-card p-4 mb-4 border-0">
+                            <h6 class="fw-800 text-dark mb-3 d-flex align-items-center gap-2"><i data-lucide="users" size="18" class="text-danger"></i> Membres actifs</h6>
+                            
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="position-relative"><img src="https://ui-avatars.com/api/?name=Amira+S&background=3b82f6&color=fff" class="rounded-circle" width="36"><span class="position-absolute bottom-0 end-0 bg-success border border-white rounded-circle" style="width:10px;height:10px; border-width: 2px !important;"></span></div>
+                                    <div><div class="fw-800 text-dark" style="font-size: 13px;">Amira S.</div><div class="text-muted fw-600" style="font-size: 11px;">Éducatrice</div></div>
+                                </div>
+                                <span class="fw-800 text-primary" style="font-size: 12px;">48 posts</span>
+                            </div>
+            
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="position-relative"><img src="https://ui-avatars.com/api/?name=Marc+D&background=0b0f19&color=fff" class="rounded-circle" width="36"></div>
+                                    <div><div class="fw-800 text-dark" style="font-size: 13px;">Marc D.</div><div class="text-muted fw-600" style="font-size: 11px;">Éducateur</div></div>
+                                </div>
+                                <span class="fw-800" style="color: #9333ea; font-size: 12px;">32 posts</span>
+                            </div>
+            
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="position-relative"><img src="https://ui-avatars.com/api/?name=Lucas+M&background=f97316&color=fff" class="rounded-circle" width="36"><span class="position-absolute bottom-0 end-0 bg-success border border-white rounded-circle" style="width:10px;height:10px; border-width: 2px !important;"></span></div>
+                                    <div><div class="fw-800 text-dark" style="font-size: 13px;">Lucas M.</div><div class="text-muted fw-600" style="font-size: 11px;">Apprenant</div></div>
+                                </div>
+                                <span class="fw-800 text-success" style="font-size: 12px;">27 posts</span>
+                            </div>
+            
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="position-relative"><img src="https://ui-avatars.com/api/?name=Fatou+D&background=84cc16&color=fff" class="rounded-circle" width="36"><span class="position-absolute bottom-0 end-0 bg-success border border-white rounded-circle" style="width:10px;height:10px; border-width: 2px !important;"></span></div>
+                                    <div><div class="fw-800 text-dark" style="font-size: 13px;">Fatou D.</div><div class="text-muted fw-600" style="font-size: 11px;">Apprenante</div></div>
+                                </div>
+                                <span class="fw-800 text-warning" style="font-size: 12px;">19 posts</span>
+                            </div>
+                        </div>
+            
+                        <div class="neo-card p-4 mb-4 border-0" style="background: #f8fafc;">
+                            <h6 class="fw-800 text-dark mb-3">Cette semaine</h6>
+                            <div class="sidebar-stat-row">
+                                <span class="text-muted fw-700">Nouveaux posts</span>
+                                <span class="fw-900 text-primary fs-6">890</span>
+                            </div>
+                            <div class="sidebar-stat-row">
+                                <span class="text-muted fw-700">Nouveaux membres</span>
+                                <span class="fw-900 fs-6" style="color: #9333ea;">124</span>
+                            </div>
+                            <div class="sidebar-stat-row">
+                                <span class="text-muted fw-700">Questions répondues</span>
+                                <span class="fw-900 text-success fs-6">340</span>
+                            </div>
+                        </div>
+            
+                        <div class="neo-card p-4 border-0">
+                            <h6 class="fw-800 text-dark mb-3 d-flex align-items-center gap-2"><i data-lucide="award" size="18" class="text-warning"></i> Dernières certifications</h6>
+                            
+                            <div class="d-flex gap-3 mb-3">
+                                <div class="cert-medal"><i data-lucide="award" size="16"></i></div>
+                                <div>
+                                    <div class="fw-700 text-dark" style="font-size: 13px;"><b>Lucas M.</b> a obtenu <b>React & TypeScript</b></div>
+                                    <div class="text-muted fw-600 mt-1" style="font-size: 11px;">Il y a 2h</div>
+                                </div>
+                            </div>
+            
+                            <div class="d-flex gap-3 mb-3">
+                                <div class="cert-medal" style="background: #fed7aa; color: #c2410c;"><i data-lucide="award" size="16"></i></div>
+                                <div>
+                                    <div class="fw-700 text-dark" style="font-size: 13px;"><b>Fatou D.</b> a obtenu <b>UX Design Fondamentaux</b></div>
+                                    <div class="text-muted fw-600 mt-1" style="font-size: 11px;">Hier</div>
+                                </div>
+                            </div>
+            
+                            <div class="d-flex gap-3">
+                                <div class="cert-medal" style="background: #fef08a; color: #ca8a04;"><i data-lucide="award" size="16"></i></div>
+                                <div>
+                                    <div class="fw-700 text-dark" style="font-size: 13px;"><b>Yuki T.</b> a obtenu <b>Marketing Digital</b></div>
+                                    <div class="text-muted fw-600 mt-1" style="font-size: 11px;">Il y a 2 jours</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="community-messages-container" class="d-none">
+                <div class="neo-card p-0 border-0 overflow-hidden d-flex" style="height: 600px;">
+                    <div class="border-end d-flex flex-column" style="width: 320px; background: #f8fafc;">
+                        <div class="p-3 bg-white border-bottom">
+                            <input type="text" class="form-control form-control-sm" placeholder="Rechercher une discussion...">
+                        </div>
+                        <div class="flex-grow-1 overflow-auto">
+                            <div class="p-3 d-flex align-items-center gap-3 border-bottom bg-white chat-user-item active cursor-pointer">
+                                <div class="position-relative">
+                                    <img src="https://ui-avatars.com/api/?name=Amira+S&background=3b82f6&color=fff" class="rounded-circle" width="44">
+                                    <span class="position-absolute bottom-0 end-0 bg-success border border-white rounded-circle" style="width:12px;height:12px; border-width: 2px !important;"></span>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="fw-800 text-dark" style="font-size: 13.5px;">Amira Salah</div>
+                                    <div class="text-muted text-truncate fw-600" style="font-size: 11.5px;">C'est super, merci !</div>
+                                </div>
+                                <div class="text-end">
+                                    <div class="text-muted mb-1" style="font-size: 10px;">14:30</div>
+                                    <span class="badge bg-primary rounded-circle" style="padding: 4px 6px;">1</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 d-flex flex-column bg-white">
+                        <div class="p-3 border-bottom d-flex align-items-center justify-content-between bg-white">
+                            <div class="d-flex align-items-center gap-3">
+                                <img src="https://ui-avatars.com/api/?name=Amira+S&background=3b82f6&color=fff" class="rounded-circle" width="36">
+                                <div>
+                                    <div class="fw-800 text-dark">Amira Salah</div>
+                                    <div class="text-success fw-700" style="font-size: 11px;">En ligne</div>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-light border-0"><i data-lucide="phone" size="18"></i></button>
+                                <button class="btn btn-light border-0"><i data-lucide="video" size="18"></i></button>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 p-4 overflow-auto d-flex flex-column gap-3 bg-light bg-opacity-10">
+                            <div class="align-self-start bg-white p-3 shadow-sm chat-bubble" style="max-width: 70%; font-weight: 500; border: 1px solid #f1f5f9;">
+                                Bonjour ! Avez-vous pu regarder le nouveau chapitre sur l'UX ?
+                            </div>
+                            <div class="align-self-end bg-primary text-white p-3 shadow-sm chat-bubble" style="max-width: 70%; font-weight: 500;">
+                                Oui, c'était très clair ! J'ai particulièrement aimé la partie sur le prototypage.
+                            </div>
+                        </div>
+                        <div class="p-3 border-top bg-white">
+                            <div class="input-group gap-2">
+                                <button class="btn btn-light border-0 p-2"><i data-lucide="paperclip" size="18"></i></button>
+                                <input type="text" class="form-control border-0 bg-light px-3" placeholder="Écrivez votre message...">
+                                <button class="btn btn-primary px-3"><i data-lucide="send" size="18"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <main class="app-view" id="view-settings">
+            <div class="mb-4">
+                <h3 class="fw-900 m-0 text-dark">Paramètres</h3>
+                <p class="text-muted m-0 mt-1 fw-600" style="font-size: 14px;">Gérez votre compte, abonnement et préférences</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="d-flex flex-column gap-1 sticky-top" style="top: 80px;">
+                        <div class="settings-nav-link active" onclick="switchSettingsTab('profile', this)"><i data-lucide="user" size="18"></i> Profil</div>
+                        <div class="settings-nav-link" onclick="switchSettingsTab('notifications', this)"><i data-lucide="bell" size="18"></i> Notifications</div>
+                        <div class="settings-nav-link" onclick="switchSettingsTab('billing', this)"><i data-lucide="credit-card" size="18"></i> Abonnement</div>
+                        <div class="settings-nav-link" onclick="switchSettingsTab('security', this)"><i data-lucide="shield" size="18"></i> Sécurité</div>
+                    </div>
+                </div>
+
+                <div class="col-md-9" style="max-width: 800px;">
+                    <div id="settings-profile" class="settings-content-section active">
+                        <div class="neo-card border-0 mb-4">
+                            <h5 class="fw-800 mb-4 text-dark">Informations du profil</h5>
+                            
+                            <div class="d-flex gap-4 align-items-center mb-4 pb-4 border-bottom">
+                                <div class="position-relative">
+                                    <img src="https://ui-avatars.com/api/?name=jhfh&background=random&size=100" width="80" height="80">
+                                    <button class="btn btn-primary position-absolute p-1 d-flex align-items-center justify-content-center" style="width: 24px; height: 24px; bottom: -4px; right: -4px; border: 2px solid white;"><i data-lucide="upload" size="12"></i></button>
+                                </div>
+                                <div>
+                                    <h5 class="fw-800 m-0 text-dark">jhfh</h5>
+                                    <div class="text-muted fw-600 mb-2" style="font-size: 12px;">azizhkili1@gmail.com</div>
+                                    <div class="d-flex gap-2">
+                                        <span class="badge bg-primary-subtle text-primary fw-800 d-flex align-items-center gap-1" style="font-size: 10px;"><i data-lucide="graduation-cap" size="12"></i> Éducateur</span>
+                                        <span class="badge bg-success-subtle text-success fw-800 d-flex align-items-center gap-1" style="font-size: 10px;"><i data-lucide="check" size="12"></i> Vérifié</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row g-4 mb-4">
+                                <div class="col-md-6"><label>NOM COMPLET</label><input type="text" class="form-control" value="jhfh"></div>
+                                <div class="col-md-6"><label>SITE WEB</label><input type="text" class="form-control text-muted" placeholder="https://amira.design"></div>
+                                <div class="col-md-6"><label>TWITTER / X</label><input type="text" class="form-control text-muted" placeholder="@amira_design"></div>
+                                <div class="col-md-6"><label>LINKEDIN</label><input type="text" class="form-control text-muted" placeholder="amira-salah"></div>
+                                <div class="col-12"><label>BIO</label><textarea class="form-control" rows="4" placeholder="Décrivez brièvement votre parcours..."></textarea></div>
+                            </div>
+                            <button class="btn btn-primary px-4 py-2">Sauvegarder les modifications</button>
+                        </div>
+                    </div>
+
+                    <div id="settings-notifications" class="settings-content-section">
+                        <div class="neo-card border-0 mb-4">
+                            <h5 class="fw-800 mb-4 text-dark">Préférences de notifications</h5>
+                            <div class="d-flex justify-content-between align-items-center py-3 border-bottom"><div><div class="fw-800 text-dark fs-6 mb-1">Nouvel apprenant inscrit</div><div class="text-muted fw-600" style="font-size: 12px;">Recevez une notification à chaque inscription</div></div><div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" checked style="width: 40px; height: 22px;"></div></div>
+                            <div class="d-flex justify-content-between align-items-center py-3 border-bottom"><div><div class="fw-800 text-dark fs-6 mb-1">Commentaire dans le forum</div><div class="text-muted fw-600" style="font-size: 12px;">Activité dans votre espace communautaire</div></div><div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" checked style="width: 40px; height: 22px;"></div></div>
+                            <div class="d-flex justify-content-between align-items-center py-3 border-bottom"><div><div class="fw-800 text-dark fs-6 mb-1">Rappel de session live</div><div class="text-muted fw-600" style="font-size: 12px;">1h avant le début d'une session</div></div><div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" checked style="width: 40px; height: 22px;"></div></div>
+                            <div class="d-flex justify-content-between align-items-center py-3 border-bottom"><div><div class="fw-800 text-dark fs-6 mb-1">Rapport hebdomadaire</div><div class="text-muted fw-600" style="font-size: 12px;">Récap de vos statistiques de la semaine</div></div><div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" checked style="width: 40px; height: 22px;"></div></div>
+                            <div class="d-flex justify-content-between align-items-center py-3 border-bottom"><div><div class="fw-800 text-dark fs-6 mb-1">Suggestions du Mentor IA</div><div class="text-muted fw-600" style="font-size: 12px;">Conseils hebdomadaires personnalisés</div></div><div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" style="width: 40px; height: 22px;"></div></div>
+                            <div class="d-flex justify-content-between align-items-center py-3"><div><div class="fw-800 text-dark fs-6 mb-1">Nouveau message direct</div><div class="text-muted fw-600" style="font-size: 12px;">Messages reçus de la communauté</div></div><div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" style="width: 40px; height: 22px;"></div></div>
+                        </div>
+                    </div>
+
+                    <div id="settings-billing" class="settings-content-section">
+                        <div class="neo-card border-0 mb-4 bg-primary-subtle d-flex align-items-center gap-4">
+                            <div class="d-flex align-items-center justify-content-center bg-white text-primary flex-shrink-0 shadow-sm" style="width: 48px; height: 48px;"><i data-lucide="zap" size="24"></i></div>
+                            <div class="flex-grow-1"><h5 class="fw-900 m-0 text-dark">Plan Pro actif</h5><div class="text-muted fw-600" style="font-size: 13px;">Renouvellement le 1er avril 2026</div></div>
+                            <div class="text-end flex-shrink-0"><div class="fw-900 text-primary" style="font-size: 24px;">29€ <span class="text-muted fw-600 fs-6">/mois</span></div></div>
+                        </div>
+
+                        <div class="neo-card border-0 mb-4">
+                            <h5 class="fw-800 mb-4 text-dark">Tous les plans</h5>
+                            <div class="d-flex gap-3">
+                                <div class="plan-box">
+                                    <h6 class="fw-900 text-dark mb-2"><i data-lucide="crown" size="18" class="text-muted me-2"></i> Gratuit</h6>
+                                    <div class="fw-900 text-dark mb-4" style="font-size: 28px;">0€</div>
+                                    <div class="flex-grow-1 mb-4">
+                                        <div class="plan-feature"><i data-lucide="check" size="14"></i> 3 cours max</div>
+                                        <div class="plan-feature"><i data-lucide="check" size="14"></i> 100 apprenants</div>
+                                        <div class="plan-feature"><i data-lucide="check" size="14"></i> 1 session live/mois</div>
+                                        <div class="plan-feature"><i data-lucide="check" size="14"></i> Communauté de base</div>
+                                    </div>
+                                    <button class="btn btn-light bg-white border text-muted w-100 fw-800">Passer à ce plan</button>
+                                </div>
+                                <div class="plan-box recommended pt-4">
+                                    <div class="position-absolute top-0 start-50 translate-middle-x bg-primary text-white px-3 py-1 fw-800" style="font-size: 10px; border-radius: 0 0 6px 6px;">⭐ Recommandé</div>
+                                    <h6 class="fw-900 text-primary mb-2"><i data-lucide="crown" size="18" class="me-2"></i> Pro</h6>
+                                    <div class="fw-900 text-primary mb-4" style="font-size: 28px;">29€ <span class="text-muted fs-6 fw-600">/mois</span></div>
+                                    <div class="flex-grow-1 mb-4">
+                                        <div class="plan-feature"><i data-lucide="check" size="14" class="text-primary"></i> Cours illimités</div>
+                                        <div class="plan-feature"><i data-lucide="check" size="14" class="text-primary"></i> Apprenants illimités</div>
+                                        <div class="plan-feature"><i data-lucide="check" size="14" class="text-primary"></i> Sessions live illimitées</div>
+                                        <div class="plan-feature"><i data-lucide="check" size="14" class="text-primary"></i> Email marketing intégré</div>
+                                        <div class="plan-feature"><i data-lucide="check" size="14" class="text-primary"></i> Analytiques avancées</div>
+                                        <div class="plan-feature"><i data-lucide="check" size="14" class="text-primary"></i> Mentor IA inclus</div>
+                                    </div>
+                                    <button class="btn btn-primary-subtle text-primary w-100 fw-800">Plan actuel <i data-lucide="check" size="14" class="ms-1"></i></button>
+                                </div>
+                                <div class="plan-box">
+                                    <h6 class="fw-900 text-primary mb-2" style="color: #9333ea !important;"><i data-lucide="crown" size="18" class="me-2"></i> Équipe</h6>
+                                    <div class="fw-900 text-dark mb-4" style="font-size: 28px; color: #9333ea !important;">99€ <span class="text-muted fs-6 fw-600">/mois</span></div>
+                                    <div class="flex-grow-1 mb-4">
+                                        <div class="plan-feature"><i data-lucide="check" size="14" style="color: #9333ea;"></i> Tout Plan Pro</div>
+                                        <div class="plan-feature"><i data-lucide="check" size="14" style="color: #9333ea;"></i> Multi-éducateurs (5)</div>
+                                        <div class="plan-feature"><i data-lucide="check" size="14" style="color: #9333ea;"></i> Tableau de bord équipe</div>
+                                        <div class="plan-feature"><i data-lucide="check" size="14" style="color: #9333ea;"></i> Support prioritaire 24/7</div>
+                                        <div class="plan-feature"><i data-lucide="check" size="14" style="color: #9333ea;"></i> Intégrations API</div>
+                                    </div>
+                                    <button class="btn btn-light bg-white border text-muted w-100 fw-800">Passer à ce plan</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="neo-card border-0 mb-4">
+                            <h5 class="fw-800 mb-4 text-dark">Moyen de paiement</h5>
+                            <div class="d-flex align-items-center justify-content-between p-3 border mb-3" style="border-radius: 6px;">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="bg-primary text-white fw-900 d-flex align-items-center justify-content-center" style="width: 46px; height: 32px; font-size: 10px;">VISA</div>
+                                    <div>
+                                        <div class="fw-800 text-dark fs-6">•••• •••• •••• 4242</div>
+                                        <div class="text-muted fw-600" style="font-size: 12px;">Expire 12/2027</div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-light bg-transparent border-0 text-muted"><i data-lucide="external-link" size="16"></i></button>
+                            </div>
+                            <button class="btn btn-light bg-transparent border-0 text-primary fw-800 p-0 d-flex align-items-center gap-2"><i data-lucide="credit-card" size="16"></i> Ajouter un moyen de paiement</button>
+                        </div>
+                    </div>
+
+                    <div id="settings-security" class="settings-content-section">
+                        <div class="neo-card border-0 mb-4">
+                            <h5 class="fw-800 mb-4 text-dark">Mot de passe</h5>
+                            <div class="mb-3"><label>MOT DE PASSE ACTUEL</label><input type="password" class="form-control" value="password123"></div>
+                            <div class="mb-3"><label>NOUVEAU MOT DE PASSE</label><input type="password" class="form-control" value="password123"></div>
+                            <div class="mb-4"><label>CONFIRMER LE NOUVEAU MOT DE PASSE</label><input type="password" class="form-control" value="password123"></div>
+                            <button class="btn btn-primary px-4 py-2">Mettre à jour le mot de passe</button>
+                        </div>
+
+                        <div class="neo-card border-0 mb-4">
+                            <h5 class="fw-800 mb-2 text-dark">Double authentification</h5>
+                            <p class="text-muted fw-500 mb-4" style="font-size: 14px;">Renforcez la sécurité de votre compte avec l'authentification à deux facteurs.</p>
+                            <button class="btn btn-success-subtle bg-success-subtle text-success fw-800 d-flex align-items-center gap-2 px-4 py-2" style="border: 1px solid #bbf7d0;"><i data-lucide="shield" size="16"></i> Activer la 2FA</button>
+                        </div>
+
+                        <div class="neo-card danger-zone mb-4">
+                            <h5 class="fw-800 mb-2 text-danger">Zone de danger</h5>
+                            <p class="text-danger opacity-75 fw-600 mb-4" style="font-size: 13.5px;">La suppression de votre compte est irréversible.</p>
+                            <button class="btn btn-danger-subtle bg-danger-subtle text-danger fw-800 d-flex align-items-center gap-2 px-4 py-2" style="border: 1px solid #fecaca;"><i data-lucide="trash-2" size="16"></i> Supprimer mon compte</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <main class="app-view" id="view-checkouts">
+            <h4 class="fw-800 mb-4">Transactions</h4>
+            <div class="neo-card p-0 border-0">
+                <table class="table mb-0 align-middle">
+                    <thead class="bg-light"><tr><th class="px-4 py-3 text-muted fw-800" style="font-size:11px; letter-spacing: 0.5px;">DATE</th><th class="py-3 text-muted fw-800" style="font-size:11px; letter-spacing: 0.5px;">PRODUCT</th><th class="py-3 text-muted fw-800" style="font-size:11px; letter-spacing: 0.5px;">CUSTOMER</th><th class="py-3 text-muted fw-800 text-end px-4" style="font-size:11px; letter-spacing: 0.5px;">AMOUNT</th></tr></thead>
+                    <tbody><tr><td class="px-4 py-3 fw-medium">Today, 10:42 AM</td><td class="fw-800 text-primary py-3">UX Masterclass</td><td class="py-3 fw-medium">mike@gmail.com</td><td class="text-end px-4 fw-800 text-success py-3 fs-5">+$199.00</td></tr></tbody>
+                </table>
+            </div>
+        </main>
+
+        <main class="app-view" id="view-payouts">
+            <div class="row justify-content-center mt-4">
+                <div class="col-md-6 text-center">
+                    <div class="neo-card py-4 border-0 p-4">
+                        <div class="bg-primary-subtle text-primary d-inline-flex align-items-center justify-content-center mb-3" style="width: 64px; height: 64px; border-radius: 6px;"><i data-lucide="building" size="32"></i></div>
+                        <h4 class="fw-800 text-dark mb-2">Connect to get paid</h4>
+                        <p class="text-muted mb-4 fw-500">Partnered with Stripe for secure, automatic transfers directly to your bank account.</p>
+                        <button class="btn btn-dark px-4 py-2">Connect with Stripe</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <main class="app-view" id="view-marketing">
+            <div class="d-flex justify-content-between align-items-end mb-4">
+                <div>
+                    <h3 class="fw-900 m-0 text-dark d-flex align-items-center gap-2"><i data-lucide="mail" size="24" class="text-primary"></i> Campagne Email</h3>
+                    <p class="text-muted m-0 mt-1 fw-600" style="font-size: 14px;">Créez, personnalisez et envoyez vos messages.</p>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-light bg-white border fw-700 text-dark d-flex align-items-center gap-2 px-3 shadow-sm rounded-custom" data-bs-toggle="dropdown">
+                        <i data-lucide="layout-template" size="16" class="text-primary"></i> Modèles
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 mt-2 p-2 rounded-custom">
+                        <li><a class="dropdown-item py-2 fw-600 rounded-custom cursor-pointer" onclick="loadEmailTemplate('launch')">🚀 Lancement de cours</a></li>
+                        <li><a class="dropdown-item py-2 fw-600 rounded-custom cursor-pointer" onclick="loadEmailTemplate('discount')">💰 Offre spéciale</a></li>
+                        <li><a class="dropdown-item py-2 fw-600 rounded-custom cursor-pointer" onclick="loadEmailTemplate('newsletter')">📰 Newsletter hebdo</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-4">
+                <div class="col-lg-7 d-flex flex-column gap-4">
+                    <div class="neo-card p-4 border-0">
+                        <h6 class="fw-800 text-dark mb-4 d-flex align-items-center gap-2"><i data-lucide="settings-2" size="18" class="text-muted"></i> Configuration</h6>
+                        <div class="mb-4">
+                            <label>DESTINATAIRES</label>
+                            <select class="form-select bg-light fw-600 rounded-custom border-0" id="email-audience">
+                                <option>Tous les apprenants (124)</option>
+                                <option>Inscrits à UX Design (48)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>OBJET DE L'EMAIL</label>
+                            <div class="position-relative">
+                                <input type="text" class="form-control bg-light border-0 fw-600 rounded-custom pe-5 py-2.5" id="email-subject" placeholder="ex: 🚀 Mise à jour importante !">
+                                <button class="btn btn-sm position-absolute top-50 end-0 translate-middle-y me-2 p-1 d-flex align-items-center justify-content-center rounded-custom shadow-sm" style="width: 28px; height: 28px; background: linear-gradient(135deg, #f97316, #ef4444); color: white; border: none;" onclick="generateAISubject()" title="Générer avec l'IA">
+                                    <i data-lucide="sparkles" size="14"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="neo-card p-4 border-0 d-flex flex-column" style="min-height: 400px;">
+                        <h6 class="fw-800 text-dark mb-4 d-flex align-items-center gap-2"><i data-lucide="pen-tool" size="18" class="text-muted"></i> Contenu</h6>
+                        <div class="flex-grow-1 d-flex flex-column">
+                            <div id="email-editor-container" class="rounded-custom flex-grow-1" style="border: 1px solid var(--border);"></div>
+                            <input type="hidden" id="email-body-html">
+                        </div>
+                    </div>
+
+                    <div class="neo-card p-4 border-0">
+                        <h6 class="fw-800 text-dark mb-4 d-flex align-items-center gap-2"><i data-lucide="send" size="18" class="text-muted"></i> Envoi</h6>
+                        <div class="bg-light p-3 rounded-custom mb-4 border" style="border-color: #e2e8f0 !important;">
+                            <div class="d-flex gap-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="sendTiming" id="sendNow" checked onclick="toggleEmailSchedule(false)">
+                                    <label class="form-check-label fw-700 text-dark" style="text-transform: none; font-size: 13.5px;" for="sendNow">Maintenant</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="sendTiming" id="sendLater" onclick="toggleEmailSchedule(true)">
+                                    <label class="form-check-label fw-700 text-dark" style="text-transform: none; font-size: 13.5px;" for="sendLater">Programmer</label>
+                                </div>
+                            </div>
+                            <div id="schedule-inputs" class="row g-2 d-none mt-3 pt-3 border-top" style="border-color: #cbd5e1 !important;">
+                                <div class="col-md-6"><label>DATE</label><input type="date" class="form-control border-0 fw-600 rounded-custom text-muted shadow-sm"></div>
+                                <div class="col-md-6"><label>HEURE</label><input type="time" class="form-control border-0 fw-600 rounded-custom text-muted shadow-sm"></div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-3">
+                            <button class="btn btn-light bg-white border fw-700 text-muted px-4 rounded-custom flex-shrink-0" onclick="alert('Email de test envoyé à votre adresse !')"><i data-lucide="flask-conical" size="16" class="me-2"></i> Envoyer un test</button>
+                            <button class="btn btn-primary fw-800 flex-grow-1 rounded-custom shadow-sm" onclick="sendSimpleEmail()"><i data-lucide="paperclip" size="16" class="me-2 d-none"></i> Envoyer la campagne</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="sticky-top" style="top: 80px;">
+                        <h6 class="fw-800 text-dark mb-3 text-uppercase" style="font-size: 11px; letter-spacing: 0.5px;">Aperçu en direct</h6>
+                        <div class="email-preview-wrapper border-0 p-3 rounded-custom shadow-lg" style="background: #e2e8f0; height: 650px;">
+                            <div class="bg-white rounded-custom overflow-hidden h-100 d-flex flex-column shadow-sm border border-white">
+                                <div class="bg-light px-3 py-3 border-bottom d-flex align-items-center gap-3">
+                                    <div class="d-flex gap-1">
+                                        <div class="rounded-circle" style="width: 10px; height: 10px; background: #fca5a5;"></div>
+                                        <div class="rounded-circle" style="width: 10px; height: 10px; background: #fde047;"></div>
+                                        <div class="rounded-circle" style="width: 10px; height: 10px; background: #86efac;"></div>
+                                    </div>
+                                    <div class="fw-600 text-muted" style="font-size: 11px; flex-grow: 1; text-align: center;">Nouveau Message</div>
+                                </div>
+                                <div class="px-4 py-3 border-bottom bg-white">
+                                    <div class="d-flex align-items-center gap-3 mb-2">
+                                        <img src="https://ui-avatars.com/api/?name=Alex&background=4f46e5&color=fff" class="rounded-circle" width="32" height="32">
+                                        <div class="lh-1">
+                                            <div class="fw-800 text-dark mb-1" style="font-size:14px;">SuperDash <span class="fw-500 text-muted ms-1" style="font-size:12px;">&lt;noreply@superdash.com&gt;</span></div>
+                                            <div class="text-muted fw-600" style="font-size: 11px;">À : Tous les apprenants</div>
+                                        </div>
+                                    </div>
+                                    <h5 class="fw-900 mt-3 mb-0 text-dark" id="preview-subject" style="font-size: 18px;">Sujet de l'email</h5>
+                                </div>
+                                <div class="p-4 flex-grow-1 overflow-auto bg-white">
+                                    <div id="preview-body" class="email-body-text">
+                                        <p class="text-muted fw-medium" style="opacity: 0.5;">Commencez à taper pour voir votre email prendre vie ici...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <main class="app-view" id="view-editor">
+            <div class="editor-header-bar">
+                <div class="editor-title-path"><span>Création / </span><span id="breadcrumb-type">Nouveau Produit</span></div>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-sm btn-light border bg-white fw-800 d-flex align-items-center gap-2 px-3" onclick="togglePreview()"><i data-lucide="eye" size="14"></i> Aperçu</button>
+                    <button class="btn btn-sm btn-primary fw-800 px-4" onclick="publishProduct()">Publier</button>
+                </div>
+            </div>
+
+            <div class="step-nav mb-4" id="editor-steps-container">
+                <div class="step-item active" id="tab-btn-basics" onclick="switchEditorTab('basics', this)"><div class="step-circle">1</div> <span id="basics-tab-label">Infos Produit</span></div>
+                
+                <i data-lucide="chevron-right" size="14" class="step-divider d-none" id="divider-strategy"></i>
+                <div class="step-item d-none" id="tab-btn-strategy" onclick="switchEditorTab('strategy', this)"><div class="step-circle">2</div> Stratégie</div>
+                
+                <i data-lucide="chevron-right" size="14" class="step-divider"></i>
+                <div class="step-item" id="tab-btn-content" onclick="switchEditorTab('content', this)"><div class="step-circle" id="circle-content">2</div> <span id="content-tab-label">Contenu</span></div>
+
+                <i data-lucide="chevron-right" size="14" class="step-divider"></i>
+                <div class="step-item" id="tab-btn-pricing" onclick="switchEditorTab('pricing', this)"><div class="step-circle" id="circle-pricing">3</div> Prix</div>
+                <i data-lucide="chevron-right" size="14" class="step-divider" id="divider-settings"></i>
+                <div class="step-item" id="tab-btn-settings" onclick="switchEditorTab('settings', this)"><div class="step-circle" id="circle-settings">4</div> Paramètres</div>
+            </div>
+
+            <div>
+                <div id="tab-basics" class="editor-section active">
+                    <div class="basics-grid">
+                        
+                        <div>
+                            <h5 class="fw-800 mb-3 text-dark" id="dynamic-basics-title">Informations du Produit</h5>
+                            
+                            <div id="standard-basics">
+                                <div class="mb-3"><label>TITRE</label><input type="text" class="form-control fw-bold" id="standard-name-input" placeholder="ex: Mon Super Produit" oninput="updatePreview()"></div>
+                                <div class="row g-3 mb-3">
+                                    <div class="col-md-6"><label>CATÉGORIE</label><select class="form-select fw-bold"><option>Design</option><option>Développement</option></select></div>
+                                    <div class="col-md-6"><label>NIVEAU</label><select class="form-select fw-bold"><option>Débutant</option><option>Intermédiaire</option><option>Avancé</option></select></div>
+                                </div>
+                                <div class="mb-4"><label>DESCRIPTION</label><textarea class="form-control fw-medium" id="standard-desc-input" rows="4" oninput="updatePreview()"></textarea></div>
+                            </div>
+
+                            <div id="course-specific-basics" class="d-none">
+                                <div class="mb-3"><label>TITRE DU COURS</label><input type="text" class="form-control fw-bold" id="course-name-input" placeholder="ex: Introduction au Design" oninput="updatePreview()"></div>
+                                <div class="mb-3"><label>SOUS-TITRE DU COURS</label><input type="text" class="form-control fw-medium" placeholder="ex: Apprenez les bases de A à Z"></div>
+                                
+                                <div class="row g-3 mb-3">
+                                    <div class="col-md-6"><label>CATÉGORIE</label><select class="form-select fw-bold"><option>Design</option><option>Développement</option></select></div>
+                                    <div class="col-md-6"><label>NIVEAU</label><select class="form-select fw-bold"><option>Débutant</option><option>Intermédiaire</option><option>Avancé</option></select></div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label>DESCRIPTIONS DU COURS</label>
+                                    <div id="dynamic-descriptions">
+                                        <div class="d-flex gap-2 mb-2 dynamic-item">
+                                            <textarea class="form-control fw-medium" rows="3" placeholder="Paragraphe de description..." oninput="updatePreview()"></textarea>
+                                            <button class="btn btn-light border bg-white p-2 text-danger flex-shrink-0" onclick="this.parentElement.remove()" style="height: fit-content;"><i data-lucide="trash" size="16"></i></button>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-sm btn-light border fw-800 text-primary mt-1" onclick="addDynamicField('dynamic-descriptions', 'textarea', 'Nouveau paragraphe...')">+ Ajouter un paragraphe</button>
+                                </div>
+
+                                <div class="mb-4 p-4 border bg-light shadow-sm" style="border-radius: 6px;">
+                                    <h6 class="fw-800 text-dark mb-3">Options & Accès</h6>
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label>NOMBRE D'HEURES (ESTIMATION)</label>
+                                            <div class="input-group" style="border-radius: 6px; overflow: hidden;">
+                                                <input type="number" class="form-control border-end-0 fw-bold" placeholder="ex: 14.5" style="border-radius: 6px 0 0 6px !important;">
+                                                <span class="input-group-text bg-white fw-800 border-start-0 text-muted" style="border-radius: 0 6px 6px 0 !important;">Heures</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-3">
+                                            <div class="form-check form-switch mb-3 d-flex align-items-center gap-3">
+                                                <input class="form-check-input m-0" type="checkbox" checked style="width: 40px; height: 22px;">
+                                                <label class="form-check-label fw-700 m-0 text-dark" style="text-transform: none; font-size: 13.5px;">Accès sur mobile et TV</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-3 d-flex align-items-center gap-3">
+                                                <input class="form-check-input m-0" type="checkbox" checked style="width: 40px; height: 22px;">
+                                                <label class="form-check-label fw-700 m-0 text-dark" style="text-transform: none; font-size: 13.5px;">Accès à vie illimité</label>
+                                            </div>
+                                            <div class="form-check form-switch d-flex align-items-center gap-3">
+                                                <input class="form-check-input m-0" type="checkbox" checked style="width: 40px; height: 22px;">
+                                                <label class="form-check-label fw-700 m-0 text-dark" style="text-transform: none; font-size: 13.5px;">Certificat de fin de formation</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions-bar">
+                                <button class="btn btn-light border bg-white fw-700 text-muted px-4">Sauvegarder en brouillon</button>
+                                <button class="btn btn-primary fw-800 px-4" onclick="nextEditorStep()">Suivant</button>
+                            </div>
+                        </div>
+
+                        <div id="visual-assets-col">
+                            <label>IMAGE DE COUVERTURE</label>
+                            <div class="upload-card"><i data-lucide="image" size="32" class="text-primary mb-2"></i><span class="fw-800 text-dark mb-1">Uploader une image</span><span class="text-muted fw-medium" style="font-size: 11px;">Recommandé: 1280x720</span></div>
+
+                            <div id="sales-video-block">
+                                <label>VIDÉO DE PRÉSENTATION</label>
+                                <div class="upload-card"><i data-lucide="video" size="32" class="text-primary mb-2"></i><span class="fw-800 text-dark mb-1">Uploader une vidéo</span><span class="text-muted fw-medium" style="font-size: 11px;">Max 500MB</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-strategy" class="editor-section mt-3">
+                    <h5 class="fw-800 mb-3 text-dark">Stratégie et Audience</h5>
+                    <p class="text-muted mb-4 fw-500">Ces informations aident les étudiants à savoir si votre cours leur convient.</p>
+                    <div class="row g-4 mb-4">
+                        <div class="col-12">
+                            <label>CE QUE LES ÉTUDIANTS APPRENDRONT (LISTE BREF)</label>
+                            <div id="dynamic-learn-list" class="d-flex flex-column gap-2 mb-2">
+                                <div class="d-flex gap-2 dynamic-item">
+                                    <input type="text" class="form-control fw-medium" placeholder="ex: Construire une application web complète avec PHP.">
+                                    <button class="btn btn-light border bg-white p-2 text-danger flex-shrink-0" onclick="this.parentElement.remove()"><i data-lucide="trash" size="16"></i></button>
+                                </div>
+                            </div>
+                            <button class="btn btn-sm btn-light border fw-800 text-primary mt-1" onclick="addDynamicField('dynamic-learn-list', 'input', 'Nouvel objectif...')">+ Ajouter un objectif</button>
+                        </div>
+                        <div class="col-md-6">
+                            <label>PRÉREQUIS</label>
+                            <div id="dynamic-prereq-list" class="d-flex flex-column gap-2 mb-2">
+                                <div class="d-flex gap-2 dynamic-item">
+                                    <input type="text" class="form-control fw-medium" placeholder="ex: Connaissances de base en HTML/CSS.">
+                                    <button class="btn btn-light border bg-white p-2 text-danger flex-shrink-0" onclick="this.parentElement.remove()"><i data-lucide="trash" size="16"></i></button>
+                                </div>
+                            </div>
+                            <button class="btn btn-sm btn-light border fw-800 text-primary mt-1" onclick="addDynamicField('dynamic-prereq-list', 'input', 'Nouveau prérequis...')">+ Ajouter un prérequis</button>
+                        </div>
+                        <div class="col-md-6">
+                            <label>À QUI S'ADRESSE CE COURS ?</label>
+                            <textarea class="form-control fw-medium" rows="3" placeholder="ex: Développeurs débutants souhaitant passer au backend."></textarea>
+                        </div>
+                    </div>
+                    <div class="form-actions-bar mt-4">
+                        <button class="btn btn-light border bg-white fw-700 text-muted px-4" onclick="prevEditorStep()">Précédent</button>
+                        <button class="btn btn-primary fw-800 px-4" onclick="nextEditorStep()">Suivant</button>
+                    </div>
+                </div>
+
+                <div id="tab-content" class="editor-section">
+                    <div id="view-course-content" class="d-none mt-3">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <h5 class="fw-800 mb-1 text-dark">Programme du cours</h5>
+                                <p class="text-muted m-0 fw-500" style="font-size: 12px;">Ajoutez des chapitres et des leçons vidéo pour votre cours en ligne.</p>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-primary-subtle text-primary border border-primary fw-800 px-3 d-flex align-items-center gap-2" style="background: var(--primary-light);" onclick="alert('Génération du programme par l\'IA en cours...')"><i data-lucide="sparkles" size="14"></i> Assistant IA</button>
+                                <button class="btn btn-sm btn-dark fw-700 px-3" onclick="addChapter()"><i data-lucide="plus" size="14" class="me-1"></i> Ajouter un Chapitre</button>
+                            </div>
+                        </div>
+                        
+                        <div id="curriculum-container">
+                            <div class="chapter-card border-0 mt-3" style="border-radius: 6px;">
+                                <div class="chapter-header" style="border-radius: 6px 6px 0 0;">
+                                    <div class="d-flex align-items-center gap-2 text-dark"><i data-lucide="folder" size="18" class="text-primary"></i> Chapitre 1</div>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-sm btn-light border bg-white p-1 text-muted" style="border-radius: 6px;"><i data-lucide="edit-2" size="14"></i></button>
+                                        <button class="btn btn-sm btn-light border bg-white p-1 text-danger" style="border-radius: 6px;" onclick="this.closest('.chapter-card').remove()"><i data-lucide="trash" size="14"></i></button>
+                                    </div>
+                                </div>
+                                <div class="p-3 bg-white" style="border-radius: 0 0 6px 6px;">
+                                    <div class="modules-container">
+                                        <div class="module-card border-0 shadow-none mb-3" style="border: 1px solid #e2e8f0 !important; border-radius: 6px;">
+                                            <div class="module-header bg-light" style="border-radius: 6px 6px 0 0;"><div class="d-flex align-items-center gap-2 text-dark"><i data-lucide="layers" size="16" class="text-muted"></i> <span>Leçon 1.1</span></div><button class="btn btn-sm btn-light border-0 bg-transparent p-1 text-danger" onclick="this.closest('.module-card').remove()"><i data-lucide="trash" size="14"></i></button></div>
+                                            <div class="lessons-list">
+                                                <div class="lesson-item" style="padding: 0.75rem 1rem 0.75rem 2rem; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; background: #fafafa;">
+                                                    <div class="d-flex align-items-center gap-2 fw-600"><i data-lucide="video" size="16" class="text-primary"></i> <span>1. Vidéo d'introduction</span></div>
+                                                    <div class="d-flex align-items-center gap-3"><span class="access-badge preview">Aperçu Gratuit</span><button class="btn btn-sm btn-light bg-transparent border-0 p-1 text-danger" onclick="this.closest('.lesson-item').remove()"><i data-lucide="trash" size="14"></i></button></div>
+                                                </div>
+                                            </div>
+                                            <div class="p-3 text-center bg-white border-top dropdown w-100" style="border-radius: 0 0 6px 6px;">
+                                                <button class="btn btn-sm btn-light bg-white fw-800 text-primary w-100 py-2" data-bs-toggle="dropdown" style="border: 2px dashed #cbd5e1; border-radius: 6px;">+ Ajouter du Contenu</button>
+                                                <ul class="dropdown-menu w-100 shadow-lg border-0 mt-1 p-2 text-start" style="border-radius: 6px;">
+                                                    <li><a class="dropdown-item py-2 fw-700" href="#" onclick="addContent(event, this, 'video')"><i data-lucide="play-circle" size="16" class="me-2 text-primary"></i> Vidéo pré-enregistrée / Texte</a></li>
+                                                    <li><a class="dropdown-item py-2 fw-700" href="#" onclick="addContent(event, this, 'live')"><i data-lucide="radio" size="16" class="me-2 text-danger"></i> Session Live (Salle Dyte native)</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-sm btn-light bg-white w-100 mt-2 fw-800 py-2 text-muted" style="border: 2px dashed #cbd5e1; border-radius: 6px;" onclick="addModule(this, 1)">+ Ajouter une leçon</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr id="content-separator" class="my-5 border-bottom d-none" style="border-top: none;">
+
+                    <div id="view-digital-content" class="d-none mt-3">
+                        <h5 class="fw-800 mb-1 text-dark">Fichiers téléchargeables</h5>
+                        <p class="text-muted mb-4 fw-500" style="font-size: 12px;">Uploadez les fichiers que les apprenants recevront (PDF, ZIP, Templates...).</p>
+                        <div class="upload-card"><i data-lucide="file-plus" size="40" class="text-primary mb-3"></i><h6 class="fw-800 text-dark">Déposez vos fichiers ici</h6></div>
+                        
+                        <div class="mt-4">
+                            <h6 class="fw-800 mb-3 text-dark fs-6">Fichiers inclus</h6>
+                            <div class="neo-card p-3 border shadow-sm mb-3 d-flex justify-content-between align-items-center" style="border-color: #e2e8f0;">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="bg-primary-subtle text-primary p-2 rounded-custom"><i data-lucide="file-text" size="18"></i></div>
+                                    <div><div class="fw-800 text-dark" style="font-size: 13px;">Ebook_Chapitre1_Apercu.pdf</div><div class="text-muted fw-600" style="font-size: 11px;">2.4 MB</div></div>
+                                </div>
+                                <div class="d-flex align-items-center gap-3">
+                                    <span class="badge bg-success-subtle text-success fw-800 border border-success border-opacity-25 rounded-custom px-2 py-1">Aperçu Gratuit</span>
+                                    <button class="btn btn-sm btn-light border-0 bg-transparent text-muted p-1"><i data-lucide="more-vertical" size="16"></i></button>
+                                </div>
+                            </div>
+                            <div class="neo-card p-3 border shadow-sm d-flex justify-content-between align-items-center" style="border-color: #e2e8f0;">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="bg-light text-muted p-2 rounded-custom"><i data-lucide="folder-archive" size="18"></i></div>
+                                    <div><div class="fw-800 text-dark" style="font-size: 13px;">Livre_Complet_Fichiers.zip</div><div class="text-muted fw-600" style="font-size: 11px;">45.8 MB</div></div>
+                                </div>
+                                <div class="d-flex align-items-center gap-3">
+                                    <span class="badge bg-light text-muted fw-800 border rounded-custom px-2 py-1">Accès payant</span>
+                                    <button class="btn btn-sm btn-light border-0 bg-transparent text-muted p-1"><i data-lucide="more-vertical" size="16"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="view-coaching-content" class="d-none mt-3">
+                        <h5 class="fw-800 mb-1 text-dark">Disponibilités Coaching</h5>
+                        <p class="text-muted mb-4 fw-500">Configurez vos horaires de travail pour que les élèves puissent réserver.</p>
+                        <div class="neo-card bg-primary-subtle border-0 d-flex align-items-center gap-3 mb-4 p-3"><div class="bg-primary text-white p-2" style="border-radius:6px;"><i data-lucide="video" size="20"></i></div><div><h6 class="fw-800 mb-1 text-primary">Salle Dyte Native Auto-générée</h6><p class="text-primary opacity-75 m-0 fw-bold" style="font-size: 12px;">Lorsqu'un élève réserve, une salle vidéo unique et sécurisée est créée automatiquement.</p></div></div>
+                        <div class="mb-4 w-50"><label>DURÉE DE LA SESSION</label><select class="form-select fw-bold text-dark"><option>30 Minutes</option><option>60 Minutes</option></select></div>
+                        <label>HORAIRES HEBDOMADAIRES</label>
+                        <div class="day-toggle active p-2 mb-2"><div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" checked><span class="fw-800 ms-2">Lundi</span></div><div class="d-flex align-items-center gap-2"><input type="time" class="form-control fw-bold text-primary" value="09:00"> <span class="fw-800 text-muted">à</span> <input type="time" class="form-control fw-bold text-primary" value="17:00"></div></div>
+                    </div>
+                    
+                    <div id="view-event-content" class="d-none mt-3">
+                        <h5 class="fw-800 mb-1 text-dark" id="dynamic-event-title">Planifier l'événement</h5>
+                        <p class="text-muted mb-4 fw-500">Choisissez le format, la date et l'heure de votre événement.</p>
+            
+                        <label>FORMAT DE L'ÉVÉNEMENT</label>
+                        <div class="row g-3 mb-4 mt-1">
+                            <div class="col-md-6">
+                                <div class="pricing-card active format-card h-100 p-3" onclick="selectEventFormat(this, 'online')">
+                                    <div class="icon-box"><i data-lucide="globe" size="18"></i></div>
+                                    <div>
+                                        <h6 class="fw-800 text-dark mb-1">En ligne (En direct)</h6>
+                                        <p class="text-muted m-0 fw-bold" style="font-size: 11px;">Génère automatiquement une salle vidéo sécurisée intégrée à la plateforme.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="pricing-card format-card h-100 p-3" onclick="selectEventFormat(this, 'inperson')">
+                                    <div class="icon-box"><i data-lucide="map-pin" size="18" class="text-muted"></i></div>
+                                    <div>
+                                        <h6 class="fw-800 text-dark mb-1">En présentiel (Physique)</h6>
+                                        <p class="text-muted m-0 fw-bold" style="font-size: 11px;">Organisez une rencontre physique. Indiquez le lieu à vos participants.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="row g-3 mb-4 mt-2">
+                            <div class="col-md-4"><label>DATE</label><input type="date" class="form-control fw-800 text-primary"></div>
+                            <div class="col-md-4"><label>HEURE</label><input type="time" class="form-control fw-800 text-primary"></div>
+                            <div class="col-md-4">
+                                <label>CAPACITÉ MAX</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-end-0"><i data-lucide="users" size="16" class="text-muted"></i></span>
+                                    <input type="number" class="form-control border-start-0 fw-800 text-dark" value="50">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4 d-flex align-items-center justify-content-between p-3 border rounded-custom bg-white shadow-sm">
+                            <div>
+                                <h6 class="fw-800 text-dark mb-1">Liste d'attente automatique</h6>
+                                <p class="text-muted m-0 fw-600" style="font-size: 11px;">Activer les inscriptions sur liste d'attente une fois la capacité maximale atteinte.</p>
+                            </div>
+                            <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" checked style="width: 40px; height: 22px;"></div>
+                        </div>
+            
+                        <div id="event-online-info" class="neo-card bg-primary-subtle border-0 d-flex align-items-center gap-3 p-3">
+                            <div class="bg-primary text-white p-2" style="border-radius:6px;"><i data-lucide="radio" size="20"></i></div>
+                            <div>
+                                <h6 class="fw-800 mb-1 text-primary">Salle Dyte Native Auto-générée</h6>
+                                <p class="text-primary opacity-75 m-0 fw-bold" style="font-size: 12px;">Une salle de stream sécurisée sera générée. Aucun lien Zoom nécessaire.</p>
+                            </div>
+                        </div>
+            
+                        <div id="event-inperson-info" class="d-none">
+                            <label>ADRESSE / LIEU DE L'ÉVÉNEMENT</label>
+                            <input type="text" class="form-control fw-bold" placeholder="ex: 123 Avenue de la République, Paris">
+                        </div>
+                    </div>
+
+                    <div class="form-actions-bar mt-4">
+                        <button class="btn btn-light border bg-white fw-700 text-muted px-4" onclick="prevEditorStep()">Précédent</button>
+                        <button class="btn btn-primary fw-800 px-4" onclick="nextEditorStep()">Suivant</button>
+                    </div>
+                </div>
+
+                <div id="tab-pricing" class="editor-section mt-3">
+                    <h5 class="fw-800 mb-3 text-dark">Stratégie de prix</h5>
+                    <div class="row g-3 mb-4" style="max-width: 800px;">
+                        <div class="col-12"><div class="pricing-card active" onclick="selectPricing(this, 'onetime')"><div class="icon-box"><i data-lucide="credit-card" size="18"></i></div><div><h6 class="fw-800 text-dark mb-1">Paiement unique</h6><p class="text-muted m-0 fw-bold" style="font-size: 12px;">Le client paie une seule fois pour un accès à vie.</p></div><div class="ms-auto align-self-center"><div class="border border-primary p-1" style="border-radius:6px;"><div class="bg-primary" style="width:10px;height:10px; border-radius:6px;"></div></div></div></div></div>
+                        <div class="col-12" id="subscription-option-card"><div class="pricing-card" onclick="selectPricing(this, 'subscription')"><div class="icon-box"><i class="text-warning" data-lucide="calendar" size="18"></i></div><div><h6 class="fw-800 text-dark mb-1">Abonnement</h6><p class="text-muted m-0 fw-bold" style="font-size: 12px;">Paiement récurrent (ex: pour des communautés ou masterclass mensuelles).</p></div><div class="ms-auto align-self-center"><div class="border p-1" style="width:18px;height:18px; border-radius:6px;"></div></div></div></div>
+                        <div class="col-12"><div class="pricing-card" onclick="selectPricing(this, 'free')"><div class="icon-box"><i class="text-success" data-lucide="gift" size="18"></i></div><div><h6 class="fw-800 text-dark mb-1">Gratuit</h6><p class="text-muted m-0 fw-bold" style="font-size: 12px;">Parfait pour des lead magnets ou des événements communautaires.</p></div><div class="ms-auto align-self-center"><div class="border p-1" style="width:18px;height:18px; border-radius:6px;"></div></div></div></div>
+                    </div>
+                    <div class="neo-card bg-light border-0 p-4" id="pricing-details-area" style="max-width: 800px;">
+                        <div id="single-price-area"><label>MONTANT</label><div class="input-group"><span class="input-group-text bg-white fw-800 text-dark border-end-0">$</span><input type="number" class="form-control border-start-0 fw-800 text-primary fs-5" id="product-price-input" placeholder="99.00" oninput="updatePreview()"></div></div>
+                        <div id="multi-tier-area" class="d-none">
+                            <h6 class="fw-800 mb-3 text-dark">Niveaux d'abonnement (Max 3)</h6>
+                            <div id="tiers-wrapper" class="d-flex flex-column gap-3">
+                                <div class="tier-box bg-white p-3 border-0 position-relative shadow-sm" style="border-radius:6px;"><div class="row g-3"><div class="col-md-5"><label>NOM DU PLAN</label><input type="text" class="form-control fw-bold" placeholder="e.g. VIP"></div><div class="col-md-3"><label>PRIX</label><div class="input-group"><span class="input-group-text bg-light border-end-0 fw-800">$</span><input type="number" class="form-control border-start-0 fw-800 text-primary" class="tier-price-val" placeholder="29" oninput="updatePreview()"></div></div><div class="col-md-4"><label>FRÉQUENCE</label><select class="form-select fw-bold tier-interval-val" onchange="updatePreview()"><option>Mensuel</option><option>Annuel</option></select></div></div></div>
+                            </div>
+                            <button class="btn btn-sm btn-light bg-white border fw-800 mt-3 px-3" id="btn-add-tier" onclick="addTier()">+ Ajouter un niveau</button>
+                        </div>
+                    </div>
+
+                    <div class="mt-4" style="max-width: 800px;" id="pricing-seo-block">
+                        <label>LIEN URL (SEO)</label>
+                        <div class="input-group"><span class="input-group-text bg-light border-end-0 text-muted fw-bold">superdash.com/</span><input type="text" class="form-control border-start-0 fw-800 text-dark" placeholder="nom-du-produit"></div>
+                    </div>
+
+                    <div class="form-actions-bar mt-4">
+                        <button class="btn btn-light border bg-white fw-700 text-muted px-4" onclick="prevEditorStep()">Précédent</button>
+                        <button class="btn btn-primary fw-800 px-4" onclick="nextEditorStep()">Suivant</button>
+                    </div>
+                </div>
+
+                <div id="tab-settings" class="editor-section mt-3">
+                    <h5 class="fw-800 mb-4 text-dark">Paramètres de livraison</h5>
+                    
+                    <div id="default-settings-block" style="max-width: 800px;">
+                        
+                        <div id="course-settings-extra" class="d-none">
+                            <div class="mb-4">
+                                <label class="mb-2">TYPE D'EXPÉRIENCE D'APPRENTISSAGE</label>
+                                <div class="d-flex flex-column gap-3 mt-1">
+                                    <div class="pricing-card active format-card p-3" onclick="selectCourseFormat(this, 'live')">
+                                        <div class="icon-box"><i data-lucide="radio" size="18" class="text-danger"></i></div>
+                                        <div>
+                                            <h6 class="fw-800 text-dark mb-1">Cohorte Live & Interactive</h6>
+                                            <p class="text-muted m-0 fw-bold" style="font-size: 11px;">Apprentissage en groupe sur une période donnée. Inclut des sessions vidéo en direct et un forum d'échange.</p>
+                                        </div>
+                                    </div>
+                                    <div class="pricing-card format-card p-3" onclick="selectCourseFormat(this, 'community')">
+                                        <div class="icon-box"><i data-lucide="users" size="18" class="text-primary"></i></div>
+                                        <div>
+                                            <h6 class="fw-800 text-dark mb-1">Autonome avec Communauté</h6>
+                                            <p class="text-muted m-0 fw-bold" style="font-size: 11px;">Les élèves consomment les leçons vidéo à leur rythme, mais ont accès à un espace communautaire pour poser des questions.</p>
+                                        </div>
+                                    </div>
+                                    <div class="pricing-card format-card p-3" onclick="selectCourseFormat(this, 'solo')">
+                                        <div class="icon-box"><i data-lucide="headphones" size="18" class="text-secondary"></i></div>
+                                        <div>
+                                            <h6 class="fw-800 text-dark mb-1">Mode Solo (100% Autonome)</h6>
+                                            <p class="text-muted m-0 fw-bold" style="font-size: 11px;">Accès direct au contenu pré-enregistré sans interaction sociale. Parfait pour des formations passives.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="digital-settings-extra" class="d-none">
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between align-items-center p-4 border rounded-custom bg-white shadow-sm">
+                                    <div>
+                                        <h6 class="fw-800 text-dark mb-1 d-flex align-items-center gap-2"><i data-lucide="refresh-ccw" size="16" class="text-primary"></i> Mises à jour & Notifications</h6>
+                                        <p class="text-muted m-0 fw-600" style="font-size: 12px;">Avertir automatiquement les anciens acheteurs par email lorsqu'une nouvelle version de ce fichier est uploadée.</p>
+                                    </div>
+                                    <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" checked style="width: 40px; height: 22px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="event-settings-extra" class="d-none">
+                            <div class="mb-4">
+                                <label class="mb-3">RAPPELS AUTOMATIQUES (EMAILS)</label>
+                                <div class="neo-card p-3 border shadow-sm mb-3 d-flex justify-content-between align-items-center" style="border-radius: 6px;">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="bg-light p-2 rounded-custom text-muted"><i data-lucide="mail" size="18"></i></div>
+                                        <div><div class="fw-800 text-dark" style="font-size: 13px;">Rappel J-1</div><div class="text-muted fw-600" style="font-size: 11px;">Envoyé 24h avant le début de l'événement</div></div>
+                                    </div>
+                                    <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" checked style="width: 40px; height: 22px;"></div>
+                                </div>
+                                <div class="neo-card p-3 border shadow-sm d-flex justify-content-between align-items-center" style="border-radius: 6px;">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="bg-primary-subtle p-2 rounded-custom text-primary"><i data-lucide="bell" size="18"></i></div>
+                                        <div><div class="fw-800 text-dark" style="font-size: 13px;">Rappel H-15 min</div><div class="text-muted fw-600" style="font-size: 11px;">Contient le lien d'accès direct à la salle</div></div>
+                                    </div>
+                                    <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" checked style="width: 40px; height: 22px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4"><label>TYPE D'INSCRIPTION</label><select class="form-select fw-800 text-dark"><option>🟢 Ouverte (Accès instantané)</option><option>🔒 Fermée (Cohorte privée)</option></select></div>
+                        <div class="mb-4" id="settings-seo-block"><label>LIEN URL (SEO)</label><div class="input-group"><span class="input-group-text bg-light border-end-0 text-muted fw-bold">superdash.com/</span><input type="text" class="form-control border-start-0 fw-800 text-dark" placeholder="nom-du-produit"></div></div>
+                    </div>
+
+                    <div id="event-promo-settings" class="d-none" style="max-width: 800px;">
+                        <div class="neo-card mb-4 border-primary bg-primary-subtle border-0 p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3"><div><h6 class="fw-800 text-primary mb-1">Publier dans la Communauté</h6><p class="text-primary opacity-75 m-0 fw-bold" style="font-size: 12px;">Annoncer automatiquement cet événement à vos membres actuels.</p></div><div class="form-check form-switch"><input class="form-check-input" type="checkbox" checked style="width: 40px; height: 20px;"></div></div>
+                            <div><label class="text-primary opacity-75">MESSAGE D'ANNONCE</label><textarea class="form-control border-0 fw-bold p-3" rows="2" style="border-radius:6px;">Salut tout le monde ! J'organise un nouvel événement. Inscrivez-vous ci-dessous ! 👇</textarea></div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions-bar mt-4">
+                        <button class="btn btn-light border bg-white fw-700 text-muted px-4" onclick="prevEditorStep()">Précédent</button>
+                        <button class="btn btn-primary fw-800 px-4" onclick="publishProduct()">Publier</button>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <div id="preview-panel" class="live-preview-panel">
+            <div class="preview-header-bar"><span><i data-lucide="eye" size="14" class="me-1"></i> Aperçu du Checkout</span><button class="btn btn-sm btn-light bg-white border-0 p-1 shadow-sm" onclick="togglePreview()"><i data-lucide="x" size="14"></i></button></div>
+            <div class="preview-body">
+                <div class="mock-hero-img"><i data-lucide="image" size="32"></i></div>
+                <h4 class="fw-900 mb-1 text-dark" id="live-preview-title">Produit sans titre</h4>
+                <p class="fs-4 fw-900 text-primary mb-4" id="live-preview-price">Gratuit</p>
+                <button class="btn btn-primary w-100 py-2 fw-800 mb-4">S'inscrire / Acheter</button>
+                <div class="text-main fw-medium" style="font-size: 13.5px; line-height: 1.6;" id="live-preview-desc">Commencez à taper dans la description pour voir votre page produit se mettre à jour en direct.</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="dyte-room-overlay" class="d-none">
+        <div class="dyte-header">
+            <div class="fw-800 fs-5" id="dyte-room-title">Meeting Room</div>
+            <div class="d-flex align-items-center gap-3">
+                <span class="badge bg-danger px-3 py-1 fw-800"><i data-lucide="radio" size="12" class="me-1"></i> LIVE</span>
+            </div>
+        </div>
+        <div class="dyte-grid">
+            <div class="dyte-video-box"><img src="https://ui-avatars.com/api/?name=David&background=334155&color=fff&size=150" class="opacity-50"><div class="dyte-name-tag">David (Student)</div></div>
+            <div class="dyte-video-box"><img src="https://ui-avatars.com/api/?name=Alex&background=9333ea&color=fff&size=150"><div class="dyte-name-tag">Alex Mentor (You)</div></div>
+        </div>
+        <div class="dyte-controls">
+            <button class="dyte-btn"><i data-lucide="mic" size="20"></i></button>
+            <button class="dyte-btn"><i data-lucide="video" size="20"></i></button>
+            <button class="dyte-btn danger" onclick="closeDyteRoom()"><i data-lucide="phone-off" size="20"></i></button>
+        </div>
+    </div>
+
+    <input type="file" id="video-tester-input" accept="video/*" style="display: none;" onchange="handleVideoSelection(this)">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script> 
+    
+    <script src="dashboard.js">
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superdash | Connexion Apprenant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="connexion-apprenant.css">
+</head>
+<body>
+
+<div class="layout">
+    <aside class="sidebar">
+        <div class="logo">superdash</div>
+        <div class="sidebar-card">
+            <h3>Heureux de vous revoir 👋</h3>
+            <p>Vos cours n'attendent plus que vous.</p>
+        </div>
+        <div class="feat-item"><span class="icon-check-box">✓</span> Accès à +340 formations expertes</div>
+        <div class="feat-item"><span class="icon-check-box">✓</span> Suivi de progression en temps réel</div>
+        <div class="feat-item"><span class="icon-check-box">✓</span> Certifications reconnues incluses</div>
+        
+        <div class="members-active">
+            <div class="avatars">
+                <div style="background: url('https://i.pravatar.cc/100?img=4') center/cover;"></div>
+                <div style="background: url('https://i.pravatar.cc/100?img=5') center/cover;"></div>
+                <div style="background: url('https://i.pravatar.cc/100?img=6') center/cover;"></div>
+            </div>
+            Rejoignez 12 400 apprenants actifs
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="top-nav">
+            <a class="nav-link" href="#">← Retour</a>
+            <div style="background: #F0F2FF; color: var(--primary); padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: 700;">🎓 Parcours Apprenant</div>
+        </div>
+
+        <div class="form-container">
+            <form onsubmit="event.preventDefault(); window.location.href='dashboard-apprenant.html';">
+                <h1>Bienvenue à nouveau 👋</h1>
+                <p class="subtitle">Connectez-vous à votre espace d'apprentissage.</p>
+                
+                <label class="label">Adresse E-mail</label>
+                <input type="email" placeholder="vous@exemple.com" required>
+                
+                <label class="label">Mot de passe</label>
+                <input type="password" placeholder="••••••••" required>
+                
+                <div style="text-align: right; margin: -10px 0 25px;">
+                    <a href="#" style="font-size: 12px; color: var(--primary); text-decoration: none; font-weight: 700;">Mot de passe oublié ?</a>
+                </div>
+                
+                <button type="submit" class="btn btn-next" style="width:100%">Se connecter</button>
+                
+                <div style="display: flex; align-items: center; color: #D1D5DB; margin: 25px 0; font-size: 14px;">
+                    <div style="flex: 1; height: 1px; background: var(--border);"></div>
+                    <span style="margin: 0 15px;">ou</span>
+                    <div style="flex: 1; height: 1px; background: var(--border);"></div>
+                </div>
+                
+                <button type="button" class="btn btn-prev" style="width:100%; justify-content:center; color: var(--text-dark);">
+                    <img src="https://www.gstatic.com/images/branding/product/1x/gsa_512dp.png" width="18" alt="Google"> Continuer avec Google
+                </button>
+
+                <div style="text-align: center; margin-top: 25px; font-size: 14px;">
+                    Pas encore de compte ? <a href="inscription_apprenant.html" style="color: var(--primary); text-decoration: none; font-weight: 700;">Créer un compte</a>
+                </div>
+            </form>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>
